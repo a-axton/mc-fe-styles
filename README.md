@@ -1,68 +1,48 @@
-# scaffolding
-Simple static scaffolding
-
-Clone the repo:
-```
-git clone [repo url]
-```
-
-Change into your newly cloned folder, then remove existing git history:
-```
-rm -rf .git
-```
-
-Now you'll need to set up your initial commit:
-```
-git init
-git add .
-git commit -m "Scaffolding commit"
-```
-
-Create a new repo on github, then grab the clone url, and using that, add your remote:
-```
-git remote add [path]
-```
-
-Kinda like:
-```
-git remote add origin git@github.com:stephenp/repoName.git
-```
-
-
-Ah...push it.
-```
-git push -u origin master
-```
-
+# Masterclass Front End Style Builder
+Maintained by Stephen Pontes for Masterclass, this repo contains the build scripts to process our sass library of styles for the MC website.  The final output is minified and compressed to be imported in the app's asset pipeline for final compilation with the rest of the css.
 
 ## Required
-- node
+- node (If you have brew, it's just `brew install node`)
 - npm (`npm install npm -g`)
 - gulp (`npm install gulp -g`)
 
-## Setup
-Change into the repo directory, then:
+# Getting started
+Clone the repo:
+```
+git clone git@github.com:yankaindustries/mc-fe-styles.git mc-fe-styles
+```
+
+Change into your newly cloned folder
+```
+cd mc-fe-styles
+```
+
+Install dependencies
 ```
 npm install
 ```
 
-## Dev
+# Active Development
+Once you've finished the "getting started" steps, you're ready to build!  Make sure you have gulp installed:
+
 ```
-npm start
+npm install gulp -g
 ```
 
-Then in a new terminal window, to compile / live reload:
+The default task is just "gulp":
+
 ```
 gulp
 ```
 
-View your site at:
-```
-localhost:8080
-```
+This process will remain running and will compile automatically if any files change.
 
-## Shipping
-Kill gulp, then run:
+
+# "Deploying"
+We aren't really deploying anything, just minifying the css and uglifying the JS (and compressing any image assets).
+
+Kill gulp if it's currently running (`control + c`), then run:
+
 ```
 gulp ship
 ```
