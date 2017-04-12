@@ -1,0 +1,29 @@
+{
+  "name": "scaffolding",
+  "version": "0.0.1",
+  "description": "Quick scaffolding and dev tools",
+  "author": "Stephen Pontes",
+  "private": true,
+  "engines": {},
+  "scripts": {
+    "start": "./node_modules/.bin/http-server"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-imagemin": "^3.0.3",
+    "imagemin-pngquant": "^5.0.0",
+    "gulp-file-include": "^1.0.0",
+    "gulp-livereload": "^3.2.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-util": "^3.0.4",
+    "node-notifier": "^4.1.2"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}
