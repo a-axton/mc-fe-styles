@@ -43,6 +43,8 @@ There's also a bundled webserver so you can test out the styles "live".
 npm start
 ```
 
+**Note: This server runs on port 3000, just like our default app server, so if you're currently running one, you'll need to kill it first before using this build system.**
+
 Then check your work out here:
 
 ```
