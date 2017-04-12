@@ -37,6 +37,18 @@ gulp
 
 This process will remain running and will compile automatically if any files change.
 
+There's also a bundled webserver so you can test out the styles "live".
+
+```
+npm start
+```
+
+Then check your work out here:
+
+```
+http://localhost:8080
+```
+
 
 # "Deploying"
 We aren't really deploying anything, just minifying the css and uglifying the JS (and compressing any image assets).
