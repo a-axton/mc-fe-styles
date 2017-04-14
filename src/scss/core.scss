@@ -1,2 +1,1883 @@
-@import "reset";
-@import "mc-base";
+@import 'reset';
+@import 'components/variables';
+@import 'components/mixins';
+
+// Font modifications
+.small-caps { font-size: 0.909em; }
+
+// For anything that needs to be on the page, but not visible to regular users
+.screenreader {
+  width: 0px;
+  height: 0px;
+  text-indent: -10000px;
+  display: block;
+  margin: 0;
+}
+
+
+// ***********************
+// Quick responsive helper
+// ***********************
+.mobile-only { display: block !important; }
+.desktop-only { display: none !important; }
+
+body {
+    font-family: $mc-font-default;
+    -webkit-font-smoothing: antialiased;
+}
+
+// ******
+// Arrows
+// ******
+.mc-arrow {
+  border: 14px solid transparent;
+  overflow: hidden;
+  text-indent: -100%;
+  z-index: 100;
+  -webkit-transition: border 150ms ease;
+          transition: border 150ms ease;
+
+  // Directions
+  &.mc-arrow-right {
+    border-left:  14px solid $mc-color-accent-primary;
+    border-right: 0;
+    width: 14px; height: 28px;
+
+    &:hover { border-left: 14px solid $mc-color-accent-primary-hover; }
+  }
+
+  &.mc-arrow-left  {
+    border-right: 14px solid $mc-color-accent-primary;
+    border-left: 0;
+    width: 14px; height: 28px;
+
+    &:hover { border-right: 14px solid $mc-color-accent-primary-hover; }
+  }
+}
+
+
+
+// *************
+// "Grid" system
+// *************
+.mc-container {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.mc-contain-outer { max-width: $mc-contain-outer; }
+.mc-contain-middle { max-width: $mc-contain-middle; }
+.mc-contain-inner { max-width: $mc-contain-inner; }
+
+
+// *******
+// Helpers
+// *******
+.mc-btn {
+  background: $mc-color-accent-primary;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0.55em;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  color: $mc-color-text-link;
+  text-decoration: none;
+  transition: background 250ms ease, color 250ms ease, border 250ms ease;
+
+  &:hover,
+  &:focus {
+    background: $mc-color-accent-primary-hover;
+    color: $mc-color-text-link;
+    text-decoration: none;
+  }
+
+  // Spacing
+  &.no-margins {
+    margin: 0;
+  }
+
+  // Transparent (on black bg)
+  &.mc-btn-transparent {
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    // Inverted transparent (on white bg)
+    &.invert {
+      background: rgba(0, 0, 0, 0);
+      border: 1px solid rgba($mc-color-neutral, 0.2);
+      color: rgba(0, 0, 0, 0.6);
+
+      &:hover {
+        border: 1px solid rgba($mc-color-neutral, 0.5);
+        color: rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+
+  // Neutral
+  &.neutral {
+    background: #292929;
+
+    &:hover {
+      background: #303131;
+    }
+  }
+}
+
+
+// ******
+// Modals
+// ******
+.mc-modal-overlay {
+  // This is needed for
+  // the "click outside" js interaction. It's
+  // also the "darkened" overlay
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  // No animation on dismissal
+  transition: none;
+}
+
+
+.modal-active {
+  // Removing scrolling means you jump to the top
+  // position: fixed;
+  // overflow: hidden;
+  // width: 100%; height: 100%;
+  .mc-modal-overlay {
+    opacity: 1;
+    // Animate in
+    transition: opacity 150ms ease 300ms;
+  }
+
+  &.modal-blurred {
+    > *:not(.mc-modal) {
+      filter: blur(5px);
+      // Force GPU
+      backface-visibility: hidden;
+      perspective: 1000;
+      transition: filter 300ms ease;
+    }
+
+    // Password manager fix!
+    > div:last-of-type,
+    #lpformframesign-in-email,
+    > iframe:last-of-type {
+      filter: blur(0);
+    }
+  }
+}
+
+.mc-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  font-size: 12px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 123;
+
+  &.visible {
+    width: 100%; height: 100%;
+    visibility: visible;
+    opacity: 1;
+
+    .mc-modal-dialog {
+      opacity: 1;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      // Animate in!
+      transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
+    }
+  }
+
+  .mc-modal-dialog {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 450px; height: auto;
+    max-width: 90%;
+    padding: 1.6em 2.4em;
+    background: #fff;
+    opacity: 0;
+    box-shadow: 1px solid rgba(0, 0, 0, 0.5);
+    color: #000;
+    -webkit-transform: translate(-50%, -40%);
+            transform: translate(-50%, -40%);
+    // Animate out
+    transition: none;
+    transition-delay: 0ms;
+  }
+
+  .mc-modal-close {
+    position: absolute;
+    top: 1em; right: 1em;
+    width: 2em; height: 2em;
+    background: asset-url("refresh/global/modal-close.svg") center no-repeat;
+    opacity: 0.2;
+    z-index: 1;
+    transition: opacity 150ms ease;
+    -webkit-backface-visibility: hidden;
+
+    &:hover { opacity: 0.4; }
+  }
+
+  .mc-modal-title {
+    text-align: center;
+    font-size: 1.33em;
+    margin-bottom: 1.25em;
+    color: $mc-color-neutral;
+  }
+
+  .modal-subtext {
+    font-size: 0.9333em;
+    text-align: center;
+    color: rgba($mc-color-neutral, 0.6);
+
+    &.existing-fb {
+      margin-bottom: 20px;
+    }
+  }
+
+  p { margin: 0; }
+
+  .mc-modal-submit {
+    margin: 0.75em 0 0;
+    background: $mc-color-accent-primary;
+    text-transform: uppercase;
+
+    &:hover {
+      background: $mc-color-accent-primary-hover;
+    }
+  }
+
+  .button_desc {
+    width: 100%;
+    font-size: 0.933em;
+    margin-top: 0.8em;
+    text-align: center;
+    color: $mc-color-neutral;
+
+    a {
+      color: $mc-color-accent-primary;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0);
+      transition: box-shadow 150ms ease;
+
+      &:hover {
+        box-shadow: 0 1px 0 $mc-color-accent-primary;
+      }
+    }
+  }
+
+
+  // Modal needs a visible class
+  // to animate it separately from
+  // modal overlay
+  &.visible {
+    width: 100%; height: 100%;
+    opacity: 1;
+    visibility: visible;
+
+    .mc-modal-dialog {
+      opacity: 1;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      // Animate in!
+      transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
+    }
+  }
+
+
+  // ------------------------
+  // Modal has three "types":
+  // Login, Chromeless, Full
+  // ------------------------
+
+  // Login styles
+  &.login {
+    .or {
+      position: relative;
+      margin: 0 0 0.4em 0;
+      text-align: center;
+      color: rgba($mc-color-neutral, 0.8);
+      text-transform: uppercase;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%; left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba($mc-color-neutral, 0.2);
+        z-index: -1;
+      }
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0.5em 1em;
+        background: #fff;
+      }
+    }
+
+    button {
+      // Override button styles first
+      display: block;
+      cursor: pointer;
+      font-family: $mc-font-default;
+      border: 0;
+      border-radius: 3px;
+      color: #fff;
+      width: 100%;
+      font-size: 1.2em;
+      letter-spacing: 0.035em;
+      padding: 1.05em 0.5em;
+      transition: background 200ms ease;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin: 0 0 1em 0;
+      padding: 0.7em 0.5em;
+      font-size: 1em;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 3px;
+      box-shadow: none;
+      -webkit-appearance: none;
+      transition: border 150ms ease;
+
+      &#sign-in-password { margin-bottom: 0; }
+
+      &:focus {
+        outline: none;
+        border: 1px solid rgba($mc-color-neutral, 1);
+      }
+
+      &.error { border: 1px solid rgba($mc-color-accent-primary, 0.6); }
+    }
+
+    // Label error
+    label.error {
+      display: block;
+      color: rgba($mc-color-accent-primary, 0.6);
+      margin: 0 0 0.5em;
+    }
+
+    .login-with-facebook {
+      background: #3A5998;
+      margin: 1em 0 0.5em;
+
+      &:hover {
+        color: #fff;
+        background: #4971C2;
+      }
+
+      .mc-icon-facebook {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.1em;
+        margin: -0.1em 1em 0 0;
+      }
+    }
+
+    #sign-in-forgot-password {
+      margin: 0.3em 0 0;
+      text-align: right;
+      font-size: 0.9333em;
+
+      .forgot {
+        color: rgba($mc-color-neutral, 0.6);
+
+        &:hover {
+          color: rgba($mc-color-neutral, 0.8);
+        }
+      }
+    }
+  }
+
+
+  // Chromeless styles
+  &.chromeless {
+    .mc-modal-close {
+      background: asset-url("refresh/global/modal-close-inverted.svg") center no-repeat;
+      opacity: 0.5;
+
+      &:hover { opacity: 1; }
+    }
+
+    .mc-modal-dialog {
+      background: transparent;
+      padding: 0;
+      color: #fff;
+      box-shadow: none;
+      width: 900px; height: auto;
+      min-width: 200px;
+      max-width: 100%;
+
+      .instructor-class {
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 0 0 0.5em;
+      }
+    }
+
+    .modal-caption {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1em 0;
+      @include clearfix();
+    }
+
+    .class-title {
+      font-size: 1.07em;
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    .ctas {
+      @include clearfix();
+
+      display: block;
+      float: none;
+      text-align: center;
+
+      .cta { margin: 0.55em 0 0.55em 1.1em; }
+    }
+  }
+
+  // Full screen styles
+  &.full {
+    .mc-modal-close {
+      background: asset-url("refresh/global/modal-close-inverted.svg") center no-repeat;
+      opacity: 0.5;
+
+      &:hover { opacity: 1; }
+    }
+
+    .modal-caption {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1em 0;
+      @include clearfix();
+
+    }
+
+    .mc-modal-title {
+      position: relative; // position over overlay
+      font-size: 1.5em;
+      margin: 1em auto;
+      text-align: center;
+      color: #fff;
+    }
+
+    .mc-modal-dialog {
+      top: 5.0625em; // accomodate title
+      width: calc(100% - 2em);
+      max-width: 1000px;
+      height: auto;
+      max-height: calc(100% - 9.375em);
+      overflow: auto;
+      -webkit-transform: translate(-50%, 1.875em);
+              transform: translate(-50%, 1.875em);
+    }
+  }
+}
+
+
+// Activated Modal
+.modal-active {
+  // Removing scrolling means you jump to the top
+  // position: fixed;
+  // overflow: hidden;
+  // width: 100%; height: 100%;
+
+  // Fade in the overlay
+  .mc-modal-overlay {
+    opacity: 1;
+    // Transition in
+    transition: opacity 150ms ease;
+  }
+
+  &.modal-blur {
+    // Needs diff opacity for bg on blurred mode
+    .mc-modal-overlay { background: rgba(0, 0, 0, 0.2); }
+
+    > *:not(.mc-modal) {
+      filter: blur(5px);
+      // Force GPU
+      backface-visibility: hidden;
+      perspective: 1000;
+      transition: filter 300ms ease;
+    }
+
+    // Password manager fix!
+    > div:last-of-type,
+    #lpformframesign-in-email,
+    > iframe:last-of-type {
+      filter: blur(0);
+    }
+  }
+
+  // Full active doesn't need to be vertically centered
+  .mc-modal.full {
+    .mc-modal-dialog {
+      -webkit-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+    }
+  }
+}
+
+
+// ******
+// Header
+// ******
+#mobile-nav-button {
+  position: absolute;
+  top: 0.45em; right: 0.45em;
+  width: 21px;
+  height: 21px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+  .mobile-nav-lines {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%; height: 1px;
+      background: #fff;
+      transform-origin: center center;
+      transition: top 125ms ease 125ms, transform 125ms ease 0ms;
+    }
+
+    &:before {
+      top: -5px;
+    }
+
+    &:after {
+      top: calc(50% + 5px);
+    }
+  }
+}
+
+// Logged out nav on mobile
+.user-login-actions-container { float: right; }
+
+.user-login-actions {
+  .user-login-action {
+    display: inline-block;
+    vertical-align: top; // top is vertically centered on mobile
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    a {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0;
+      color: #fff;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -0.5em; left: auto; right: 0;
+        width: 0;
+        height: 2px;
+        background: $mc-color-accent-primary;
+        -webkit-transition: width 250ms ease;
+        transition: width 250ms ease;
+      }
+    }
+  }
+}
+
+// Only show login hover states on desktop
+.no-touch .user-login-actions .user-login-action a {
+  &:hover {
+    color: #fff;
+
+    &:after {
+      left: 0; right: auto;
+      width: 100%;
+    }
+  }
+}
+
+$mc-condensed-ease-timing: 450ms;
+
+#mc-header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  text-align: center; // needed to center wordmark
+  text-transform: uppercase;
+  background: #000;
+  padding: 1em;
+  z-index: 10;
+  @include clearfix();
+  transition: background $mc-condensed-ease-timing ease, min-height $mc-condensed-ease-timing ease;
+
+  a { color: #fff; }
+
+  // Always hide primary logo on mobile
+  #logo-primary { display: none; }
+
+  // Always show wordmark on mobile
+  // Should always be perfectly centered in header
+  #logo-wordmark {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // If logged out, no breadcrumbs, float
+  // logo to the left
+  &.logged-out #logo-wordmark {
+    display: block;
+    float: left;
+  }
+
+  // No breadcrumbs on mobile
+  .mc-breadcrumb { display: none; }
+
+  // Overwrite core
+  .mc-container {
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    transition: 0ms 0ms ease;
+  }
+
+  .mc-contain-inner { position: static; }
+
+  a { text-decoration: none; }
+
+  &.nav-open {
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+
+    // Change the nav button
+    #mobile-nav-button {
+      .mobile-nav-lines {
+        top: 50%;
+        left: 0;
+        background: none;
+        transition: background 0ms 125ms ease;
+
+        &:before,
+        &:after {
+          transition: top 125ms ease, transform 125ms ease 125ms;
+        }
+
+        &:before {
+          top: 50%;
+          transform: rotate(-45deg);
+        }
+
+        &:after {
+          top: 50%;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+
+    // Show the nav
+    .mc-nav-items {
+      display: block;
+      margin-top: 1em;
+    }
+  }
+
+  .activity-state,
+  .username {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .activity-state {
+    border-radius: 20px;
+    width: 6px; height: 6px;
+
+    &.online {
+      background: $mc-color-active-state;
+    }
+  }
+
+  .mobile-only {
+    .avatar { margin-right: 1em; }
+    .activity-state { margin-left: 0.65em; }
+  }
+
+  .desktop-only {
+    .avatar { margin-left: 1em; }
+    .activity-state { margin-right: 0.65em; }
+  }
+
+  .mc-nav-items {
+    // On mobile, hide until nav-open is activated
+    display: none;
+
+    .mc-nav-item {
+      position: relative; // Position subnav
+      display: block;
+      font-size: 0.75em;
+      line-height: 1;
+      margin: 0;
+      // min-height: 3.5em; // To keep subnav open on hover
+      letter-spacing: 0.0833em;
+      color: rgba(255, 255, 255, 0.6);
+
+      &:hover {
+        .mc-subnav-items {
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 150ms ease, visibility 0ms 0ms linear;
+        }
+      }
+
+      > a {
+        font-weight: 600;
+
+        img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      // Vertical alignment fix
+      &.user-info {
+        .activity-state,
+        .username,
+        .avatar {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      &.comments {
+        .comments-dropdown {
+          display: none;
+
+          img { display: block; }
+        }
+
+        .avatar {
+          position: absolute;
+          top: 0; left: 0;
+          width: 45px; height: 45px;
+          margin-right: 0.5em;
+        }
+
+        .mc-subnav-item {
+          text-transform: none;
+          text-align: left;
+
+          &:first-of-type {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+          }
+
+          .comment {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+          }
+        }
+      }
+
+      &.cart { padding: 2em 0; }
+    }
+  }
+
+  .mc-subnav-items {
+    margin-top: 1em;
+    padding: 0 2em;
+    color: #fff;
+    box-shadow: rgba(0,0,0,0.15) 0 10px 20px 0, rgba(0,0,0,0.3) 0 0 30px 0;
+    transition: opacity 150ms ease, visibility 0ms 150ms linear;
+
+    .subnav-title {
+      text-transform: uppercase;
+      margin: 1.5em 0;
+    }
+  }
+
+  .mc-subnav-item {
+    position: relative;
+    font-size: 1.25em;
+    letter-spacing: .033em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:first-child { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    &:last-child { padding: 1.25em 0; }
+
+    a {
+      display: block;
+      color: rgba(255, 255, 255, 1);
+      padding: 1.25em 0; // padding here so clickarea is bigger
+    }
+
+    .mc-btn {
+      display: block;
+      margin: 0;
+      padding: 1em;
+      font-size: 1.25em;
+      letter-spacing: 0.1em;
+      color: #fff;
+
+      &.clear {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        text-align: center;
+        font-size: 1em;
+        margin-bottom: 1em;
+      }
+    }
+
+    .sign-out {
+      display: block;
+      font-size: 0.75em;
+      letter-spacing: 0.0833em;
+      color: rgba(0, 0, 0, 0.5);
+      margin-top: 1em;
+      padding: 0;
+    }
+
+    &.classes {
+      border-bottom: 0;
+      padding: 0;
+    }
+  }
+
+  .comment-content {
+    display: block;
+    position: relative;
+    padding-left: calc(1em + 45px);
+
+    .chapter-marker { margin-bottom: 0.5em; }
+
+    .user {
+      font-weight: bold;
+      margin-right: 0.25em;
+      color: #fff;
+    }
+
+    .timestamp {
+      text-transform: uppercase;
+      font-size: 0.8em;
+      margin-top: 1em;
+      color: rgba(#fff, 0.5);
+    }
+  }
+
+  .current-classes {
+    background: #000; // needed for opacity fadethrough
+    margin: 0 -1.6em;
+    padding: 0;
+    border-bottom: 0;
+
+    &:hover {
+      .current-class {
+        opacity: 0.5;
+
+        &:hover { opacity: 1; }
+      }
+    }
+
+    .current-class {
+      position: relative;
+      transition: opacity 250ms ease;
+      @include box-bottom-gradient();
+
+      &:hover {
+        .caption {
+          -webkit-transform: translateY(-0.4em);
+                  transform: translateY(-0.4em);
+        }
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      &:first-child:before { display: none; }
+
+      .link-wrapper {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 2;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .caption {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        padding: 1em;
+        text-align: left;
+        color: rgba(255, 255, 255, 1);
+        z-index: 1;
+        transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+      }
+
+      .instructor {
+        margin-bottom: 0.35em;
+        font-size: 1em;
+        letter-spacing: 0.03333em;
+      }
+
+      .class-title {
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.019167em;
+      }
+    }
+  }
+}
+
+// ************
+// Lesson plans
+// ************
+.cm-lessons {
+  background: #fff;
+  padding: 0 1.25em;
+
+  // Trigger the reveal of the full chapter list
+  &.expanded {
+    .show-more-lessons {
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+    }
+
+    .more-lessons {
+      max-height: 5000px;
+
+      .cm-lesson {
+        -webkit-transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+    }
+  }
+
+  // Only remove border on the last lesson
+  > .cm-lesson:last-child { border-bottom: 0; }
+
+  .cm-lesson {
+    position: relative;
+    padding: 1.1em 1em 1.75em 3.75em;
+    border-bottom: 1px solid rgba($mc-color-neutral, 0.2);
+    @include clearfix();
+
+    .cm-lesson-marker {
+      position: absolute;
+      top: 0.5em; left: 0.1em;
+      display: block;
+      font-size: 2em;
+      font-weight: 300;
+      color: rgba($mc-color-neutral, 0.4);
+    }
+
+    .lesson-title {
+      font-size: 1.5em;
+      color: $mc-color-neutral;
+      margin-bottom: 0.3em;
+    }
+
+    p {
+      color: rgba($mc-color-neutral, 0.6);
+      line-height: 1.2;
+    }
+  }
+
+  .show-more-lessons {
+    position: relative;
+    color: $mc-color-neutral;
+    text-align: center;
+    border-bottom: 1px solid rgba($mc-color-neutral, 0.2);
+    padding: 0.44em;
+    opacity: 1;
+    max-height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+
+    // Inner "top" and inner "bottom" lines
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      background: rgba($mc-color-neutral, 0.2);
+      width: 100%; height: 1px;
+    }
+
+    &:before { top: 25%; }
+    &:after { top: 75%; }
+
+    p:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%; left: 0;
+      background: rgba($mc-color-neutral, 0.2);
+      width: 100%; height: 1px;
+    }
+
+    a {
+      position: relative;
+      background: #fff;
+      font-size: 0.9375em;
+      display: inline-block;
+      text-transform: uppercase;
+      padding: 0.5em 1em;
+      color: $mc-color-neutral;
+      z-index: 1;
+    }
+  }
+
+  // Container for "more lessons" (hidden until click)
+  .more-lessons {
+    max-height: 0;
+    overflow: hidden;
+    perspective: 1000px;
+
+    .cm-lesson {
+      position: relative;
+      background: white;
+      opacity: 0;
+      -webkit-transform: scale(0.95) translate(0, -10%);
+              transform: scale(0.95) translate(0, -10%);
+      transform-style: preserve-3d;
+      transform-origin: center top;
+      transition: transform 375ms ease, opacity 300ms ease;
+
+      // Delay loop
+      @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+          transition-delay: 200ms + 100ms * $i;
+          z-index: 50 - $i;
+        }
+      }
+    }
+  }
+}
+
+
+// *******
+// Reusable "three up" style
+// *******
+.three-ups {
+  @include clearfix();
+
+  .three-up {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    max-width: 350px;
+    padding: 2.5em 2em;
+    text-align: center;
+  }
+}
+
+
+// *****
+// Tiles
+// *****
+
+// "Coming Soon" or "Recommended for you" text
+.mc-list-classes-section-title {
+  font-size: 1.4em;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 1.5em 0 1.5em;
+  text-align: center;
+  color: rgba(255,255,255,1);
+}
+
+.mc-list-classes {
+  text-align: center;
+  @include clearfix();
+
+  &.orphan {
+    .mc-list-class:first-child {
+      // Different aspect ratio, need to zoom in and crop
+      .class-poster {
+        width: 200%;
+        margin-left: -50%;
+      }
+    }
+  }
+
+  &.promos .mc-list-class {
+    width: 100%;
+    height: auto;
+    padding-bottom: 0;
+    margin-bottom: 4em;
+
+    .class-poster {
+      position: static;
+      display: block;
+    }
+  }
+
+  .mc-list-class {
+    position: relative;
+    display: inline-block;
+    float: none;
+    width: 100%;
+    height: 0;
+    margin: 0.5em 0;
+    padding-bottom: 59.4%;
+    overflow: hidden; // Required for animation
+    text-align: left;
+    @include box-bottom-gradient();
+    -webkit-transition: background-image 150ms ease;
+    transition: background-image 150ms ease;
+
+    &:hover {
+      // Subtle zooming
+      .class-poster {
+        -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+        -webkit-transition: transform 15s cubic-bezier(0.020, 0.075, 0.420, 1);
+                transition: transform 15s cubic-bezier(0.020, 0.075, 0.420, 1);
+      }
+
+      // Movin on up
+      .caption {
+        -webkit-transform: translateY(-0.75em);
+                transform: translateY(-0.75em);
+      }
+
+      // Color the thing white
+      .link-wrapper:before {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        -webkit-transition: box-shadow 250ms ease;
+        transition: box-shadow 250ms ease;
+      }
+    }
+
+    .link-wrapper {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      cursor: pointer;
+      z-index: 2;
+      @include box-inset-border();
+
+      &:before {
+        -webkit-transition: box-shadow 250ms ease;
+                transition: box-shadow 250ms ease;
+      }
+    }
+
+    .class-poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      -webkit-transform: scale(1); // set intiial
+              transform: scale(1); // set intiial
+      -webkit-transition: transform 8s ease;
+              transition: transform 8s ease;
+    }
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 1em; left: 1em;
+    z-index: 1;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px #000000;
+    -webkit-transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+            transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+  }
+
+  .caption-title {
+    font-size: 1.3em;
+    margin-bottom: 0.2em;
+
+    // Instructor "logos"
+    img {
+      max-width: 175px;
+    }
+  }
+
+  .caption-subtitle {
+    font-size: 0.9em;
+    color: rgba(#fff, 0.5);
+  }
+}
+
+
+// ******
+// Banner
+// ******
+.mc-banner {
+  background: #fff;
+  border-left: 4px solid $mc-color-accent-primary;
+  border-right: 4px solid $mc-color-accent-primary;
+  color: $mc-color-neutral;
+  text-align: center;
+  padding: 1.875em 1em;
+
+  .mc-banner-title {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  .mc-banner-description {
+    color: rgba($mc-color-neutral, 0.6);
+    font-size: 0.9375em;
+    letter-spacing: 0.02em;
+    margin: 0.7em 0;
+  }
+
+  .mc-banner-ctas {
+    margin-top: 2em;
+
+    .mc-banner-cta {
+      display: inline-block;
+      vertical-align: middle;
+
+      .mc-btn {
+        margin: 0 1em;
+      }
+    }
+  }
+}
+
+
+// *******
+// Socials
+// *******
+.socials-wrapper {
+  font-size: 18px;
+  padding: 2.75em 1em 3em;
+  text-align: center;
+
+  .section-title {
+    font-size: .933em;
+    margin-bottom: 2.3em;
+    text-transform: uppercase;
+    color: rgba(#fff, 0.3);
+  }
+} // .socials-wrapper
+
+.mc-socials {
+  .mc-social {
+    display: inline-block;
+    margin: 0 1em 1em;
+    vertical-align: middle;
+
+    &:hover {
+      a {
+        color: #fff;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+
+        &:after { border-color: #fff; }
+      }
+    }
+
+    a {
+      display: block;
+      position: relative;
+      color: rgba(#fff, 0.5);
+      font-size: 1.5em;
+      padding: 0.5em;
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 2.15em; height: 2.15em;
+        border: 1px solid rgba(#fff, 0.2);
+        border-radius: 100%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        transition: border 150ms ease, text-shadow 150ms ease;
+      }
+    }
+  }
+}
+
+
+// ******
+// Footer
+// ******
+#mc-footer {
+  background: #000;
+  border-top: 2px solid rgba(#fff, 0.2);
+  // margin-top: 64px; holding off for now..
+  // Better to have footer overlaid than hacky fix
+  padding: 1em;
+  font-size: 0.95em;
+  clear: both;
+  text-align: center;
+
+  ul { padding: 0; }
+
+  .copyright {
+    font-size: 0.87em;
+    margin-bottom: -1em;
+    color: rgba(#fff, 0.2);
+  }
+
+  // desired width / 1.513333333
+  #logo-footer {
+    border-bottom: 1px solid rgba(#fff, 0.2);
+    padding: 1.5em 1em 2.5em;
+    width: 135px; height: 128px;
+  }
+
+  #ssl-badge { display: none; }
+
+  .nav-footer {
+      padding: 2em 0em;
+  }
+
+  .nav-footer-items {
+    margin: 0 auto;
+    max-width: 350px;
+
+    a { color: #fff; }
+  }
+
+  .nav-footer-item {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.87em;
+    text-transform: uppercase;
+    margin: 0.75em 0;
+    padding: 0 7px 0 8px;
+  }
+
+  &.footer-full {
+    position: relative;
+    // z-index fixes bug where footer overlays on top
+    // of "other class" outlines
+    z-index: 2;
+
+    #ssl-badge { display: inline-block; }
+
+    #logo-footer {
+      background: black;
+      border: 0;
+      padding: 1em 2em;
+      width: auto; height: auto;
+    }
+
+    .container { padding: 1em 0; }
+
+    .footer-cols {
+      padding: 0;
+      @include clearfix();
+    }
+
+    .footer-col {
+      display: inline-block;
+      vertical-align: top;
+      max-width: 325px;
+      margin: 1.5em 0;
+      padding: 0;
+      color: rgba(255, 255, 255, 0.5);
+
+      &:first-child { display: none; }
+
+      p {
+        line-height: 1.5385;
+        margin: 1em 0 1.5em 0;
+      }
+    }
+
+    .footer-col-title {
+      font: 1.5em $mc-font-default;
+      letter-spacing: 0.04167em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .nav-footer { border: 0; } //override default footer style
+
+    .nav-footer-items {
+      max-width: 350px;
+    }
+
+    .copyright {
+      margin: 1em 0 0;
+    }
+  }
+}
+
+// *************
+// Media queries
+// *************
+@media (min-width: $mc-bp-tiny) {
+
+  .cm-lessons {
+    .cm-lesson {
+      padding: 1.75em 1em 1.75em 5em;
+
+      .cm-lesson-marker {
+        font-size: 3em;
+      }
+    }
+  }
+  .mc-list-classes {
+    .mc-list-class {
+      width: 447px;
+      height: 265px;
+      padding: 0;
+    }
+
+    .caption {
+      bottom: 1.5em; left: 1.5em;
+      width: calc(100% - 3em);
+    }
+    .caption-title { font-size: 1.5em; }
+    .caption-subtitle { font-size: 1.1em; }
+  }
+
+  #mc-footer {
+    .nav-footer-item {
+      border-left: 1px solid rgba(#fff, 0.2);
+      &:first-child { border-left: 0; }
+      &:nth-child(4) { border-left: 0; }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-small) {
+  .mobile-only { display: none !important; }
+  .desktop-only { display: block !important; }
+
+  // Header switches from mobile to desktop here
+  #mc-header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    background-repeat: repeat-x;
+    background-size: 100% 150px;
+    background-position: 0 -50px;
+    min-height: 100px; // extend gradient past visible "edge"
+    padding: 0; // override mobile's padding
+
+    .mc-breadcrumb {
+      position: absolute;
+      top: 0.5em; left: 0.5em;
+      display: block;
+      font-size: 0.75em;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.0833em;
+      padding-top: 0.45em;
+
+      &:before {
+        content: "<";
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5em;
+        color: $mc-color-accent-primary;
+      }
+    }
+
+    // On desktop, show primary but
+    // hide wordmark. Unless condensed (below)
+    #logo-primary {
+      display: inline-block;
+      position: absolute;
+      top: 1em; left: 50%;
+      width: 124px; height: 56px;
+      -webkit-transform: translate(-50%, 0%);
+              transform: translate(-50%, 0%);
+      transition: transform $mc-condensed-ease-timing ease;
+
+      img { width: 100%; height: auto; }
+    }
+
+    #logo-wordmark { display: none; }
+
+    // no padding needed on desktop
+    &.logged-out {
+      padding: 0;
+
+      #logo-wordmark { display: none; }
+    }
+
+    // When nav is condensed:
+    &.condensed {
+      min-height: 2.1em;
+      background-position: 0 0;
+
+      .mc-container {
+        min-height: 2.1em;
+
+        // Sticky nav needs a black background on nav
+        // items so it can go "behind"
+        &:not(.cm-sticky-ctas) {
+          background: #000;
+          transition: background 0ms 450ms ease;
+        }
+      }
+
+      #logo-primary {
+        -webkit-transform: translate(-50%, -49px);
+                transform: translate(-50%, -49px);
+        transition: transform $mc-condensed-ease-timing ease;
+      }
+    }
+
+    .mc-container {
+      padding: 0.5em;
+      @include clearfix();
+    }
+
+    // Fix for if the user goes to dekstop from mobile
+    // while the mobile nav is open
+    &.nav-open {
+      height: auto;
+      overflow-y: inherit;
+
+      .mc-nav-items {
+        margin-top: 0;
+      }
+    }
+
+    .mc-nav-items {
+      display: block;
+      position: absolute;
+      top: 0.45em; right: 0.5em;
+      overflow: visible;
+
+      .mc-nav-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0.4em;
+
+        &.comments {
+          .comments-dropdown {
+            display: block;
+
+            &.unread:after {
+              content: "";
+              position: absolute;
+              top: 0.8em; right: -0.1em;
+              display: block;
+              width: 6px; height: 6px;
+              background: $mc-color-accent-primary;
+              border-radius: 6px;
+            }
+          }
+
+          .mc-subnav-item {
+            .comment { color: rgba($mc-color-neutral, 0.8); }
+          }
+        }
+
+        &.cart { padding: 0; }
+      }
+    }
+
+    .mc-subnav-items {
+      position: absolute;
+      top: 3.5em; right: -16px;
+      margin-top: 0;
+      width: 350px;
+      background: #fff;
+      color: $mc-color-neutral;
+      opacity: 0;
+      visibility: hidden;
+
+      // Drop down arrow
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -30px;
+        right: 10px;
+        height: 15px;
+        border: 15px solid transparent;
+        border-bottom: 15px solid #fff;
+      }
+
+      // Needed to keep nav open as you mouse
+      // between the main parent nav item and the
+      // subnav menu.  Without this, frustrating UX!
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -24px;
+        left: 0;
+        width: 100%;
+        height: 24px;
+        background: none;
+      }
+
+      &:hover {
+        .mc-subnav-item a {
+          color: rgba($mc-color-neutral, 0.6);
+
+          &:hover { color: rgba($mc-color-neutral, 1); }
+
+          // not cta
+          &.mc-btn { color: #fff; }
+        }
+      }
+    }
+
+    .mc-subnav-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      &:first-child { border-top: 0; }
+
+      a {
+        color: rgba($mc-color-neutral, 0.8);
+        transition: color 150ms ease;
+      }
+
+      .mc-btn.clear {
+        color: $mc-color-neutral;
+        border: 1px solid rgba(0,0,0, 0.5);
+        margin-bottom: 0;
+      }
+    }
+
+    .comment-content {
+      .user { color: rgba($mc-color-neutral, 1); }
+      .timestamp { color: rgba($mc-color-neutral, 0.5); }
+    }
+  }
+
+  .user-login-actions-container {
+    position: absolute;
+    top: 0.5em; right: 0.5em;
+    float: none;
+  }
+
+  #mc-footer {
+    &.footer-full {
+      .nav-footer-items { max-width: none; }
+      .container { padding: 1em; }
+      .footer-col { padding: 0 1.5em; }
+    }
+  }
+
+  .mc-list-classes {
+    &.orphan {
+      .mc-list-class {
+        // Reset style
+        &:nth-child(odd) {
+          margin-left: 1.7em;
+          clear: none;
+        }
+
+        &:nth-child(even) {
+          margin-left: 0;
+          clear: both;
+        }
+
+        // Special full-width style
+        &:first-child {
+          width: 100%;
+          margin: 0 0 0.85em 0;
+          padding-bottom: 36.04%;
+
+          .class-poster {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .mc-list-class {
+      display: block;
+      float: left;
+      width: calc(50% - 0.85em);
+      height: auto;
+      margin: 0.85em 0 0.85em 1.7em;
+      padding-bottom: 29.7%;
+
+      &:nth-child(odd) {
+        clear: both;
+        margin-left: 0;
+      }
+
+      &.hp_featured_tile {
+        float: none;
+        width: 100%;
+        margin: 0.85em 0;
+        padding-bottom: 36.04%;
+
+        .class-poster {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .three-ups {
+    .three-up {
+      float: left;
+      width: 30%;
+      padding: 2.5em 2em;
+
+      &.middle { margin: 0em 5%; }
+    }
+  }
+
+  .cm-lessons {
+    .show-more-lessons a { padding: 0.5em 3em; }
+
+    .cm-lesson {
+      padding: 2.25em 1em 2.25em 6em;
+
+      .cm-lesson-marker {
+        top: 0.7em;
+        left: 0.3em;
+      }
+    }
+  }
+}
+
+
+@media (min-width: $mc-bp-medium) {
+  .mc-modal {
+    font-size: 15px;
+
+    &.chromeless {
+      .class-title { float: left; }
+      .ctas { float: right; }
+    }
+  }
+
+  .mc-list-classes {
+    .caption {
+      bottom: 2em; left: 2em;
+      width: calc(100% - 4em);
+    }
+
+    .caption-title {
+      font-size: 1.6em;
+      margin-bottom: 0.3em;
+    }
+
+    .caption-subtitle { font-size: 1.1em; }
+  }
+
+  #mc-footer {
+    padding: 3em 1em;
+
+    #logo-footer,
+    .nav-footer,
+    #ssl-badge {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    #logo-footer {
+      width: 97px; height: 64px;
+      border-bottom: 0;
+      padding: 0;
+    }
+
+    .nav-footer {
+      border: 1px solid rgba(#fff, 0.2);
+      margin: 0 2.5em;
+      padding: 0 2.5em;
+      border-top: 0; border-bottom: 0;
+    }
+
+    #ssl-badge { display: inline-block; }
+
+    &.footer-full {
+      #logo-footer {
+        position: absolute;
+        top: 0; left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        border-top: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .footer-cols { padding: 4em 0; }
+
+      .footer-col {
+        display: block;
+        float: left;
+        width: 33.33%;
+        max-width: none;
+        margin: 0;
+
+        &:first-child { display: block; }
+
+        &:nth-child(2) {
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-top: 0; border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-large) {
+  #mc-footer {
+    .nav-footer-items {
+      max-width: none;
+
+      .nav-footer-item {
+        &:nth-child(4) { border-left: 1px solid rgba(#fff, 0.2); }
+      }
+    }
+
+    .nav-footer {
+      margin: 0 3.5em;
+      padding: 2em 3.5em;
+    }
+  }
+}
+
+@media (min-width: $mc-bp-full) {
+}
+
+@media (min-width: $mc-bp-uwd) {
+}

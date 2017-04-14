@@ -20,12 +20,12 @@ gulp.task('watch', ['compile'], function() {
   livereload.listen();
   gulp.watch('src/html/**/*.html', ['compileMarkup']);
   gulp.watch('src/js/**/*.js', ['compileJS']);
-  gulp.watch('src/scss/**/*.scss', ['compileStyles']);
+  gulp.watch('src/scss/**/*.scss', ['compileCSS']);
   gulp.watch('src/img/**/*.*', ['compileImages']);
 });
 
 // compile - compile markup, js, and styles
-gulp.task('compile', ['compileJS', 'compileStyles', 'compileImages', 'compileMarkup']);
+gulp.task('compile', ['compileJS', 'compileCSS', 'compileImages', 'compileMarkup']);
 
 // ship - Process everything, minify, move images, etc to /dist
 gulp.task('ship', ['minifyMarkup', 'minifyStyles', 'minifyImages', 'compileJS']);
@@ -79,9 +79,11 @@ gulp.task('compileJS', function() {
 
 
 // CSS Related
-gulp.task('compileStyles', function() {
+gulp.task('compileCSS', ['compileCore', 'compileCoreComponents', 'compileStylePages']);
+
+gulp.task('compileCore', function() {
   return gulp.src([
-      'src/scss/*.scss'
+      'src/scss/core.scss'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -104,8 +106,55 @@ gulp.task('compileStyles', function() {
     .pipe(livereload());
 });
 
-gulp.task('minifyStyles', ['compileStyles'], function() {
-  return gulp.src('./dist/css/core.css')
+gulp.task('compileCoreComponents', function() {
+  return gulp.src([
+      'src/scss/components/*.scss'
+    ])
+    .pipe(plumber({
+      errorHandler: function(err) {
+        util.log(
+          'Error ' +
+          util.colors.bold.bgRed(err)
+        );
+
+        notifier.notify({
+          title: 'Build Error',
+          message: err.message
+        });
+
+        this.emit('end');
+      }
+    }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
+    .pipe(gulp.dest('./dist/css/components'))
+});
+
+gulp.task('compileStylePages', function() {
+  return gulp.src([
+      'src/scss/pages/*.scss'
+    ])
+    .pipe(plumber({
+      errorHandler: function(err) {
+        util.log(
+          'Error ' +
+          util.colors.bold.bgRed(err)
+        );
+
+        notifier.notify({
+          title: 'Build Error',
+          message: err.message
+        });
+
+        this.emit('end');
+      }
+    }))
+    .pipe(sass({style: 'compressed'}))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
+    .pipe(gulp.dest('./dist/css/pages'))
+});
+
+gulp.task('minifyStyles', ['compileCSS'], function() {
+  return gulp.src(['./dist/css/core.css'])
     .pipe(cleancss())
     .pipe(gulp.dest('./dist/css'));
 });
