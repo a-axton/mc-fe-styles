@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Comments Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Course-Marketing-Refresh" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Course-Marketing-(Logged-In)" transform="translate(-1180.000000, -8.000000)" stroke-width="0.75" stroke="#FFFFFF">
+            <g id="Course-Marketing">
+                <g id="Nav-(Logged-In)">
+                    <g id="Navbar">
+                        <g id="Nav-Links" transform="translate(200.000000, 7.000000)">
+                            <g id="Comments-Icon" transform="translate(981.000000, 2.000000)">
+                                <path d="M15.6666667,6.78818586 C15.6666667,10.3475394 12.2346667,13.2330747 8,13.2330747 C7.05466667,13.2330747 6.15,13.0895192 5.314,12.8264485 L0.908,14.9392566 L2.63333333,11.3908929 C1.21333333,10.2211556 0.333333333,8.59121616 0.333333333,6.78818586 C0.333333333,3.22814545 3.76533333,0.34329697 8,0.34329697 C12.2346667,0.34329697 15.6666667,3.22814545 15.6666667,6.78818586 L15.6666667,6.78818586 Z" id="Stroke-103"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
