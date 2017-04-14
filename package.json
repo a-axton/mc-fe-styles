@@ -6,7 +6,7 @@
   "private": false,
   "engines": {},
   "scripts": {
-    "start": "./node_modules/.bin/http-server -p 3000"
+    "start": "./node_modules/.bin/http-server ./dist -p 3000 -o"
   },
   "devDependencies": {
     "gulp": "^3.6.0",
