@@ -1,9 +1,9 @@
 {
-  "name": "scaffolding",
+  "name": "@masterclass/mc-fe-styles",
   "version": "0.0.1",
-  "description": "Quick scaffolding and dev tools",
+  "description": "Module to build the front end assets of the Masterclass website",
   "author": "Stephen Pontes",
-  "private": true,
+  "private": false,
   "engines": {},
   "scripts": {
     "start": "./node_modules/.bin/http-server -p 3000"

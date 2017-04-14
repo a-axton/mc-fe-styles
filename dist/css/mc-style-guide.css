@@ -1,0 +1,94 @@
+#mc-style-guide {
+  padding: 30px;
+  padding-left: 330px; }
+  #mc-style-guide #sidebar {
+    background: #f1f1f1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    padding: 1em;
+    border-right: 1px solid #ccc; }
+  #mc-style-guide h1, #mc-style-guide h2, #mc-style-guide h3, #mc-style-guide h4, #mc-style-guide h5 {
+    font-weight: bold;
+    margin: 0 0 0.25em 0; }
+  #mc-style-guide .primary-title {
+    font-size: 32px; }
+  #mc-style-guide .section-title {
+    font-size: 25px; }
+  #mc-style-guide .section-subtitle {
+    font-size: 18px; }
+  #mc-style-guide p {
+    font-size: 16px;
+    line-height: 1.4; }
+  #mc-style-guide strong {
+    font-weight: bold; }
+  #mc-style-guide code:after,
+  #mc-style-guide .code-render:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em 1em;
+    content: "Code";
+    text-transform: uppercase;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold; }
+  #mc-style-guide code {
+    position: relative;
+    display: block;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0.75em 1.25em;
+    font-family: monospace;
+    line-height: 1.4; }
+  #mc-style-guide .code-render {
+    position: relative;
+    background: white;
+    padding: 1em;
+    border: 1px solid #ccc; }
+    #mc-style-guide .code-render:after {
+      content: "Rendering"; }
+    #mc-style-guide .code-render.inverted {
+      background: #090909; }
+      #mc-style-guide .code-render.inverted:after {
+        color: rgba(255, 255, 255, 0.5); }
+  #mc-style-guide .section {
+    margin: 40px 0 75px;
+    max-width: 800px; }
+  #mc-style-guide .subsection {
+    margin: 15px 0;
+    padding: 2em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1); }
+  #mc-style-guide .mc-color-cards:after {
+    content: "";
+    display: block;
+    clear: both; }
+  #mc-style-guide .mc-color-cards .mc-color-card {
+    display: block;
+    width: 32%;
+    float: left;
+    margin: 1em 0 1em 2%;
+    padding: 0.5em;
+    border: 1px solid #ccc; }
+    #mc-style-guide .mc-color-cards .mc-color-card:nth-child(3n+1) {
+      clear: both;
+      margin-left: 0; }
+    #mc-style-guide .mc-color-cards .mc-color-card .mc-color-swatch {
+      display: block;
+      width: 100%;
+      height: 100px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc; }
+    #mc-style-guide .mc-color-cards .mc-color-card .mc-color-variable {
+      display: block;
+      font-size: 14px; }
+    #mc-style-guide .mc-color-cards .mc-color-card .mc-color-value {
+      display: block;
+      font-size: 11px;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.5); }

@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    @@include('components/head.html')
+    <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+
+  <!-- Sharing -->
+  <meta property="og:url" content=""/>
+  <meta property="og:title" content=""/>
+  <meta property="og:type" content=""/>
+  <meta property="og:image" content=""/>
+  <meta property="og:description" content=""/>
+
+  <title>Title</title>
+
+  <!-- Google fonts -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,200,600|Lato:300,400" media="screen" rel="stylesheet" type="text/css" />
+
+
+  <!-- Compiled output -->
+  <link href="css/core.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
 
     <!-- Specific to style guide page -->
     <link href="css/mc-style-guide.css" media="screen" rel="stylesheet" type="text/css" />
@@ -249,6 +268,7 @@ $mc-bp-uwd:       2000px;</code></pre>
 <!-- Scripts -->
 <script src="js/site.js"></script>
 
-@@include('components/live-reload-snippet.html')
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
 </body>
 </html>
