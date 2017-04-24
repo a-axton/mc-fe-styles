@@ -33,7 +33,7 @@
           color: white; }
   #mc-style-guide #main {
     background: #fff;
-    padding: 2.5em;
+    padding: 0 2.5em;
     border: 1px solid #D3DBE3; }
   #mc-style-guide h1, #mc-style-guide h2, #mc-style-guide h3, #mc-style-guide h4, #mc-style-guide h5 {
     margin: 0 0 0.25em 0;
@@ -86,10 +86,10 @@
       #mc-style-guide .code-render.inverted:after {
         color: rgba(255, 255, 255, 0.5); }
   #mc-style-guide .section {
-    padding: 40px 0 75px;
+    padding: 45px 0;
     border-bottom: 1px solid #E8EDF2; }
   #mc-style-guide .subsection {
-    margin: 40px 0;
+    margin: 40px 0 0;
     padding: 0 0 0 1.5em;
     border-left: 4px solid #E8EDF2; }
   #mc-style-guide .mc-color-cards-groups {
