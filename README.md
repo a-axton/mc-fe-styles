@@ -23,43 +23,36 @@ npm install
 ```
 
 # Active Development
-Once you've finished the "getting started" steps, you're ready to build!  Make sure you have gulp installed:
-
-```
-npm install gulp -g
-```
-
-The default task is just "gulp":
-
-```
-gulp
-```
-
-This process will remain running and will compile automatically if any files change.
-
-There's also a bundled webserver so you can test out the styles "live".
+Once you've finished the "getting started" steps, you're ready to build!
 
 ```
 npm start
 ```
+
+This process will remain running and will re-compile your scss files automatically if they change.
+
+This also spawns a http-server process so you can test out the styles "live".  A browser window should open automatically.
+
 
 **Note: This server runs on port 3000, just like our default app server, so if you're currently running one, you'll need to kill it first before using this build system.**
 
 Then check your work out here:
 
 ```
-http://localhost:8080
+http://localhost:3000
 ```
 
 
 # "Deploying"
 We aren't really deploying anything, just minifying the css and uglifying the JS (and compressing any image assets).
 
-Kill gulp if it's currently running (`control + c`), then run:
+Kill the `npm start` process if it's still running (`control + c`), then run:
 
 ```
-gulp ship
+npm version [type]
 ```
+
+Where type is either `patch` (0.0.x), `minor` (0.x.0), `major` (x.0.0).
 
 ## Known issues
-Images aren't moved to the public folder when you modify them in /src.  You'll need to relaunch gulp if you're making changes to images.
+Images aren't moved to the public folder when you modify them in /src.  You'll need to re-run `npm start` if you're making changes to images.
