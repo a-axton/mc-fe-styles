@@ -46,8 +46,13 @@ http://localhost:3000
 # "Deploying"
 We aren't really deploying anything, just minifying the css and uglifying the JS (and compressing any image assets).
 
-Kill the `npm start` process if it's still running (`control + c`), then run:
+Kill the `npm start` process if it's still running (`control + c`), then minify all the assets:
 
+```
+gulp ship
+```
+
+Now you're good to version and publish:
 ```
 npm version [type]
 ```
