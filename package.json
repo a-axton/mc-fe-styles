@@ -6,12 +6,14 @@
   "private": false,
   "engines": {},
   "license": "UNLICENSED",
-  "repository" :
-    { "type" : "git"
-    , "url" : "https://github.com/yankaindustries/mc-fe-styles.git"
+  "repository":
+    {
+      "type" : "git",
+      "url" : "https://github.com/yankaindustries/mc-fe-styles.git"
     },
   "scripts": {
-    "start": "./node_modules/.bin/http-server ./dist -p 3000 -o"
+    "start": "gulp & http-server ./dist -p 3000 -o",
+    "preversion": "gulp ship"
   },
   "devDependencies": {
     "gulp": "^3.6.0",

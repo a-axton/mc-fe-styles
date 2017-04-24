@@ -63,7 +63,8 @@ gulp.task('minifyMarkup', ['compileMarkup'], function() {
       minifyJS: true,
       removeComments: true
     }))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./dist/'))
+    .pipe(livereload());
 });
 
 
