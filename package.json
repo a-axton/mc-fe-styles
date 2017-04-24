@@ -30,6 +30,5 @@
     "imagemin-pngquant": "^5.0.0",
     "node-notifier": "^5.1.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
