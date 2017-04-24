@@ -22,42 +22,48 @@ Install dependencies
 npm install
 ```
 
-# Active Development
+# Development
 Once you've finished the "getting started" steps, you're ready to build!
 
 ```
 npm start
 ```
 
-This process will remain running and will re-compile your scss files automatically if they change.
+This process will remain running and will re-compile any scss and js files in the `/src/` directory automatically if they change.
 
-This also spawns a http-server process so you can test out the styles "live".  A browser window should open automatically.
-
-
-**Note: This server runs on port 3000, just like our default app server, so if you're currently running one, you'll need to kill it first before using this build system.**
-
-Then check your work out here:
+A http-server process will also auto-launch.  A browser window should open automatically, but if not, check out your work here:
 
 ```
 http://localhost:3000
 ```
 
+**Note: This server runs on port 3000, just like our default app server, so if you're currently running one, you'll need to kill it first before using this build system.**
+
 
 # "Deploying"
-We aren't really deploying anything, just minifying the css and uglifying the JS (and compressing any image assets).
+We aren't really deploying anything to production, this is a node_module that gets included in the main app.  So we need to make sure we just minify/compress everything with our gulp task.
 
-Kill the `npm start` process if it's still running (`control + c`), then minify all the assets:
+Kill the `npm start` process if it's still running (`control + c`), then you're good to release a new version! Version type can be `patch` (0.0.x), `minor` (0.x.0), `major` (x.0.0).
 
-```
-gulp ship
-```
-
-Now you're good to version and publish:
 ```
 npm version [type]
 ```
 
-Where type is either `patch` (0.0.x), `minor` (0.x.0), `major` (x.0.0).
+For example: To go from 0.0.1 to 0.0.2, you'd use a "patch":
 
-## Known issues
-Images aren't moved to the public folder when you modify them in /src.  You'll need to re-run `npm start` if you're making changes to images.
+```
+npm version patch
+```
+
+If that all works, you can publish a new version of our assets to the app!
+
+```
+npm publish
+```
+
+If successfull, you'll see:
+```
++ @masterclass/mc-fe-styles@@0.0.0
+```
+
+Where 0.0.0 is the new version number!
