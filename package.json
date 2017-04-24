@@ -12,7 +12,9 @@
   },
   "scripts": {
     "start": "gulp & http-server ./dist -p 3000 -o",
-    "preversion": "gulp ship"
+    "preversion": "gulp ship",
+    "version": "git add -A dist",
+    "postversion": "git push"
   },
   "devDependencies": {
     "gulp": "^3.6.0",
