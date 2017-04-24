@@ -127,6 +127,7 @@ gulp.task('compileCoreComponents', function() {
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
     .pipe(gulp.dest('./dist/css/components'))
+    .pipe(livereload());
 });
 
 gulp.task('compileStylePages', function() {
@@ -151,6 +152,7 @@ gulp.task('compileStylePages', function() {
     .pipe(sass({style: 'compressed'}))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
     .pipe(gulp.dest('./dist/css/pages'))
+    .pipe(livereload());
 });
 
 gulp.task('minifyStyles', ['compileCSS'], function() {
