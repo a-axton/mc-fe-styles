@@ -1290,7 +1290,7 @@ $mc-condensed-ease-timing: 450ms;
 // Socials
 // *******
 .socials-wrapper {
-  font-size: 18px;
+  font-size: 15px;
   padding: 2.75em 1em 3em;
   text-align: center;
 
@@ -1483,6 +1483,10 @@ $mc-condensed-ease-timing: 450ms;
       &:first-child { border-left: 0; }
       &:nth-child(4) { border-left: 0; }
     }
+  }
+
+  .socials-wrapper {
+    font-size: 15px;
   }
 }
 
