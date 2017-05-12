@@ -2,6 +2,11 @@
 @import 'components/variables';
 @import 'components/mixins';
 
+//rule for ng-cloak to avoid flickering with angular templates
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 // Font modifications
 .small-caps { font-size: 0.909em; }
 
@@ -22,7 +27,6 @@
 .desktop-only { display: none !important; }
 
 body {
-    font-family: $mc-font-default;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -89,7 +93,6 @@ body {
   border-radius: 2px;
   letter-spacing: 0.05em;
   color: $mc-color-text-link;
-  text-decoration: none;
   transition: background 250ms ease, color 250ms ease, border 250ms ease;
 
   &:hover,
@@ -537,6 +540,21 @@ body {
       -webkit-transform: translate(-50%, 0%);
       transform: translate(-50%, 0%);
     }
+  }
+}
+
+
+// ******************
+// Brightcove Popover
+// ******************
+.brightcove-popover.mc-modal.chromeless {
+  .mc-modal-dialog {
+    margin: 0 auto;
+    width: auto;
+  }
+
+  &.disable-transitions .mc-modal-dialog {
+    transition: none !important;
   }
 }
 
@@ -1486,7 +1504,7 @@ $mc-condensed-ease-timing: 450ms;
   }
 
   .socials-wrapper {
-    font-size: 15px;
+    font-size: 18px;
   }
 }
 
