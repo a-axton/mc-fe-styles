@@ -34,7 +34,10 @@ gulp.task('ship', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
 // Markup
 // -------
 gulp.task('compileMarkup', function() {
-  return gulp.src(['src/html/*.html'])
+  return gulp.src([
+    'src/html/*.html',
+    'src/html/pages/*.html'
+    ])
     .pipe(plumber({
       errorHandler: function(err) {
         util.log(
