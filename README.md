@@ -29,16 +29,13 @@ Once you've finished the "getting started" steps, you're ready to build!
 npm start
 ```
 
-This process will remain running and will re-compile any scss and js files in the `/src/` directory automatically if they change.
+This process will remain running and will automatically re-compile any scss and js files in the `/src/` directory if they change.
 
-A http-server process will also auto-launch.  A browser window should open automatically, but if not, check out your work here:
+A http-server process will also start up.  You can see your changes "live" here:
 
 ```
-http://localhost:3000
+http://localhost:3001
 ```
-
-**Note: This server runs on port 3000, just like our default app server, so if you're currently running one, you'll need to kill it first before using this build system.**
-
 
 # "Deploying"
 We aren't really deploying anything to production, this is a node_module that gets included in the main app.  So we need to make sure we just minify/compress everything with our gulp task.

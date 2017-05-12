@@ -11,7 +11,7 @@
     "url": "https://github.com/yankaindustries/mc-fe-styles.git"
   },
   "scripts": {
-    "start": "gulp & http-server ./dist -p 3000 -o",
+    "start": "gulp & http-server ./dist -p 3001",
     "preversion": "gulp ship"
   },
   "devDependencies": {
