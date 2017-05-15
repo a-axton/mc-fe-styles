@@ -232,7 +232,7 @@ body {
     position: absolute;
     top: 1em; right: 1em;
     width: 2em; height: 2em;
-    background: asset-url("refresh/global/modal-close.svg") center no-repeat;
+    background: asset-url("global/modal-close.svg") center no-repeat;
     opacity: 0.2;
     z-index: 1;
     transition: opacity 150ms ease;
@@ -419,7 +419,7 @@ body {
   // Chromeless styles
   &.chromeless {
     .mc-modal-close {
-      background: asset-url("refresh/global/modal-close-inverted.svg") center no-repeat;
+      background: asset-url("global/modal-close-inverted.svg") center no-repeat;
       opacity: 0.5;
 
       &:hover { opacity: 1; }
@@ -466,7 +466,7 @@ body {
   // Full screen styles
   &.full {
     .mc-modal-close {
-      background: asset-url("refresh/global/modal-close-inverted.svg") center no-repeat;
+      background: asset-url("global/modal-close-inverted.svg") center no-repeat;
       opacity: 0.5;
 
       &:hover { opacity: 1; }

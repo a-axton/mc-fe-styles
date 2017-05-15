@@ -10,7 +10,19 @@ var gulp                = require('gulp'),
     notifier            = require('node-notifier'),
     plumber             = require('gulp-plumber'),
     sass                = require('gulp-sass'),
-    util                = require('gulp-util');
+    nodeSass            = require('node-sass'),
+    util                = require('gulp-util'),
+    S3ModuleSync        = require('@masterclass/mc-s3-module-sync');
+
+var s3 = new S3ModuleSync({
+  localDir: './dist/img'
+});
+
+var assetUrl = {
+  'asset-url($path)': function(path) {
+    return nodeSass.types.String(`url('${s3.getUrl(path.getValue())}')`);
+  }
+};
 
 // gulp - Default is just to watch for changes
 gulp.task('default', ['watch']);
@@ -27,8 +39,11 @@ gulp.task('watch', ['compile'], function() {
 // compile - compile markup, js, and styles
 gulp.task('compile', ['compileMarkup', 'compileCSS', 'compileJS', 'compileImages']);
 
-// ship - Process everything, minify, move images, etc to /dist
-gulp.task('ship', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
+// minify - Process everything, minify, move images, etc to /dist
+gulp.task('minify', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
+
+// ship - compiles, minfies and uploads images to s3
+gulp.task('ship', ['s3:sync']);
 
 // -------
 // Markup
@@ -98,7 +113,10 @@ gulp.task('compileCore', function() {
         this.emit('end');
       }
     }))
-    .pipe(sass({style: 'compressed'}))
+    .pipe(sass({
+      style: 'compressed',
+      functions: assetUrl
+    }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
     .pipe(gulp.dest('./dist/css'));
 });
@@ -129,7 +147,10 @@ gulp.task('compileStylePages', function() {
         this.emit('end');
       }
     }))
-    .pipe(sass({style: 'compressed'}))
+    .pipe(sass({
+      style: 'compressed',
+      functions: assetUrl
+    }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9'))
     .pipe(gulp.dest('./dist/css/pages'));
 });
@@ -184,4 +205,16 @@ gulp.task('minifyImages', ['compileImages'], function() {
     })
   ]))
   .pipe(gulp.dest('./dist/img'));
+});
+
+// S3 image sync
+gulp.task('s3:sync', ['minify'], function(done) {
+  s3.sync(done);
+});
+
+gulp.task('s3:list', function(done) {
+  s3.list(function(err, data) {
+    console.log(data)
+    done();
+  });
 });
