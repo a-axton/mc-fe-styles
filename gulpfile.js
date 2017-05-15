@@ -36,7 +36,7 @@ gulp.task('ship', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
 gulp.task('compileMarkup', function() {
   return gulp.src([
     'src/html/*.html',
-    'src/html/pages/*.html'
+    'src/html/pages/**/*.html'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -54,7 +54,7 @@ gulp.task('compileMarkup', function() {
     }))
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: '@file'
+      basepath: 'src/html'
     }))
     .pipe(gulp.dest('./dist'))
     .pipe(livereload());
@@ -66,7 +66,6 @@ gulp.task('compileJS', function() {
   return gulp.src([
     'src/js/**/*.js'
   ])
-  .pipe(concat('site.js'))
   .pipe(gulp.dest('./dist/js'))
   .pipe(livereload());
 });
@@ -75,8 +74,7 @@ gulp.task('compileJS', function() {
 // CSS Related
 gulp.task('compileCSS', ['compileCore', 'compileCoreComponents', 'compileStylePages'], function() {
   return gulp.src([
-      'src/scss/core.scss',
-      'src/pages/*.scss'
+      'src/scss/**/*.scss'
     ])
     .pipe(livereload());
 });

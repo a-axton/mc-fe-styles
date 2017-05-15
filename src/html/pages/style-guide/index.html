@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    @@include('components/head.html')
+
+    <!-- Specific to style guide page -->
+    <link href="/css/pages/mc-style-guide.css" media="screen" rel="stylesheet" type="text/css" />
+
+<body id="mc-style-guide">
+    <div id="sidebar">
+        <img src="/img/global/logo.svg" id="style-guide-logo">
+        <ol class="sidebar-nav-items">
+            <li class="sidebar-nav-item">
+                <a href="#overview">Overview</a>
+            </li>
+
+            <li class="sidebar-nav-item">
+                <a href="#technical">Technical Details</a>
+            </li>
+
+            <li class="sidebar-nav-item">
+                <a href="#section-colors">Colors</a>
+            </li>
+
+            <li class="sidebar-nav-item">
+                <a href="#section-buttons">Buttons</a>
+            </li>
+
+            <li class="sidebar-nav-item">
+                <a href="#section-responsive">Responsive</a>
+            </li>
+        </ol>
+    </div>
+
+    <div id="main">
+        <div id="overview" class="section">
+          <h1 class="primary-title">Masterclass Front End Guide</h1>
+          <p>Please refer to this guide when developing new features.  Stick to our colors, keep our product on brand, and let's make the best site we can make!</p>
+        </div>
+
+        <div id="section-colors" class="section">
+            <h1 class="primary-title">Colors</h1>
+            <p>These colors define the Masterclass brand.  They're located in the variables.scss file, which you can import into any scss file you work on.</p>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Importing</h2>
+                <p>If you're working on your own scss file in the app and would like to use these colors, you'll need this at the top of your scss file.</p>
+                <pre><code>@import "variables";</code></pre>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Palette</h2>
+                These are the brand colors we've currently defined.  If they change, these will be updated automatically.
+
+                <ul class="mc-color-cards-groups">
+                    <li class="mc-color-cards-group">
+                        <h1 class="mc-color-group-title">
+                            Primary Accents
+                        </h1>
+
+                        <ul class="mc-color-cards">
+                            <li class="mc-color-card" data-color="#BE3F3F">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-accent-primary
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+
+                            <li class="mc-color-card" data-color="#E04A4D">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-accent-primary-hover
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="mc-color-cards-group">
+                        <h1 class="mc-color-group-title">
+                            Secondary Accents
+                        </h1>
+
+                        <ul class="mc-color-cards">
+                            <li class="mc-color-card" data-color="#311F39">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-accent-secondary
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+
+                            <li class="mc-color-card" data-color="#1E1C37">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-accent-secondary-hover
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+
+                            <li class="mc-color-card" data-color="#FFFFFF">
+                                <span class="mc-color-swatch white"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-text-link
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+
+                            <li class="mc-color-card" data-color="#BE3F3F">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-text-link-hover
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="mc-color-cards-group">
+                        <h1 class="mc-color-group-title">
+                            Structural
+                        </h1>
+
+                        <ul class="mc-color-cards">
+                            <li class="mc-color-card" data-color="#090909">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-bg-fallback
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+
+                            <li class="mc-color-card" data-color="#4D5768">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-neutral
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="mc-color-cards-group">
+                        <h1 class="mc-color-group-title">
+                            Other
+                        </h1>
+
+                        <ul class="mc-color-cards">
+                            <li class="mc-color-card" data-color="#70DB32">
+                                <span class="mc-color-swatch"></span>
+                                <p class="mc-color-description">
+                                    <span class="mc-color-variable">
+                                        $mc-color-active-state
+                                    </span>
+                                    <span class="mc-color-value">
+                                    </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="section-buttons" class="section">
+            <h1 class="primary-title">Buttons</h1>
+            <p>Modeled after bootstrap, these buttons are styled with various class names in the markup to control appearance.</p>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Default</h2>
+                Has margins built in for inline use or multiple buttons
+                <pre><code>&lt;a href="#" class="mc-btn"&gt;Default&lt;/a&gt;
+            &lt;a href="#" class="mc-btn"&gt;Button&lt;/a&gt;
+            &lt;a href="#" class="mc-btn"&gt;Type&lt;/a&gt;</code></pre>
+
+                <div class="code-render">
+                    <a href="#" class="mc-btn">Default</a>
+                    <a href="#" class="mc-btn">Button</a>
+                    <a href="#" class="mc-btn">Type</a>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">No Margins</h2>
+                <p>Sometimes, buttons need to be used in layouts where margins and padding are already computed in.</p>
+                <pre><code>&lt;a href="#" class="mc-btn no-margins"&gt;Default&lt;/a&gt;
+            &lt;a href="#" class="mc-btn no-margins"&gt;Button&lt;/a&gt;
+            &lt;a href="#" class="mc-btn no-margins"&gt;Type&lt;/a&gt;</code></pre>
+
+                <div class="code-render">
+                    <a href="#" class="mc-btn no-margins">Default</a>
+                    <a href="#" class="mc-btn no-margins">Button</a>
+                    <a href="#" class="mc-btn no-margins">Type</a>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Transparent</h2>
+                <p>For use primarily on dark backgrounds.</p>
+                <pre><code>&lt;a href="mc-btn mc-btn-transparent"&gt;Transparent&lt;/a&gt;
+            &lt;a href="mc-btn mc-btn-transparent"&gt;Button&lt;/a&gt;
+            &lt;a href="mc-btn mc-btn-transparent"&gt;Rule&lt;/a&gt;</code></pre>
+
+                <div class="code-render inverted">
+                    <a href="#" class="mc-btn mc-btn-transparent">Transparent</a>
+                    <a href="#" class="mc-btn mc-btn-transparent">Buttons</a>
+                    <a href="#" class="mc-btn mc-btn-transparent">Rule</a>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Transparent (inverted)</h2>
+                <p>If you need to use transparent buttons on a light background instead, use the <strong>invert</strong> class.</p>
+
+                <pre><code>&lt;a href="mc-btn mc-btn-transparent invert"&gt;Transparent&lt;/a&gt;
+            &lt;a href="mc-btn mc-btn-transparent invert"&gt;Button&lt;/a&gt;
+            &lt;a href="mc-btn mc-btn-transparent invert"&gt;Rule&lt;/a&gt;</code></pre>
+
+                <div class="code-render">
+                    <a href="#" class="mc-btn mc-btn-transparent invert">Transparent</a>
+                    <a href="#" class="mc-btn mc-btn-transparent invert">Buttons</a>
+                    <a href="#" class="mc-btn mc-btn-transparent invert">Rule</a>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Neutral</h2>
+                <p>When the primary color is too much, and the transparent color is too little.</p>
+                <pre><code>&lt;a href="#" class="mc-btn neutral"&gt;Neutral&lt;/a&gt;
+            &lt;a href="#" class="mc-btn neutral"&gt;Button&lt;/a&gt;
+            &lt;a href="#" class="mc-btn neutral"&gt;Type&lt;/a&gt;</code></pre>
+
+                <div class="code-render">
+                    <a href="#" class="mc-btn neutral">Neutral</a>
+                    <a href="#" class="mc-btn neutral">Button</a>
+                    <a href="#" class="mc-btn neutral">Type</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-responsive" class="section">
+            <h1 class="primary-title">Responsive</h1>
+            <p>The Masterclass core is built "mobile first".  All media query overrides are based on a min-width, so the basic CSS loads first.</p>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Breakpoints</h2>
+                <pre><code>$mc-bp-tiny:      480px;
+$mc-bp-small:     768px;
+$mc-bp-medium:    992px;
+$mc-bp-large:     1200px;
+$mc-bp-full:      1440px;
+$mc-bp-uwd:       2000px;</code></pre>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Usage</h2>
+                <code>
+                    @media (min-width: $mc-bp-full) { // SCSS here }
+                </code>
+            </div>
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Desktop Only Helper</h2>
+                <p>Shown on desktop, hidden on mobile</p>
+                <code>
+                    &lt;span class="desktop-only"&gt;This is only shown on desktop&lt;/span&gt;
+                </code>
+            </div>
+
+
+            <div class="subsection">
+                <h2 class="section-subtitle">Mobile Only Helper</h2>
+                <p>Shown on mobile, hidden on desktop</p>
+                <code>
+                    &lt;span class="mobile-only"&gt;This is only shown on mobile&lt;/span&gt;
+                </code>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Scripts -->
+<script src="/js/pages/style-guide/style-guide.js"></script>
+
+@@include('components/live-reload-snippet.html')
+</body>
+</html>
