@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'mc-socials';
-  src: url('/img/mc-icons/mc-socials/mc-socials.eot?qzecmk');
-  src: url('/img/mc-icons/mc-socials/mc-socials.eot?qzecmk#iefix') format("embedded-opentype"), url('/img/mc-icons/mc-socials/mc-socials.ttf?qzecmk') format("truetype"), url('/img/mc-icons/mc-socials/mc-socials.woff?qzecmk') format("woff"), url('/img/mc-icons/mc-socials/mc-socials.svg?qzecmk#mc-socials') format("svg");
+  src: url('http://node-module-assets.masterclass.com/mc-fe-styles/0.0.4/mc-icons/mc-socials/mc-socials.eot?qzecmk');
+  src: url('http://node-module-assets.masterclass.com/mc-fe-styles/0.0.4/mc-icons/mc-socials/mc-socials.eot?qzecmk#iefix') format("embedded-opentype"), url('http://node-module-assets.masterclass.com/mc-fe-styles/0.0.4/mc-icons/mc-socials/mc-socials.ttf?qzecmk') format("truetype"), url('http://node-module-assets.masterclass.com/mc-fe-styles/0.0.4/mc-icons/mc-socials/mc-socials.woff?qzecmk') format("woff"), url('http://node-module-assets.masterclass.com/mc-fe-styles/0.0.4/mc-icons/mc-socials/mc-socials.svg?qzecmk#mc-socials') format("svg");
   font-weight: normal;
   font-style: normal; }
 
