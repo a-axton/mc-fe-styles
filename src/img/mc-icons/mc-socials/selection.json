@@ -1,0 +1,135 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M167.715 204.8v122.88h-167.715v163.84h167.715v532.48h167.715v-532.48h184.486l41.929-163.84h-226.415v-122.88c0-24.576 16.771-40.96 41.929-40.96h168.683v-163.84h-168.683c-117.4 0-209.643 90.112-209.643 204.8z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "width": 573,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 32,
+        "tags": [
+          "facebook"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 15,
+        "id": 2,
+        "name": "facebook",
+        "prevSize": 32,
+        "code": 59648
+      },
+      "setIdx": 0,
+      "setId": 4,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M424.245 240h653.438c37.156 0 67.763 28.126 71.765 64.189l0.446 41.426v366.14c0 39.894-32.265 72.241-72.21 72.241h-653.438c-39.882 0-72.21-32.399-72.21-72.241v-366.14l0.443-41.428c3.994-36.108 34.551-64.187 71.767-64.187zM352.478 304.187c-0.295 2.643-0.443 5.329-0.443 8.049v33.379l367.461 208.108c17.584 9.953 45.568 9.847 62.948 0l367.461-208.108v-33.379c0-2.72-0.149-5.405-0.446-8.049l-384.886 217.981c-6.382 3.612-20.798 3.629-27.208 0l-384.886-217.981z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "width": 1502,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 32,
+        "tags": [
+          "mail"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 14,
+        "id": 1,
+        "name": "mail",
+        "prevSize": 32,
+        "code": 59649
+      },
+      "setIdx": 0,
+      "setId": 4,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M1246.609 131.302c-46.457 22.692-92.915 30.256-147.115 37.82 54.2-30.256 92.915-75.64 108.401-136.152-46.457 30.256-100.658 45.384-162.601 60.512-46.457-45.384-116.144-75.64-185.83-75.64-139.372 0-255.516 113.46-255.516 249.613 0 22.692 0 37.82 7.743 52.948-209.059-7.564-394.888-105.896-526.518-257.177-23.229 37.82-30.972 75.64-30.972 128.588 0 83.204 46.457 158.845 116.144 204.229-38.715 0-77.429-15.128-116.144-30.256v0c0 121.024 85.172 219.357 201.316 242.049-23.229 7.564-46.457 7.564-69.686 7.564-15.486 0-30.972 0-46.457-7.564 30.972 98.332 123.887 173.973 240.030 173.973-85.172 68.076-193.573 105.896-317.459 105.896h-61.943c116.144 68.076 247.773 113.46 387.146 113.46 464.575 0 720.091-378.201 720.091-703.454v-30.256c61.943-37.82 108.401-83.204 139.372-136.152v0 0z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "width": 1247,
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "grid": 32,
+        "tags": [
+          "twitter"
+        ]
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 13,
+        "id": 0,
+        "name": "twitter",
+        "prevSize": 32,
+        "code": 59650
+      },
+      "setIdx": 0,
+      "setId": 4,
+      "iconIdx": 2
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "mc-socials"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "mc-icon-",
+      "metadata": {
+        "fontFamily": "mc-socials",
+        "majorVersion": 1,
+        "minorVersion": 0
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false,
+      "showSelector": false,
+      "showMetadata": false,
+      "showMetrics": false,
+      "showVersion": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon"
+    },
+    "historySize": 100,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": true
+  }
+}

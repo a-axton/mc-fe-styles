@@ -15,7 +15,12 @@ var gulp                = require('gulp'),
     S3ModuleSync        = require('@masterclass/mc-s3-module-sync');
 
 var s3 = new S3ModuleSync({
-  localDir: './dist/img'
+  // Sync this path to s3
+  s3Dir: './dist/images',
+  // When locally running, use this path
+  localDir: '/img',
+  // which NODE_ENV var should produce s3 urls instead of local
+  env: 'production'
 });
 
 var assetUrl = {
@@ -90,7 +95,7 @@ gulp.task('compileJS', function() {
 
 
 // CSS Related
-gulp.task('compileCSS', ['compileCore', 'compileCoreComponents', 'compileStylePages'], function() {
+gulp.task('compileCSS', ['compileCore', 'compileDynamicComponents', 'compileStaticComponents', 'compileStylePages'], function() {
   return gulp.src([
       'src/scss/**/*.scss'
     ])
@@ -124,11 +129,22 @@ gulp.task('compileCore', function() {
     .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('compileCoreComponents', function() {
+gulp.task('compileDynamicComponents', function() {
   return gulp.src([
-      'src/scss/components/*.scss'
+      'src/scss/components/dynamic/**/*.scss'
     ])
-    .pipe(gulp.dest('./dist/css/components'));
+    .pipe(sass({
+      style: 'compressed',
+      functions: assetUrl
+    }))
+    .pipe(gulp.dest('./dist/css/components/dynamic'));
+});
+
+gulp.task('compileStaticComponents', function() {
+  return gulp.src([
+      'src/scss/components/static/**/*'
+    ])
+    .pipe(gulp.dest('./dist/css/components/static'));
 });
 
 gulp.task('compileStylePages', function() {

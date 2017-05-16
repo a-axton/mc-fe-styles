@@ -1,6 +1,7 @@
 @import 'reset';
-@import 'components/variables';
-@import 'components/mixins';
+@import 'components/static/variables';
+@import 'components/static/mixins';
+@import 'components/dynamic/mc-socials';
 
 //rule for ng-cloak to avoid flickering with angular templates
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
