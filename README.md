@@ -18,6 +18,8 @@ cd mc-fe-styles
 ```
 
 Install dependencies
+NOTE: To sync assets to S3 (for a "deploy") you'll need to make sure you have the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in either your bash_profile or zshrc files.  Make sure these two variables are defined before running `npm install` or you'll run into issues later.
+
 ```
 npm install
 ```
