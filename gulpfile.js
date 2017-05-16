@@ -42,8 +42,11 @@ gulp.task('compile', ['compileMarkup', 'compileCSS', 'compileJS', 'compileImages
 // minify - Process everything, minify, move images, etc to /dist
 gulp.task('minify', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
 
-// ship - compiles, minfies and uploads images to s3
-gulp.task('ship', ['s3:sync']);
+// version - minify everything, upload images to s3, basically
+// prepare for versioning
+gulp.task('version', ['minify'], function(){
+  gulp.task('s3:sync');
+});
 
 // -------
 // Markup
@@ -208,7 +211,7 @@ gulp.task('minifyImages', ['compileImages'], function() {
 });
 
 // S3 image sync
-gulp.task('s3:sync', ['minify'], function(done) {
+gulp.task('s3:sync', function(done) {
   s3.sync(done);
 });
 
