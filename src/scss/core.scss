@@ -1,7 +1,12 @@
-@import 'reset';
+// Clean slate
+@import 'components/static/reset';
+
+// Modular add-ons to core
+@import 'components/dynamic/mc-socials';
+
+// Reusable components
 @import 'components/static/variables';
 @import 'components/static/mixins';
-@import 'components/dynamic/mc-socials';
 
 //rule for ng-cloak to avoid flickering with angular templates
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

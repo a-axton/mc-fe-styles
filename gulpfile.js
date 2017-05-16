@@ -14,6 +14,7 @@ var gulp                = require('gulp'),
     util                = require('gulp-util'),
     S3ModuleSync        = require('@masterclass/mc-s3-module-sync');
 
+// Define variables for S3 sync tasks
 var s3 = new S3ModuleSync({
   // Sync this path to s3
   s3Dir: './dist/images',
@@ -204,7 +205,9 @@ gulp.task('minifyMarkup', ['compileMarkup'], function() {
 // CSS
 gulp.task('minifyCSS', ['compileCSS'], function() {
   return gulp.src(['./dist/css/core.css'])
-    .pipe(cleancss())
+    .pipe(cleancss({
+      level: 2
+    }))
     .pipe(gulp.dest('./dist/css'));
 });
 
