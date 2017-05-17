@@ -17,7 +17,7 @@ var gulp                = require('gulp'),
 // Define variables for S3 sync tasks
 var s3 = new S3ModuleSync({
   // Sync this path to s3
-  s3Dir: './dist/images',
+  s3Dir: './dist/img',
   // When locally running, use this path
   localDir: '/img',
   // which NODE_ENV var should produce s3 urls instead of local
@@ -50,8 +50,8 @@ gulp.task('minify', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
 
 // version - minify everything, upload images to s3, basically
 // prepare for versioning
-gulp.task('version', ['minify'], function(){
-  gulp.task('s3:sync');
+gulp.task('version', ['minify'], function(done){
+  s3.sync(done);
 });
 
 // -------
@@ -230,10 +230,6 @@ gulp.task('minifyImages', ['compileImages'], function() {
 });
 
 // S3 image sync
-gulp.task('s3:sync', function(done) {
-  s3.sync(done);
-});
-
 gulp.task('s3:list', function(done) {
   s3.list(function(err, data) {
     console.log(data)

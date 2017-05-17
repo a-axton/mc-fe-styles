@@ -1,5 +1,5 @@
 # Masterclass Front End Style Builder
-Maintained by Stephen Pontes for Masterclass, this repo contains the build scripts to process our sass library of styles for the MC website.  The final output is minified and compressed to be imported in the app's asset pipeline for final compilation with the rest of the css.
+Currently maintained by Stephen and Andy for Masterclass, this repo contains the build scripts to process our sass library of styles for the MC website.  The final output is minified and compressed to be imported in the app's asset pipeline for final compilation with the rest of the css.
 
 ## Required
 - node (If you have brew, it's just `brew install node`)
@@ -54,6 +54,11 @@ For example: To go from 0.0.1 to 0.0.2, you'd use a "patch":
 npm version patch
 ```
 
+Commit any changes to the repo, then push both your code and the tags:
+```
+git push origin master && git push origin master --tags
+```
+
 If that all works, you can publish a new version of our assets to the app!
 
 ```
@@ -66,3 +71,32 @@ If successfull, you'll see:
 ```
 
 Where 0.0.0 is the new version number!
+
+# Updating the masterclass repo
+First create a new branch for versioning!  If we were updating to version v0.0.4:
+
+```
+git checkout -b fe-update-v0.0.4 upstream/develop
+```
+
+Now you'll need to manually increment the package.json file in the masterclass repo under:
+
+```
+/vendor/assets/package.json
+```
+
+You'll increment the number after the `#` to match the new version number that you got above.
+
+```
+"@masterclass/mc-fe-styles": "yankaindustries/mc-fe-styles#0.0.4"
+```
+
+Now run a `yarn install`:
+```
+cd vendor/assets
+```
+
+```
+yarn install
+```
+
