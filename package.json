@@ -13,7 +13,8 @@
   "scripts": {
     "start": "gulp & http-server ./dist -p 3001",
     "s3-list": "gulp s3:list",
-    "version": "NODE_ENV='production' gulp version"
+    "preversion": "NODE_ENV='production' gulp version",
+    "version": "git add -A ."
   },
   "devDependencies": {
     "gulp": "^3.6.0",
