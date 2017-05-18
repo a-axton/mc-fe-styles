@@ -21,7 +21,9 @@ var s3 = new S3ModuleSync({
   // When locally running, use this path
   localDir: '/img',
   // which NODE_ENV var should produce s3 urls instead of local
-  env: 'production'
+  env: 'production',
+  // Prefix url with...
+  prefix: '//node-module-assets.masterclass.com'
 });
 
 var assetUrl = {
