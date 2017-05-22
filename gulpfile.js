@@ -128,7 +128,7 @@ gulp.task('compileCore', function() {
       style: 'compressed',
       functions: assetUrl
     }))
-    .pipe(autoprefixer('last 2 versions', 'safari 5', 'ie 9', 'chrome 35'))
+    .pipe(autoprefixer('last 99 versions'))
     .pipe(gulp.dest('./dist/css'));
 });
 
@@ -173,7 +173,7 @@ gulp.task('compileStylePages', function() {
       style: 'compressed',
       functions: assetUrl
     }))
-    .pipe(autoprefixer('last 2 versions', 'safari 5', 'ie 9', 'chrome 35'))
+    .pipe(autoprefixer('last 99 versions'))
     .pipe(gulp.dest('./dist/css/pages'));
 });
 

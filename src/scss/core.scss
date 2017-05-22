@@ -210,8 +210,7 @@ body {
 
     .mc-modal-dialog {
       opacity: 1;
-      -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
       // Animate in!
       transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
     }
@@ -227,8 +226,7 @@ body {
     opacity: 0;
     box-shadow: 1px solid rgba(0, 0, 0, 0.5);
     color: #000;
-    -webkit-transform: translate(-50%, -40%);
-            transform: translate(-50%, -40%);
+    transform: translate(-50%, -40%);
     // Animate out
     transition: none;
     transition-delay: 0ms;
@@ -305,8 +303,7 @@ body {
 
     .mc-modal-dialog {
       opacity: 1;
-      -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
       // Animate in!
       transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
     }
@@ -369,7 +366,7 @@ body {
       border: 1px solid rgba(0, 0, 0, 0.14);
       border-radius: 3px;
       box-shadow: none;
-      -webkit-appearance: none;
+      appearance: none;
       transition: border 150ms ease;
 
       &#sign-in-password { margin-bottom: 0; }
@@ -500,8 +497,7 @@ body {
       height: auto;
       max-height: calc(100% - 9.375em);
       overflow: auto;
-      -webkit-transform: translate(-50%, 1.875em);
-              transform: translate(-50%, 1.875em);
+      transform: translate(-50%, 1.875em);
     }
   }
 }
@@ -544,7 +540,6 @@ body {
   // Full active doesn't need to be vertically centered
   .mc-modal.full {
     .mc-modal-dialog {
-      -webkit-transform: translate(-50%, 0%);
       transform: translate(-50%, 0%);
     }
   }
@@ -574,8 +569,7 @@ body {
   top: 0.45em; right: 0.45em;
   width: 21px;
   height: 21px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 
   .mobile-nav-lines {
     position: absolute;
@@ -940,8 +934,7 @@ $mc-condensed-ease-timing: 450ms;
 
       &:hover {
         .caption {
-          -webkit-transform: translateY(-0.4em);
-                  transform: translateY(-0.4em);
+          transform: translateY(-0.4em);
         }
       }
 
@@ -1207,8 +1200,7 @@ $mc-condensed-ease-timing: 450ms;
 
       // Movin on up
       .caption {
-        -webkit-transform: translateY(-0.75em);
-                transform: translateY(-0.75em);
+        transform: translateY(-0.75em);
       }
 
       // Color the thing white
@@ -1357,8 +1349,7 @@ $mc-condensed-ease-timing: 450ms;
         width: 2.15em; height: 2.15em;
         border: 1px solid rgba(#fff, 0.2);
         border-radius: 100%;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
         transition: border 150ms ease, text-shadow 150ms ease;
       }
     }
@@ -1554,8 +1545,7 @@ $mc-condensed-ease-timing: 450ms;
       position: absolute;
       top: 1em; left: 50%;
       width: 124px; height: 56px;
-      -webkit-transform: translate(-50%, 0%);
-              transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
       transition: transform $mc-condensed-ease-timing ease;
 
       img { width: 100%; height: auto; }
@@ -1587,8 +1577,7 @@ $mc-condensed-ease-timing: 450ms;
       }
 
       #logo-primary {
-        -webkit-transform: translate(-50%, -49px);
-                transform: translate(-50%, -49px);
+        transform: translate(-50%, -49px);
         transition: transform $mc-condensed-ease-timing ease;
       }
     }
@@ -1862,8 +1851,7 @@ $mc-condensed-ease-timing: 450ms;
       #logo-footer {
         position: absolute;
         top: 0; left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
         border-top: 2px solid rgba(255, 255, 255, 0.4);
         border-bottom: 2px solid rgba(255, 255, 255, 0.4);
       }

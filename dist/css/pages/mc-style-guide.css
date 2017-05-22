@@ -18,6 +18,9 @@
     #mc-style-guide #sidebar a {
       color: rgba(255, 255, 255, 0.2);
       text-decoration: none;
+      -webkit-transition: color 250ms ease;
+      -o-transition: color 250ms ease;
+      -moz-transition: color 250ms ease;
       transition: color 250ms ease; }
     #mc-style-guide #sidebar .sidebar-nav-items .sidebar-nav-item {
       font-size: 12px;
