@@ -661,7 +661,59 @@ $mc-condensed-ease-timing: 450ms;
   @include clearfix();
   transition: background $mc-condensed-ease-timing ease, min-height $mc-condensed-ease-timing ease;
 
+  // When class switcher is active, display it
+  &.show-class-switcher .class-switcher {
+    display: block;
+  }
+
   a { color: #fff; }
+
+  .class-switcher {
+    display: none;
+    background: rgba(#222, 0.9);
+    text-align: center;
+
+     li {
+      position: relative;
+      display: inline-flex;
+      vertical-align: bottom;
+      padding: 0.55em 0;
+      margin-right: 5%;
+
+      a {
+        color: rgba(white, .7);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font: 700 .8em 'raleway';
+        transition: color 200ms ease;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      &.selected {
+        a {
+          color: white;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          width: 100%;
+          background-color: $mc-color-accent-primary;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 
   // Always hide primary logo on mobile
   #logo-primary { display: none; }
@@ -1633,6 +1685,21 @@ $mc-condensed-ease-timing: 450ms;
       }
     }
 
+    .user-info {
+      .mc-subnav-items {
+        &:hover {
+          .mc-subnav-item a {
+            color: rgba($mc-color-neutral, 0.6);
+
+            &:hover { color: rgba($mc-color-neutral, 1); }
+
+            // not cta
+            &.mc-btn { color: #fff; }
+          }
+        }
+      }
+    }
+
     .mc-subnav-items {
       position: absolute;
       top: 3.5em; right: -16px;
@@ -1695,6 +1762,12 @@ $mc-condensed-ease-timing: 450ms;
         color: $mc-color-neutral;
         border: 1px solid rgba(0,0,0, 0.5);
         margin-bottom: 0;
+        transition: border 250ms ease, color 250ms ease;
+
+        &:hover {
+          color: rgba($mc-color-neutral,0.8);
+          border: 1px solid rgba(0,0,0, 0.25);
+        }
       }
     }
 
@@ -1806,6 +1879,10 @@ $mc-condensed-ease-timing: 450ms;
       .class-title { float: left; }
       .ctas { float: right; }
     }
+  }
+
+  #mc-header {
+    .class-switcher li { margin-right: 4em; }
   }
 
   .mc-list-classes {
