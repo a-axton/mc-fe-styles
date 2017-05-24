@@ -1543,12 +1543,30 @@ $mc-condensed-ease-timing: 450ms;
 // it here...
 
 .overview-hero {
+  position: relative;
   display: block;
-  margin-top: 100px;
-  text-align: center;
+  margin-top: 84px; // height of expanded nav
+
+  .overview-continue-class {
+    text-align: center;
+  }
+
+  .overview-start-class {
+    padding: 100px 31px;
+  }
+
+  .overview-start-banner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center top;
+    z-index: -1
+  }
 
   .overview-hero-thumbnail {
     background-size: cover;
+    background-position: center;
     margin-bottom: 1.5em;
     display: inline-block;
     vertical-align: top;
@@ -1558,6 +1576,37 @@ $mc-condensed-ease-timing: 450ms;
     img {
       display: block;
       max-width: 100%;
+    }
+  }
+
+  .overview-primary-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin: 0.75em 0 0.25em;
+  }
+
+  .overview-subtitle {
+    font-size: 1.625em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  #start-button {
+    padding: 1em 1em;
+    margin-top: 3.85em;
+    padding: 1.12em 2em;
+    width: 234px;
+    max-width: 100%;
+    font-weight: bold;
+  }
+
+  .instructor-name {
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+
+    .class-title {
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 
@@ -1599,7 +1648,7 @@ $mc-condensed-ease-timing: 450ms;
     line-height: 20px; // Matches height of icon
   }
 
-  #play-button:before {
+  #resume-button:before {
     content: "";
     display: inline-block;
     vertical-align: top;
@@ -1646,7 +1695,7 @@ $mc-condensed-ease-timing: 450ms;
       vertical-align: middle;
       margin: 0 0 1em 0;
 
-      &#play-button {
+      &#resume-button {
         margin: 0 1em 1em 0;
       }
     }
@@ -2007,7 +2056,9 @@ $mc-condensed-ease-timing: 450ms;
   }
 
   .overview-hero {
-    display: flex;
+    .overview-continue-class {
+      display: flex;
+    }
 
     .overview-hero-thumbnail {
       margin-right: 60px;
