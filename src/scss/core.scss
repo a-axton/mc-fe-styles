@@ -407,6 +407,7 @@ body {
     .login-with-facebook {
       background: #3A5998;
       margin: 1em 0 0.5em;
+      text-transform: none;
 
       &:hover {
         color: #fff;
@@ -1547,10 +1548,12 @@ $mc-condensed-ease-timing: 450ms;
   text-align: center;
 
   .overview-hero-thumbnail {
+    background-size: cover;
     margin-bottom: 1.5em;
     display: inline-block;
     vertical-align: top;
-    height: 100%;
+    width: 100%;
+    padding-bottom: 56.25%;
 
     img {
       display: block;
@@ -2007,8 +2010,9 @@ $mc-condensed-ease-timing: 450ms;
     display: flex;
 
     .overview-hero-thumbnail {
-      max-width: 35%;
       margin-right: 60px;
+      width: 35%;
+      padding-bottom: 25%;
     }
 
     .overview-hero-abstract {
