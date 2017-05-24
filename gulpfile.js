@@ -19,7 +19,7 @@ var s3 = new S3ModuleSync({
   // Sync this path to s3
   s3Dir: './dist/img',
   // When locally running, use this path
-  localDir: '/img',
+  localPath: 'http://localhost:3001/img',
   // which NODE_ENV var should produce s3 urls instead of local
   env: 'production',
   // Prefix url with...
