@@ -14,7 +14,8 @@
     "start": "gulp & http-server ./dist -p 3001 --cors",
     "s3-list": "gulp s3:list",
     "preversion": "NODE_ENV='production' gulp version",
-    "version": "git add -A ."
+    "version": "git add -A .",
+    "postversion": "git push origin master && git push origin master --tags"
   },
   "devDependencies": {
     "gulp": "^3.6.0",
