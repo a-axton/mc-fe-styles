@@ -146,6 +146,24 @@ body {
   }
 }
 
+.mc-progress-bar-parent {
+  position: relative;
+
+  .mc-progress-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .mc-progress-bar-indicator {
+    display: block;
+    background: $mc-color-accent-primary;
+    width: 0%; height: 100%;
+    transition: width 100ms ease;
+  }
+}
+
 
 // ******
 // Modals
@@ -1517,6 +1535,79 @@ $mc-condensed-ease-timing: 450ms;
 }
 
 // *************
+// New hero test
+// *************
+// This should be moved out to its own file
+// eventually, but for now, we'll leave
+// it here...
+
+.overview-hero {
+  display: block;
+  margin-top: 100px;
+  text-align: center;
+
+  .overview-hero-thumbnail {
+    margin-bottom: 1.5em;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+
+  .overview-hero-text {
+    text-align: left;
+  }
+
+  .overview-hero-title-primary {
+    font-size: 1.75em;
+    font-weight: bold;
+    line-height: 1.357;
+    margin: 0 0 0.5em;
+    text-transform: uppercase;
+    letter-spacing: .0357em;
+  }
+
+  .overview-hero-abstract {
+    font-size: 1.125em;
+    line-height: 1.444;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.0111em;
+  }
+
+  .overview-hero-lesson-meta {
+    margin: 30px 0;
+    font-size: 0.9375em;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.06667em;
+    text-transform: uppercase;
+  }
+
+  .mc-btn {
+    display: block;
+    font-size: 0.8125em;
+    letter-spacing: 0.09em;
+    margin: 1em 0;
+    text-align: center;
+    padding: 1em 2em;
+    line-height: 20px; // Matches height of icon
+  }
+
+  #play-button:before {
+    content: "";
+    display: inline-block;
+    vertical-align: top;
+    width: 20px; height: 20px;
+    margin: 0 1em 0 0;
+    background: asset-url("global/icons-svg/overview-hero-play.svg") center/100% no-repeat;
+  }
+}
+
+
+// *************
 // Media queries
 // *************
 @media (min-width: $mc-bp-tiny) {
@@ -1530,6 +1621,7 @@ $mc-condensed-ease-timing: 450ms;
       }
     }
   }
+
   .mc-list-classes {
     .mc-list-class {
       width: 447px;
@@ -1543,6 +1635,18 @@ $mc-condensed-ease-timing: 450ms;
     }
     .caption-title { font-size: 1.5em; }
     .caption-subtitle { font-size: 1.1em; }
+  }
+
+  .overview-hero {
+    .mc-btn {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 1em 0;
+
+      &#play-button {
+        margin: 0 1em 1em 0;
+      }
+    }
   }
 
   #mc-footer {
@@ -1899,6 +2003,19 @@ $mc-condensed-ease-timing: 450ms;
     .caption-subtitle { font-size: 1.1em; }
   }
 
+  .overview-hero {
+    display: flex;
+
+    .overview-hero-thumbnail {
+      max-width: 35%;
+      margin-right: 60px;
+    }
+
+    .overview-hero-abstract {
+      max-width: 450px;
+    }
+  }
+
   #mc-footer {
     padding: 3em 1em;
 
@@ -1954,6 +2071,7 @@ $mc-condensed-ease-timing: 450ms;
 }
 
 @media (min-width: $mc-bp-large) {
+
   #mc-footer {
     .nav-footer-items {
       max-width: none;
