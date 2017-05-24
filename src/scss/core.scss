@@ -144,6 +144,28 @@ body {
       background: #303131;
     }
   }
+
+  // Facebook
+  &.login-with-facebook,
+  &.facebook,
+  &.signup_fb {
+    background: #3A5998;
+    margin: 1em 0 0.5em;
+    text-transform: none;
+
+    &:hover {
+      color: #fff;
+      background: #4971C2;
+    }
+
+    .mc-icon-facebook {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 1.1em;
+      margin: -0.1em 1em 0 0;
+    }
+  }
+
 }
 
 .mc-progress-bar-parent {
@@ -402,24 +424,6 @@ body {
       display: block;
       color: rgba($mc-color-accent-primary, 0.6);
       margin: 0 0 0.5em;
-    }
-
-    .login-with-facebook {
-      background: #3A5998;
-      margin: 1em 0 0.5em;
-      text-transform: none;
-
-      &:hover {
-        color: #fff;
-        background: #4971C2;
-      }
-
-      .mc-icon-facebook {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 1.1em;
-        margin: -0.1em 1em 0 0;
-      }
     }
 
     #sign-in-forgot-password {
@@ -1545,7 +1549,7 @@ $mc-condensed-ease-timing: 450ms;
 .overview-hero {
   position: relative;
   display: block;
-  margin-top: 84px; // height of expanded nav
+  margin-top: 22px;
 
   .overview-continue-class {
     text-align: center;
@@ -1561,7 +1565,16 @@ $mc-condensed-ease-timing: 450ms;
     width: 100%; height: 100%;
     background-size: cover;
     background-position: center top;
-    z-index: -1
+    z-index: -1;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: asset-url("lesson-overview/class-hero-overlay.png") center/100% 100% no-repeat;
+    }
   }
 
   .overview-hero-thumbnail {
