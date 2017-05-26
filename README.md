@@ -42,7 +42,11 @@ http://localhost:3001
 # "Deploying"
 We aren't really deploying anything to production, this is a node_module that gets included in the main app.  So we need to make sure we just minify/compress everything with our gulp task.
 
-Kill the `npm start` process if it's still running (`control + c`).  Make sure to compile all the assets with `npm run preversion`, then commit any changes with a good commit message.  Now you're good to release a new version! Version type can be `patch` (0.0.x), `minor` (0.x.0), `major` (x.0.0).
+Kill the `npm start` process if it's still running (`control + c`).
+
+Make sure to compile all the assets with `npm run preversion`, then commit any changes with a good commit message.
+
+Now you're good to release a new version! Version type can be `patch` (0.0.x), `minor` (0.x.0), `major` (x.0.0).
 
 ```
 npm version [type]
