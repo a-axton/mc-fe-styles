@@ -1539,133 +1539,6 @@ $mc-condensed-ease-timing: 450ms;
   }
 }
 
-// *************
-// New hero test
-// *************
-// This should be moved out to its own file
-// eventually, but for now, we'll leave
-// it here...
-
-.overview-hero {
-  position: relative;
-  display: block;
-  max-width: 1100px;
-  margin: 50px auto 0; // Height of mobile nav
-
-  .mc-btn {
-    display: block;
-    font-size: 0.8125em;
-    letter-spacing: 0.09em;
-    margin: 1em 0;
-    text-align: center;
-    padding: 1em 2em;
-  }
-
-  .overview-start-class {
-    .overview-start-banner {
-      position: relative;
-      width: 100%; height: 0;
-      padding-bottom: 75%; // Set 4:3 ratio
-      background-size: cover;
-      background-position: center top;
-
-      &.wide { display: none; } // 16:9
-      &.normal { display: block; } // 4:3
-
-      &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 100%);
-      }
-    }
-
-    .overview-hero-text {
-      position: relative; // z-index above gradient overlay
-      padding: 1em;
-    }
-
-    .instructor-name {
-      display: none;
-    }
-
-    .overview-primary-title {
-      font-size: 1.875em;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      margin: 0 0 0.25em;
-    }
-
-    .overview-subtitle {
-      font-size: 1.375em;
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    #start-button {
-      margin-top: 2em;
-      padding: 1.12em 2em;
-      width: 100%;
-      max-width: 100%;
-      font-weight: bold;
-    }
-  }
-
-
-  // Resume class styles
-  .overview-continue-class {
-    .overview-hero-thumbnail {
-      background: transparent center/cover no-repeat;
-      height: 0;
-      padding-bottom: 56.25%; // maintain aspect ratio
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-    }
-
-    .overview-hero-title-primary {
-      font-size: 1.25em;
-      font-weight: bold;
-      line-height: 1.357;
-      margin: 1em 0 0.5em;
-      text-transform: uppercase;
-      letter-spacing: .0357em;
-    }
-
-    .overview-hero-abstract {
-      font-size: 1em;
-      line-height: 1.625;
-      color: rgba(255, 255, 255, 0.6);
-      letter-spacing: 0.0111em;
-    }
-
-    .overview-hero-lesson-meta {
-      margin: 30px 0;
-      font-size: 0.9375em;
-      color: rgba(255, 255, 255, 0.4);
-      letter-spacing: 0.06667em;
-      text-transform: uppercase;
-    }
-
-    #resume-button {
-      font-weight: bold;
-
-      &:before {
-        content: "";
-        display: inline-block;
-        vertical-align: top;
-        width: 20px; height: 20px;
-        margin: -0.25em 1em 0 0;
-        background: asset-url("global/icons-svg/overview-hero-play.svg") center/100% no-repeat;
-      }
-    }
-  }
-}
-
 
 // *************
 // Media queries
@@ -1695,60 +1568,6 @@ $mc-condensed-ease-timing: 450ms;
     }
     .caption-title { font-size: 1.5em; }
     .caption-subtitle { font-size: 1.1em; }
-  }
-
-  .overview-hero {
-    .mc-btn {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 0 1em 0;
-
-      &#start-button {
-        width: 234px;
-        margin-top: 3.85em;
-      }
-
-      &#resume-button {
-        margin: 0 1em 1em 0;
-      }
-    }
-
-    .overview-start-class {
-      // Bleed into gradient on ipad+ sizes
-      .overview-hero-text {
-        margin-top: -3em;
-        padding: 1em 3.75em;
-      }
-
-      // Display instructor name at this breakpoint+
-      .instructor-name {
-        display: block;
-        text-transform: uppercase;
-        letter-spacing: 0.075em;
-
-        .class-title {
-          color: rgba(255, 255, 255, 0.5);
-        }
-      }
-
-      .overview-primary-title {
-        margin: 0.75em 0 0.25em;
-      }
-    }
-
-    .overview-continue-class {
-      padding: 1em;
-
-      .overview-hero-title-primary {
-        font-size: 1.75em;
-        line-height: 1.357142857;
-      }
-
-      .overview-hero-abstract {
-        font-size: 1.125em;
-        line-height: 1.444;
-      }
-    }
   }
 
   #mc-footer {
@@ -2074,11 +1893,6 @@ $mc-condensed-ease-timing: 450ms;
       }
     }
   }
-
-  .overview-hero {
-    margin-top: 0;
-    // once the nav goes back, remove margin top
-  }
 }
 
 
@@ -2108,47 +1922,6 @@ $mc-condensed-ease-timing: 450ms;
     }
 
     .caption-subtitle { font-size: 1.1em; }
-  }
-
-  .overview-hero {
-    .overview-start-class {
-      .overview-start-banner {
-        padding-bottom: 41.82%; // 16:9 ratio
-
-        &.wide { display: block; }
-        &.normal { display: none; }
-
-        &:after {
-          background: asset-url("lesson-overview/class-hero-overlay.png") center/100% 100% no-repeat;
-        }
-      }
-
-      .overview-hero-text {
-        position: absolute;
-        top: 50%; left: 0;
-        transform: translateY(-50%);
-        margin: 0;
-      }
-    }
-
-    .overview-continue-class {
-      display: flex;
-      padding: 3.5em 2.25em 1em;
-
-      .overview-hero-thumbnail {
-        margin-right: 60px;
-        width: 38.912%;
-        padding-bottom: 29.184%;
-      }
-
-      .overview-hero-title-primary {
-        margin-top: 0;
-      }
-
-      .overview-hero-abstract {
-        max-width: 450px;
-      }
-    }
   }
 
   #mc-footer {

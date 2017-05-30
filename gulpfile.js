@@ -98,16 +98,19 @@ gulp.task('compileJS', function() {
 
 
 // CSS Related
-gulp.task('compileCSS', ['compileCore', 'compileDynamicComponents', 'compileStaticComponents', 'compileStylePages'], function() {
+gulp.task('compileCSS', ['compileCore', 'compileStaticComponents', 'compileStyleGuide'], function() {
   return gulp.src([
       'src/scss/**/*.scss'
     ])
     .pipe(livereload());
 });
 
+// Compiles both the core scss file and any
+// "in progress" components
 gulp.task('compileCore', function() {
   return gulp.src([
-      'src/scss/core.scss'
+      'src/scss/core.scss',
+      'src/scss/components/dynamic/**/*.scss'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -129,30 +132,20 @@ gulp.task('compileCore', function() {
       functions: assetUrl
     }))
     .pipe(autoprefixer('last 99 versions'))
+    .pipe(concat('core.css'))
     .pipe(gulp.dest('./dist/css'));
-});
-
-gulp.task('compileDynamicComponents', function() {
-  return gulp.src([
-      'src/scss/components/dynamic/**/*.scss'
-    ])
-    .pipe(sass({
-      style: 'compressed',
-      functions: assetUrl
-    }))
-    .pipe(gulp.dest('./dist/css/components/dynamic'));
 });
 
 gulp.task('compileStaticComponents', function() {
   return gulp.src([
       'src/scss/components/static/**/*'
     ])
-    .pipe(gulp.dest('./dist/css/components/static'));
+    .pipe(gulp.dest('./dist/css/components'));
 });
 
-gulp.task('compileStylePages', function() {
+gulp.task('compileStyleGuide', function() {
   return gulp.src([
-      'src/scss/pages/*.scss'
+      'src/scss/pages/mc-style-guide.scss'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -174,7 +167,7 @@ gulp.task('compileStylePages', function() {
       functions: assetUrl
     }))
     .pipe(autoprefixer('last 99 versions'))
-    .pipe(gulp.dest('./dist/css/pages'));
+    .pipe(gulp.dest('./dist/css/style-guide'));
 });
 
 
