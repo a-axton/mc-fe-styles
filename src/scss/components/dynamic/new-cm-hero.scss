@@ -79,6 +79,7 @@
   // Resume class styles
   .overview-continue-class {
     .overview-hero-thumbnail {
+      display: block; // Because it's an anchor now
       background: transparent center/cover no-repeat;
       height: 0;
       padding-bottom: 56.25%; // maintain aspect ratio
