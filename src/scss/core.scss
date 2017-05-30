@@ -572,14 +572,24 @@ body {
 // ******************
 // Brightcove Popover
 // ******************
+#brightcove-popover-player {
+  min-width: 1024px;
+  min-height: 768px;
+  max-height: 100vh;
+
+  .vjs-playback-rate {
+    display: none;
+  }
+}
+
 .brightcove-popover.mc-modal.chromeless {
   .mc-modal-dialog {
     margin: 0 auto;
-    width: auto;
+    width: 90%;
   }
 
-  &.disable-transitions .mc-modal-dialog {
-    transition: none !important;
+  &.visible .mc-modal-dialog {
+    transition: opacity 600ms ease;
   }
 }
 
