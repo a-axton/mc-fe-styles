@@ -1653,19 +1653,17 @@ $mc-condensed-ease-timing: 450ms;
 
     #resume-button {
       font-weight: bold;
-      line-height: 20px; // Matches height of icon
 
-      :before {
+      &:before {
         content: "";
         display: inline-block;
         vertical-align: top;
         width: 20px; height: 20px;
-        margin: 0 1em 0 0;
+        margin: -0.25em 1em 0 0;
         background: asset-url("global/icons-svg/overview-hero-play.svg") center/100% no-repeat;
       }
     }
   }
-
 }
 
 
@@ -1739,7 +1737,7 @@ $mc-condensed-ease-timing: 450ms;
     }
 
     .overview-continue-class {
-      padding: 3.5em 2.25em 1em;
+      padding: 1em;
 
       .overview-hero-title-primary {
         font-size: 1.75em;
@@ -2135,6 +2133,7 @@ $mc-condensed-ease-timing: 450ms;
 
     .overview-continue-class {
       display: flex;
+      padding: 3.5em 2.25em 1em;
 
       .overview-hero-thumbnail {
         margin-right: 60px;
