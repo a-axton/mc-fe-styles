@@ -1,0 +1,123 @@
+// "Coming Soon" or "Recommended for you" text
+.mc-list-classes-section-title {
+  font-size: 1.4em;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 1.5em 0 1.5em;
+  text-align: center;
+  color: rgba(255,255,255,1);
+}
+
+.mc-list-classes {
+  text-align: center;
+  @include clearfix();
+
+  &.orphan {
+    .mc-list-class:first-child {
+      // Different aspect ratio, need to zoom in and crop
+      .class-poster {
+        width: 200%;
+        margin-left: -50%;
+      }
+    }
+  }
+
+  &.promos .mc-list-class {
+    width: 100%;
+    height: auto;
+    padding-bottom: 0;
+    margin-bottom: 4em;
+
+    .class-poster {
+      position: static;
+      display: block;
+    }
+  }
+
+  .mc-list-class {
+    position: relative;
+    display: inline-block;
+    float: none;
+    width: 100%;
+    height: 0;
+    margin: 0.5em 0;
+    padding-bottom: 59.4%;
+    overflow: hidden; // Required for animation
+    text-align: left;
+    @include box-bottom-gradient();
+    -webkit-transition: background-image 150ms ease;
+    transition: background-image 150ms ease;
+
+    &:hover {
+      // Subtle zooming
+      .class-poster {
+        -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+        -webkit-transition: transform 15s cubic-bezier(0.020, 0.075, 0.420, 1);
+                transition: transform 15s cubic-bezier(0.020, 0.075, 0.420, 1);
+      }
+
+      // Movin on up
+      .caption {
+        transform: translateY(-0.75em);
+      }
+
+      // Color the thing white
+      .link-wrapper:before {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        -webkit-transition: box-shadow 250ms ease;
+        transition: box-shadow 250ms ease;
+      }
+    }
+
+    .link-wrapper {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      cursor: pointer;
+      z-index: 2;
+      @include box-inset-border();
+
+      &:before {
+        -webkit-transition: box-shadow 250ms ease;
+                transition: box-shadow 250ms ease;
+      }
+    }
+
+    .class-poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      -webkit-transform: scale(1); // set intiial
+              transform: scale(1); // set intiial
+      -webkit-transition: transform 8s ease;
+              transition: transform 8s ease;
+    }
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 1em; left: 1em;
+    z-index: 1;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px #000000;
+    -webkit-transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+            transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+  }
+
+  .caption-title {
+    font-size: 1.3em;
+    margin-bottom: 0.2em;
+
+    // Instructor "logos"
+    img {
+      max-width: 175px;
+    }
+  }
+
+  .caption-subtitle {
+    font-size: 0.9em;
+    color: rgba(#fff, 0.5);
+  }
+}

@@ -39,7 +39,7 @@ gulp.task('default', ['watch']);
 gulp.task('watch', ['compile'], function() {
   livereload.listen();
   gulp.watch('src/html/**/*.html', ['compileMarkup']);
-  gulp.watch('src/scss/**/*.scss', ['compileCSS']);
+  gulp.watch('src/styles/**/*.scss', ['compileCSS']);
   gulp.watch('src/js/**/*.js', ['compileJS']);
   gulp.watch('src/img/**/*.*', ['compileImages']);
 });
@@ -98,7 +98,7 @@ gulp.task('compileJS', function() {
 
 
 // CSS Related
-gulp.task('compileCSS', ['compileCore', 'compileStaticComponents', 'compileStyleGuide'], function() {
+gulp.task('compileCSS', ['compileCore', 'compileStyleGuide'], function() {
   return gulp.src([
       'src/scss/**/*.scss'
     ])
@@ -109,8 +109,7 @@ gulp.task('compileCSS', ['compileCore', 'compileStaticComponents', 'compileStyle
 // "in progress" components
 gulp.task('compileCore', function() {
   return gulp.src([
-      'src/scss/core.scss',
-      'src/scss/components/dynamic/**/*.scss'
+      'src/styles/core.scss'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -131,21 +130,24 @@ gulp.task('compileCore', function() {
       style: 'compressed',
       functions: assetUrl
     }))
-    .pipe(autoprefixer('last 99 versions'))
-    .pipe(concat('core.css'))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    // .pipe(concat('core.css'))
     .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('compileStaticComponents', function() {
-  return gulp.src([
-      'src/scss/components/static/**/*'
-    ])
-    .pipe(gulp.dest('./dist/css/components'));
-});
+// gulp.task('compileStaticComponents', function() {
+//   return gulp.src([
+//       'src/scss/components/static/**/*'
+//     ])
+//     .pipe(gulp.dest('./dist/css/components'));
+// });
 
 gulp.task('compileStyleGuide', function() {
   return gulp.src([
-      'src/scss/pages/mc-style-guide.scss'
+      'src/styles/style-guide.scss'
     ])
     .pipe(plumber({
       errorHandler: function(err) {
@@ -166,7 +168,10 @@ gulp.task('compileStyleGuide', function() {
       style: 'compressed',
       functions: assetUrl
     }))
-    .pipe(autoprefixer('last 99 versions'))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(gulp.dest('./dist/css/style-guide'));
 });
 

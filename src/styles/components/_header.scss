@@ -1,0 +1,701 @@
+#mobile-nav-button {
+  position: absolute;
+  top: 0.45em; right: 0.45em;
+  width: 21px;
+  height: 21px;
+  transform: translateY(-50%);
+
+  .mobile-nav-lines {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%; height: 1px;
+      background: #fff;
+      transform-origin: center center;
+      transition: top 125ms ease 125ms, transform 125ms ease 0ms;
+    }
+
+    &:before {
+      top: -5px;
+    }
+
+    &:after {
+      top: calc(50% + 5px);
+    }
+  }
+}
+
+// Logged out nav on mobile
+.user-login-actions-container { float: right; }
+
+.user-login-actions {
+  .user-login-action {
+    display: inline-block;
+    vertical-align: top; // top is vertically centered on mobile
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    a {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0;
+      color: #fff;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -0.5em; left: auto; right: 0;
+        width: 0;
+        height: 2px;
+        background: $mc-color-accent-primary;
+        -webkit-transition: width 250ms ease;
+        transition: width 250ms ease;
+      }
+    }
+  }
+}
+
+// Only show login hover states on desktop
+.no-touch .user-login-actions .user-login-action a {
+  &:hover {
+    color: #fff;
+
+    &:after {
+      left: 0; right: auto;
+      width: 100%;
+    }
+  }
+}
+
+#mc-header {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  text-align: center; // needed to center wordmark
+  text-transform: uppercase;
+  background: #000;
+  padding: 1em;
+  z-index: 10;
+  @include clearfix();
+  transition: background $mc-condensed-ease-timing ease, min-height $mc-condensed-ease-timing ease;
+
+  // When class switcher is active, display it
+  &.show-class-switcher .class-switcher {
+    display: block;
+  }
+
+  a { color: #fff; }
+
+  .class-switcher {
+    display: none;
+    background: rgba(#222, 0.9);
+    text-align: center;
+
+     li {
+      position: relative;
+      display: inline-flex;
+      vertical-align: bottom;
+      padding: 0.55em 0;
+      margin-right: 5%;
+
+      a {
+        color: rgba(white, .7);
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font: 700 .8em 'raleway';
+        transition: color 200ms ease;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      &.selected {
+        a {
+          color: white;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          width: 100%;
+          background-color: $mc-color-accent-primary;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // Always hide primary logo on mobile
+  #logo-primary { display: none; }
+
+  // Always show wordmark on mobile
+  // Should always be perfectly centered in header
+  #logo-wordmark {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // If logged out, no breadcrumbs, float
+  // logo to the left
+  &.logged-out #logo-wordmark {
+    display: block;
+    float: left;
+  }
+
+  // No breadcrumbs on mobile
+  .mc-breadcrumb { display: none; }
+
+  // Overwrite core
+  .mc-container {
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    transition: 0ms 0ms ease;
+  }
+
+  .mc-contain-inner { position: static; }
+
+  a { text-decoration: none; }
+
+  &.nav-open {
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+
+    // Change the nav button
+    #mobile-nav-button {
+      .mobile-nav-lines {
+        top: 50%;
+        left: 0;
+        background: none;
+        transition: background 0ms 125ms ease;
+
+        &:before,
+        &:after {
+          transition: top 125ms ease, transform 125ms ease 125ms;
+        }
+
+        &:before {
+          top: 50%;
+          transform: rotate(-45deg);
+        }
+
+        &:after {
+          top: 50%;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+
+    // Show the nav
+    .mc-nav-items {
+      display: block;
+      margin-top: 1em;
+    }
+  }
+
+  .activity-state,
+  .username {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .activity-state {
+    border-radius: 20px;
+    width: 6px; height: 6px;
+
+    &.online {
+      background: $mc-color-active-state;
+    }
+  }
+
+  .mobile-only {
+    .avatar { margin-right: 1em; }
+    .activity-state { margin-left: 0.65em; }
+  }
+
+  .desktop-only {
+    .avatar { margin-left: 1em; }
+    .activity-state { margin-right: 0.65em; }
+  }
+
+  .mc-nav-items {
+    // On mobile, hide until nav-open is activated
+    display: none;
+
+    .mc-nav-item {
+      position: relative; // Position subnav
+      display: block;
+      font-size: 0.75em;
+      line-height: 1;
+      margin: 0;
+      // min-height: 3.5em; // To keep subnav open on hover
+      letter-spacing: 0.0833em;
+      color: rgba(255, 255, 255, 0.6);
+
+      &:hover {
+        .mc-subnav-items {
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 150ms ease, visibility 0ms 0ms linear;
+        }
+      }
+
+      > a {
+        font-weight: 600;
+
+        img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      // Vertical alignment fix
+      &.user-info {
+        .activity-state,
+        .username,
+        .avatar {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      &.comments {
+        .comments-dropdown {
+          display: none;
+
+          img { display: block; }
+        }
+
+        .avatar {
+          position: absolute;
+          top: 0; left: 0;
+          width: 45px; height: 45px;
+          margin-right: 0.5em;
+        }
+
+        .mc-subnav-item {
+          text-transform: none;
+          text-align: left;
+
+          &:first-of-type {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+          }
+
+          .comment {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+          }
+        }
+      }
+
+      &.cart { padding: 2em 0; }
+    }
+  }
+
+  .mc-subnav-items {
+    margin-top: 1em;
+    padding: 0 2em;
+    color: #fff;
+    box-shadow: rgba(0,0,0,0.15) 0 10px 20px 0, rgba(0,0,0,0.3) 0 0 30px 0;
+    transition: opacity 150ms ease, visibility 0ms 150ms linear;
+
+    .subnav-title {
+      text-transform: uppercase;
+      margin: 1.5em 0;
+    }
+  }
+
+  .mc-subnav-item {
+    position: relative;
+    font-size: 1.25em;
+    letter-spacing: .033em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:first-child { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    &:last-child { padding: 1.25em 0; }
+
+    a {
+      display: block;
+      color: rgba(255, 255, 255, 1);
+      padding: 1.25em 0; // padding here so clickarea is bigger
+    }
+
+    .mc-btn {
+      display: block;
+      margin: 0;
+      padding: 1em;
+      font-size: 1.25em;
+      letter-spacing: 0.1em;
+      color: #fff;
+
+      &.clear {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        text-align: center;
+        font-size: 1em;
+        margin-bottom: 1em;
+      }
+    }
+
+    .sign-out {
+      display: block;
+      font-size: 0.75em;
+      letter-spacing: 0.0833em;
+      color: rgba(0, 0, 0, 0.5);
+      margin-top: 1em;
+      padding: 0;
+    }
+
+    &.classes {
+      border-bottom: 0;
+      padding: 0;
+    }
+  }
+
+  .comment-content {
+    display: block;
+    position: relative;
+    padding-left: calc(1em + 45px);
+
+    .chapter-marker { margin-bottom: 0.5em; }
+
+    .user {
+      font-weight: bold;
+      margin-right: 0.25em;
+      color: #fff;
+    }
+
+    .timestamp {
+      text-transform: uppercase;
+      font-size: 0.8em;
+      margin-top: 1em;
+      color: rgba(#fff, 0.5);
+    }
+  }
+
+  .current-classes {
+    background: #000; // needed for opacity fadethrough
+    margin: 0 -1.6em;
+    padding: 0;
+    border-bottom: 0;
+
+    &:hover {
+      .current-class {
+        opacity: 0.5;
+
+        &:hover { opacity: 1; }
+      }
+    }
+
+    .current-class {
+      position: relative;
+      transition: opacity 250ms ease;
+      @include box-bottom-gradient();
+
+      &:hover {
+        .caption {
+          transform: translateY(-0.4em);
+        }
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      &:first-child:before { display: none; }
+
+      .link-wrapper {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 2;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .caption {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        padding: 1em;
+        text-align: left;
+        color: rgba(255, 255, 255, 1);
+        z-index: 1;
+        transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
+      }
+
+      .instructor {
+        margin-bottom: 0.35em;
+        font-size: 1em;
+        letter-spacing: 0.03333em;
+      }
+
+      .class-title {
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.019167em;
+      }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-small) {
+  // Header switches from mobile to desktop here
+  #mc-header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    background-repeat: repeat-x;
+    background-size: 100% 150px;
+    background-position: 0 -50px;
+    min-height: 100px; // extend gradient past visible "edge"
+    padding: 0; // override mobile's padding
+
+    .mc-breadcrumb {
+      position: absolute;
+      top: 0.5em; left: 0.5em;
+      display: block;
+      font-size: 0.75em;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.0833em;
+      padding-top: 0.45em;
+
+      &:before {
+        content: "<";
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5em;
+        color: $mc-color-accent-primary;
+      }
+    }
+
+    // On desktop, show primary but
+    // hide wordmark. Unless condensed (below)
+    #logo-primary {
+      display: inline-block;
+      position: absolute;
+      top: 1em; left: 50%;
+      width: 124px; height: 56px;
+      transform: translate(-50%, 0%);
+      transition: transform $mc-condensed-ease-timing ease;
+
+      img { width: 100%; height: auto; }
+    }
+
+    #logo-wordmark { display: none; }
+
+    // no padding needed on desktop
+    &.logged-out {
+      padding: 0;
+
+      #logo-wordmark { display: none; }
+    }
+
+    // When nav is condensed:
+    &.condensed {
+      min-height: 2.1em;
+      background-position: 0 0;
+
+      .mc-container {
+        min-height: 2.1em;
+
+        // Sticky nav needs a black background on nav
+        // items so it can go "behind"
+        &:not(.cm-sticky-ctas) {
+          background: #000;
+          transition: background 0ms 450ms ease;
+        }
+      }
+
+      #logo-primary {
+        transform: translate(-50%, -49px);
+        transition: transform $mc-condensed-ease-timing ease;
+      }
+    }
+
+    .mc-container {
+      padding: 0.5em;
+      @include clearfix();
+    }
+
+    // Fix for if the user goes to dekstop from mobile
+    // while the mobile nav is open
+    &.nav-open {
+      height: auto;
+      overflow-y: inherit;
+
+      .mc-nav-items {
+        margin-top: 0;
+      }
+    }
+
+    .mc-nav-items {
+      display: block;
+      position: absolute;
+      top: 0.45em; right: 0.5em;
+      overflow: visible;
+
+      .mc-nav-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0.4em;
+
+        &.comments {
+          .comments-dropdown {
+            display: block;
+
+            &.unread:after {
+              content: "";
+              position: absolute;
+              top: 0.8em; right: -0.1em;
+              display: block;
+              width: 6px; height: 6px;
+              background: $mc-color-accent-primary;
+              border-radius: 6px;
+            }
+          }
+
+          .mc-subnav-item {
+            .comment { color: rgba($mc-color-neutral, 0.8); }
+          }
+        }
+
+        &.cart { padding: 0; }
+      }
+    }
+
+    .user-info {
+      .mc-subnav-items {
+        &:hover {
+          .mc-subnav-item a {
+            color: rgba($mc-color-neutral, 0.6);
+
+            &:hover { color: rgba($mc-color-neutral, 1); }
+
+            // not cta
+            &.mc-btn { color: #fff; }
+          }
+        }
+      }
+    }
+
+    .mc-subnav-items {
+      position: absolute;
+      top: 3.5em; right: -16px;
+      margin-top: 0;
+      width: 350px;
+      background: #fff;
+      color: $mc-color-neutral;
+      opacity: 0;
+      visibility: hidden;
+
+      // Drop down arrow
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -30px;
+        right: 10px;
+        height: 15px;
+        border: 15px solid transparent;
+        border-bottom: 15px solid #fff;
+      }
+
+      // Needed to keep nav open as you mouse
+      // between the main parent nav item and the
+      // subnav menu.  Without this, frustrating UX!
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -24px;
+        left: 0;
+        width: 100%;
+        height: 24px;
+        background: none;
+      }
+
+      &:hover {
+        .mc-subnav-item a {
+          color: rgba($mc-color-neutral, 0.6);
+
+          &:hover { color: rgba($mc-color-neutral, 1); }
+
+          // not cta
+          &.mc-btn { color: #fff; }
+        }
+      }
+    }
+
+    .mc-subnav-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      &:first-child { border-top: 0; }
+
+      a {
+        color: rgba($mc-color-neutral, 0.8);
+        transition: color 150ms ease;
+      }
+
+      .mc-btn.clear {
+        color: $mc-color-neutral;
+        border: 1px solid rgba(0,0,0, 0.5);
+        margin-bottom: 0;
+        transition: border 250ms ease, color 250ms ease;
+
+        &:hover {
+          color: rgba($mc-color-neutral,0.8);
+          border: 1px solid rgba(0,0,0, 0.25);
+        }
+      }
+    }
+
+    .comment-content {
+      .user { color: rgba($mc-color-neutral, 1); }
+      .timestamp { color: rgba($mc-color-neutral, 0.5); }
+    }
+  }
+
+  .user-login-actions-container {
+    position: absolute;
+    top: 0.5em; right: 0.5em;
+    float: none;
+  }
+}
+
+@media (min-width: $mc-bp-medium) {
+  #mc-header {
+    .class-switcher li { margin-right: 4em; }
+  }
+}

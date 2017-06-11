@@ -1,0 +1,10 @@
+@import 'base/base';
+@import 'elements/elements';
+@import 'components/components';
+@import 'helpers/helpers';
+@import 'pages/pages';
+
+body {
+  font-family: $mc-font-default;
+  -webkit-font-smoothing: antialiased;
+}

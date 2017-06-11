@@ -1,0 +1,26 @@
+@import 'grid';
+
+.mobile-only { display: block !important; }
+.desktop-only { display: none !important; }
+
+@media (min-width: $mc-bp-small) {
+  .mobile-only { display: none !important; }
+  .desktop-only { display: block !important; }
+}
+
+//rule for ng-cloak to avoid flickering with angular templates
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+// Font modifications
+.small-caps { font-size: 0.909em; }
+
+// For anything that needs to be on the page, but not visible to regular users
+.screenreader {
+  width: 0px;
+  height: 0px;
+  text-indent: -10000px;
+  display: block;
+  margin: 0;
+}

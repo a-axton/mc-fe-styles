@@ -1,0 +1,11 @@
+.mc-container {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.mc-contain-outer { max-width: $mc-contain-outer; }
+.mc-contain-middle { max-width: $mc-contain-middle; }
+.mc-contain-inner { max-width: $mc-contain-inner; }
