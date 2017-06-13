@@ -134,16 +134,8 @@ gulp.task('compileCore', function() {
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    // .pipe(concat('core.css'))
     .pipe(gulp.dest('./dist/css'));
 });
-
-// gulp.task('compileStaticComponents', function() {
-//   return gulp.src([
-//       'src/scss/components/static/**/*'
-//     ])
-//     .pipe(gulp.dest('./dist/css/components'));
-// });
 
 gulp.task('compileStyleGuide', function() {
   return gulp.src([
