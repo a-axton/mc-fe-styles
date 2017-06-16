@@ -165,7 +165,17 @@ body {
       margin: -0.1em 1em 0 0;
     }
   }
+}
 
+.mc-badge {
+  display: inline-block;
+  vertical-align: middle;
+  background: $mc-color-accent-primary;
+  font-size: 12px;
+  letter-spacing: .083333em;
+  color: #fff;
+  padding: 0.334em 0.502em;
+  border-radius: 3px;
 }
 
 .mc-progress-bar-parent {
@@ -624,13 +634,8 @@ body {
       transition: top 125ms ease 125ms, transform 125ms ease 0ms;
     }
 
-    &:before {
-      top: -5px;
-    }
-
-    &:after {
-      top: calc(50% + 5px);
-    }
+    &:before { top: -6px; }
+    &:after { top: 6px; }
   }
 }
 
@@ -1075,6 +1080,371 @@ $mc-condensed-ease-timing: 450ms;
 }
 
 // ************
+// New Nav
+// ************
+#mc-header.version-two {
+  background: none;
+  transition: none;
+  min-height: none;
+  padding: 0;
+
+  .mc-nav-items .mc-nav-item:hover .mc-subnav-items {
+    top: 2.15em;
+    background: rgba(0, 0, 0, 0.95);
+  }
+
+  #cm-scrolling-cta.active { top: 77px; }
+
+  // Start new styles
+  .dropdown-arrow,
+  .dropup-arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 13px; height: 6px;
+    background: asset-url("nav2/arrow-down.svg") center/100% auto no-repeat;
+  }
+
+  .dropup-arrow {
+    background: asset-url("nav2/arrow-up.svg") center/100% auto no-repeat;
+  }
+
+  .mc-arrow-red {
+    display: inline-block;
+    vertical-align: middle;
+    width: 13px; height: 6px;
+
+    &.left  {
+      width: 7px; height: 11px;
+      background: asset-url("nav2/arrow-left.svg") center/100% auto no-repeat;
+    }
+
+    &.right  {
+      width: 7px; height: 11px;
+      background: asset-url("nav2/arrow-right.svg") center/100% auto no-repeat;
+    }
+  }
+
+  #mobile-nav-button {
+    top: 5px;
+    width: 22px; height: 22px;
+    transform: none;
+    z-index: 1;
+  }
+
+  .mc-container {
+    background: #000;
+    padding: 0;
+    min-height: 33px;
+  }
+
+  #logo-wordmark {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px auto;
+  }
+
+  // Wrapper for the student info section
+  // and dropdown items
+  .student-info-blurb {
+    padding: 15px;
+    @include clearfix();
+  }
+
+  .student-info-block {
+    display: none;
+    position: static;
+    width: 100%;
+    text-align: left;
+    padding: 6px 8px;
+
+    .username,
+    .activity-state {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .avatar {
+      display: block;
+      float: left;
+      margin: 0 20px 0 0;
+      width: 58px;
+      height: 58px;
+      border-radius: 58px;
+    }
+
+    .username {
+      font-size: 17px;
+      letter-spacing: 1.4px;
+      margin: 8px 10px 8px 0;
+    }
+
+    .activity-state {
+      width: 8px; height: 8px;
+    }
+
+    .location {
+      font-size: 17px;
+      letter-spacing: 1.4px;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: none;
+    }
+
+    // Hide arrow and badge count
+    // on mobile
+    .dropdown-arrow,
+    .comment-count { display: none; }
+  }
+
+  .mc-nav-class-link {
+    position: absolute;
+    top: 11px;
+    left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+
+    .mc-arrow-red.left { margin-right: 15px; }
+    .mc-arrow-red.right { margin: 0 15px; }
+
+    // Breadcrumb style
+    &.breadcrumbs {
+      a { color: rgba(255, 255, 255, 0.5); }
+    }
+  }
+
+  .user-info-dropdown-items {
+    width: 100%;
+    text-align: left;
+    background: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    clear: both;
+
+    .user-info-dropdown-item {
+      display: block;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:last-child { border-bottom: 0; }
+    }
+
+    .item-link {
+      display: block;
+      padding: 20px 16px;
+      font-size: 17px;
+      letter-spacing: 1px;
+      text-transform: none;
+    }
+
+    .mc-badge {
+      font-size: 17px;
+      float: right;
+      transform: translateY(-5px);
+    }
+
+    .sign-out {
+      position: absolute;
+      bottom: 0; left: 0;
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 32px 16px;
+    }
+
+    .helper-text {
+      float: right;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .mc-nav-class-subnav-items {
+    background: rgba(34, 34, 34, 0.9);
+    text-align: left;
+    text-transform: none;
+    backdrop-filter: saturate(180%) blur(20px);
+
+    &.nav-open {
+      .mc-nav-class-subnav-item {
+        display: block;
+
+        &.explore {
+          .dropdown-arrow { display: none; }
+          .dropup-arrow { display: inline-block; }
+        }
+      }
+    }
+
+    .mc-nav-class-subnav-item {
+      display: none;
+
+      &.explore {
+        display: block;
+        padding: 10px 20px;
+        font-size: 16px;
+        letter-spacing: 1px;
+
+        .dropdown-arrow {
+          display: inline-block;
+          margin: -2px 0 0 8px;
+        }
+
+        .dropup-arrow {
+          display: none;
+          margin: -2px 0 0 8px;
+        }
+      }
+
+      a {
+        display: block;
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding: 24px 33px;
+        color: #fff;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  // When nav is open
+  &.nav-open {
+    .student-info-block {
+      display: block;
+      height: calc(100vh - 36px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  @media (min-width: $mc-bp-small) {
+    #logo-wordmark {
+      position: absolute;
+      top: 10px; left: 50%;
+      margin: 0;
+      transform: translate(-50%, 0);
+    }
+
+    .student-info-blurb {
+      padding: 0;
+    }
+
+    .student-info-block {
+      display: block;
+      position: absolute;
+      top: 0px; right: 0px;
+      width: auto;
+
+      .avatar {
+        width: 21px;
+        height: 21px;
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .username {
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin: 0 10px;
+      }
+
+      .activity-state {
+        width: 6px; height: 6px;
+      }
+
+
+      .location { display: none; }
+
+      .comment-count {
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      .dropdown-arrow {
+        display: inline-block;
+      }
+
+      // Activate subnav
+      &:hover {
+        .user-info-dropdown-items { display: block; }
+      }
+    }
+
+    .user-info-dropdown-items {
+      display: none;
+      position: absolute;
+      top: 33px; right: 0;
+      width: 260px;
+      border: 0;
+      z-index: 1;
+
+      .user-info-dropdown-item:hover {
+        .helper-text {
+          color: rgba(255, 255, 255, 0.4);
+        }
+      }
+
+      .mc-badge {
+        transform: translateY(-5px);
+        font-size: 14px;
+      }
+
+      .item-link {
+        font-size: 14px;
+      }
+
+      .helper-text {
+        color: rgba(255, 255, 255, 0.0);
+        transition: color 250ms ease;
+      }
+
+      .sign-out {
+        position: static;
+        padding: 15px 16px;
+      }
+    }
+  }
+
+  @media (min-width: $mc-bp-medium) {
+    .mc-nav-class-subnav-items {
+      text-align: center;
+
+      // override block on mobile
+      &.nav-open {
+        .mc-nav-class-subnav-item {
+          display: inline-block;
+        }
+      }
+
+      .mc-nav-class-subnav-item {
+        display: inline-block;
+        vertical-align: middle;
+
+        &.explore { display: none; }
+
+        a {
+          font-size: 12px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          margin: 0 50px;
+          padding: 14px 0;
+          color: rgba(255, 255, 255, 0.5);
+          border: 0; // reset mobile border
+          border-bottom: 3px solid transparent;
+          transition: border 200ms ease, color 200ms ease;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+
+        &.active a {
+          color: #fff;
+          border-bottom: 3px solid $mc-color-accent-primary;
+        }
+      }
+    }
+  }
+}
+
+
+// ************
 // Lesson plans
 // ************
 .cm-lessons {
@@ -1316,6 +1686,7 @@ $mc-condensed-ease-timing: 450ms;
       position: absolute;
       top: 0; left: 0;
       width: 100%;
+      max-height: 100%; // IE Fix
       -webkit-transform: scale(1); // set intiial
               transform: scale(1); // set intiial
       -webkit-transition: transform 8s ease;
@@ -1780,7 +2151,7 @@ $mc-condensed-ease-timing: 450ms;
           &:hover { color: rgba($mc-color-neutral, 1); }
 
           // not cta
-          &.mc-btn { color: #fff; }
+          &.mc-btn:not(.transparent) { color: #fff; }
         }
       }
     }
