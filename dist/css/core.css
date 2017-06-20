@@ -1261,37 +1261,6 @@ table {
       font-size: 3em; } }
 
 @media (min-width: 768px) {
-  .mc-list-classes.orphan .mc-list-class:nth-child(odd) {
-    margin-left: 1.7em;
-    clear: none; }
-  .mc-list-classes.orphan .mc-list-class:nth-child(even) {
-    margin-left: 0;
-    clear: both; }
-  .mc-list-classes.orphan .mc-list-class:first-child {
-    width: 100%;
-    margin: 0 0 0.85em 0;
-    padding-bottom: 36.04%; }
-    .mc-list-classes.orphan .mc-list-class:first-child .class-poster {
-      width: 100%;
-      margin: 0; }
-  .mc-list-classes .mc-list-class {
-    display: block;
-    float: left;
-    width: calc(50% - 0.85em);
-    height: auto;
-    margin: 0.85em 0 0.85em 1.7em;
-    padding-bottom: 29.7%; }
-    .mc-list-classes .mc-list-class:nth-child(odd) {
-      clear: both;
-      margin-left: 0; }
-    .mc-list-classes .mc-list-class.hp_featured_tile {
-      float: none;
-      width: 100%;
-      margin: 0.85em 0;
-      padding-bottom: 36.04%; }
-      .mc-list-classes .mc-list-class.hp_featured_tile .class-poster {
-        width: 100%;
-        left: 0; }
   .cm-lessons .show-more-lessons a {
     padding: 0.5em 3em; }
   .cm-lessons .cm-lesson {
@@ -1299,17 +1268,6 @@ table {
     .cm-lessons .cm-lesson .cm-lesson-marker {
       top: 0.7em;
       left: 0.3em; } }
-
-@media (min-width: 992px) {
-  .mc-list-classes .caption {
-    bottom: 2em;
-    left: 2em;
-    width: calc(100% - 4em); }
-  .mc-list-classes .caption-title {
-    font-size: 1.6em;
-    margin-bottom: 0.3em; }
-  .mc-list-classes .caption-subtitle {
-    font-size: 1.1em; } }
 
 .three-ups:after {
   content: "";
@@ -1443,6 +1401,50 @@ table {
     width: calc(100% - 3em); }
   .mc-list-classes .caption-title {
     font-size: 1.5em; }
+  .mc-list-classes .caption-subtitle {
+    font-size: 1.1em; } }
+
+@media (min-width: 768px) {
+  .mc-list-classes.orphan .mc-list-class:nth-child(odd) {
+    margin-left: 1.7em;
+    clear: none; }
+  .mc-list-classes.orphan .mc-list-class:nth-child(even) {
+    margin-left: 0;
+    clear: both; }
+  .mc-list-classes.orphan .mc-list-class:first-child {
+    width: 100%;
+    margin: 0 0 0.85em 0;
+    padding-bottom: 36.04%; }
+    .mc-list-classes.orphan .mc-list-class:first-child .class-poster {
+      width: 100%;
+      margin: 0; }
+  .mc-list-classes .mc-list-class {
+    display: block;
+    float: left;
+    width: calc(50% - 0.85em);
+    height: auto;
+    margin: 0.85em 0 0.85em 1.7em;
+    padding-bottom: 29.7%; }
+    .mc-list-classes .mc-list-class:nth-child(odd) {
+      clear: both;
+      margin-left: 0; }
+    .mc-list-classes .mc-list-class.hp_featured_tile {
+      float: none;
+      width: 100%;
+      margin: 0.85em 0;
+      padding-bottom: 36.04%; }
+      .mc-list-classes .mc-list-class.hp_featured_tile .class-poster {
+        width: 100%;
+        left: 0; } }
+
+@media (min-width: 992px) {
+  .mc-list-classes .caption {
+    bottom: 2em;
+    left: 2em;
+    width: calc(100% - 4em); }
+  .mc-list-classes .caption-title {
+    font-size: 1.6em;
+    margin-bottom: 0.3em; }
   .mc-list-classes .caption-subtitle {
     font-size: 1.1em; } }
 
