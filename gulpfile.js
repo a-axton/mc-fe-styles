@@ -86,45 +86,12 @@ gulp.task('compileCore', function() {
       functions: assetUrl
     }))
     .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
+      browsers: ['last 99 versions'],
       cascade: false
     }))
     .pipe(gulp.dest('./dist/css'));
 });
 
-<<<<<<< HEAD
-gulp.task('compileStyleGuide', function() {
-  return gulp.src([
-      'src/styles/style-guide.scss'
-    ])
-    .pipe(plumber({
-      errorHandler: function(err) {
-        util.log(
-          'Error ' +
-          util.colors.bold.bgRed(err)
-        );
-
-        notifier.notify({
-          title: 'Build Error',
-          message: err.message
-        });
-
-        this.emit('end');
-      }
-    }))
-    .pipe(sass({
-      style: 'compressed',
-      functions: assetUrl
-    }))
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
-    .pipe(gulp.dest('./dist/css/style-guide'));
-});
-
-=======
->>>>>>> b11e90609f388857198ecf22a2075de0c6e51935
 
 // Images
 gulp.task('compileImages', function() {
