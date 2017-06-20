@@ -89,6 +89,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%;
+      max-height: 100%; // IE Fix
       -webkit-transform: scale(1); // set intiial
               transform: scale(1); // set intiial
       -webkit-transition: transform 8s ease;
