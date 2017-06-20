@@ -1,0 +1,138 @@
+#mc-style-guide {
+  background: #F5F5F5;
+  padding: 30px;
+  padding-left: 280px; }
+  #mc-style-guide #style-guide-logo {
+    display: block;
+    margin: 0 auto 1em; }
+  #mc-style-guide #sidebar {
+    background: #000000;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    padding: 1.5em;
+    text-transform: uppercase; }
+    #mc-style-guide #sidebar a {
+      color: rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+      -webkit-transition: color 250ms ease;
+      -o-transition: color 250ms ease;
+      -moz-transition: color 250ms ease;
+      transition: color 250ms ease; }
+    #mc-style-guide #sidebar .sidebar-nav-items .sidebar-nav-item {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.2225em;
+      border-top: 1px solid rgba(255, 255, 255, 0.1); }
+      #mc-style-guide #sidebar .sidebar-nav-items .sidebar-nav-item a {
+        display: block;
+        padding: 2em 0; }
+        #mc-style-guide #sidebar .sidebar-nav-items .sidebar-nav-item a:hover {
+          color: rgba(255, 255, 255, 0.5); }
+        #mc-style-guide #sidebar .sidebar-nav-items .sidebar-nav-item a.active {
+          color: white; }
+  #mc-style-guide #main {
+    background: #fff;
+    padding: 0 2.5em;
+    border: 1px solid #D3DBE3; }
+  #mc-style-guide h1, #mc-style-guide h2, #mc-style-guide h3, #mc-style-guide h4, #mc-style-guide h5 {
+    margin: 0 0 0.25em 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.222em; }
+  #mc-style-guide .primary-title {
+    font-size: 32px; }
+  #mc-style-guide .section-title {
+    font-size: 18px; }
+  #mc-style-guide .section-subtitle {
+    font-size: 16px;
+    margin-bottom: 0.5em; }
+  #mc-style-guide p {
+    max-width: 750px;
+    font-size: 16px;
+    line-height: 1.4; }
+  #mc-style-guide strong {
+    font-weight: bold; }
+  #mc-style-guide code:after,
+  #mc-style-guide .code-render:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5em 1em;
+    content: "Code";
+    text-transform: uppercase;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold; }
+  #mc-style-guide code {
+    position: relative;
+    display: block;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0.75em 1.25em;
+    font-family: monospace;
+    line-height: 1.4; }
+  #mc-style-guide .code-render {
+    position: relative;
+    background: white;
+    padding: 1em;
+    border: 1px solid #ccc; }
+    #mc-style-guide .code-render:after {
+      content: "Rendering"; }
+    #mc-style-guide .code-render.inverted {
+      background: #090909; }
+      #mc-style-guide .code-render.inverted:after {
+        color: rgba(255, 255, 255, 0.5); }
+  #mc-style-guide .section {
+    padding: 45px 0;
+    border-bottom: 1px solid #E8EDF2; }
+  #mc-style-guide .subsection {
+    margin: 40px 0 0;
+    padding: 0 0 0 1.5em;
+    border-left: 4px solid #E8EDF2; }
+  #mc-style-guide .mc-color-cards-groups {
+    margin: 1em 0; }
+    #mc-style-guide .mc-color-cards-groups .mc-color-cards-group {
+      display: inline-block;
+      vertical-align: top;
+      margin: 1em 2em 1em 0; }
+      #mc-style-guide .mc-color-cards-groups .mc-color-cards-group .mc-color-group-title {
+        font-size: 10px;
+        color: #7E8997;
+        letter-spacing: 0.12em; }
+  #mc-style-guide .mc-color-cards {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #D3DBE3;
+    margin: 0.3em 0 0.5em;
+    padding: 0 0.5em; }
+    #mc-style-guide .mc-color-cards:after {
+      content: "";
+      display: block;
+      clear: both; }
+    #mc-style-guide .mc-color-cards .mc-color-card {
+      display: block;
+      float: left;
+      margin: 0.5em 0; }
+      #mc-style-guide .mc-color-cards .mc-color-card .mc-color-swatch {
+        display: block;
+        width: auto;
+        height: 80px;
+        margin-bottom: 5px; }
+        #mc-style-guide .mc-color-cards .mc-color-card .mc-color-swatch.white {
+          border: 1px solid #D3DBE3; }
+      #mc-style-guide .mc-color-cards .mc-color-card .mc-color-description {
+        padding: 0 1.5em 0 0; }
+      #mc-style-guide .mc-color-cards .mc-color-card .mc-color-variable {
+        display: block;
+        font-size: 14px; }
+      #mc-style-guide .mc-color-cards .mc-color-card .mc-color-value {
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.5); }

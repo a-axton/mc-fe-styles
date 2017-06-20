@@ -77,8 +77,8 @@ Animation  $effect should be defined in animate.css
 ===========================================================================*/
 @font-face {
   font-family: 'mc-socials';
-  src: url('mc-icons/mc-socials/mc-socials.eot?qzecmk');
-  src: url('mc-icons/mc-socials/mc-socials.eot?qzecmk#iefix') format("embedded-opentype"), url('mc-icons/mc-socials/mc-socials.ttf?qzecmk') format("truetype"), url('mc-icons/mc-socials/mc-socials.woff?qzecmk') format("woff"), url('mc-icons/mc-socials/mc-socials.svg?qzecmk#mc-socials') format("svg");
+  src: url('http://localhost:3001/img/mc-icons/mc-socials/mc-socials.eot?qzecmk');
+  src: url('http://localhost:3001/img/mc-icons/mc-socials/mc-socials.eot?qzecmk#iefix') format("embedded-opentype"), url('http://localhost:3001/img/mc-icons/mc-socials/mc-socials.ttf?qzecmk') format("truetype"), url('http://localhost:3001/img/mc-icons/mc-socials/mc-socials.woff?qzecmk') format("woff"), url('http://localhost:3001/img/mc-icons/mc-socials/mc-socials.svg?qzecmk#mc-socials') format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -222,7 +222,7 @@ table {
     right: 1em;
     width: 2em;
     height: 2em;
-    background: url('global/modal-close.svg') center no-repeat;
+    background: url('http://localhost:3001/img/global/modal-close.svg') center no-repeat;
     opacity: 0.2;
     z-index: 1;
     transition: opacity 150ms ease;
@@ -334,7 +334,7 @@ table {
       .mc-modal.login #sign-in-forgot-password .forgot:hover {
         color: rgba(77, 87, 104, 0.8); }
   .mc-modal.chromeless .mc-modal-close {
-    background: url('global/modal-close-inverted.svg') center no-repeat;
+    background: url('http://localhost:3001/img/global/modal-close-inverted.svg') center no-repeat;
     opacity: 0.5; }
     .mc-modal.chromeless .mc-modal-close:hover {
       opacity: 1; }
@@ -372,7 +372,7 @@ table {
     .mc-modal.chromeless .ctas .cta {
       margin: 0.55em 0 0.55em 1.1em; }
   .mc-modal.full .mc-modal-close {
-    background: url('global/modal-close-inverted.svg') center no-repeat;
+    background: url('http://localhost:3001/img/global/modal-close-inverted.svg') center no-repeat;
     opacity: 0.5; }
     .mc-modal.full .mc-modal-close:hover {
       opacity: 1; }
@@ -1258,19 +1258,7 @@ table {
   .cm-lessons .cm-lesson {
     padding: 1.75em 1em 1.75em 5em; }
     .cm-lessons .cm-lesson .cm-lesson-marker {
-      font-size: 3em; }
-  .mc-list-classes .mc-list-class {
-    width: 447px;
-    height: 265px;
-    padding: 0; }
-  .mc-list-classes .caption {
-    bottom: 1.5em;
-    left: 1.5em;
-    width: calc(100% - 3em); }
-  .mc-list-classes .caption-title {
-    font-size: 1.5em; }
-  .mc-list-classes .caption-subtitle {
-    font-size: 1.1em; } }
+      font-size: 3em; } }
 
 @media (min-width: 768px) {
   .mc-list-classes.orphan .mc-list-class:nth-child(odd) {
@@ -1443,6 +1431,20 @@ table {
   .mc-list-classes .caption-subtitle {
     font-size: 0.9em;
     color: rgba(255, 255, 255, 0.5); }
+
+@media (min-width: 480px) {
+  .mc-list-classes .mc-list-class {
+    width: 447px;
+    height: 265px;
+    padding: 0; }
+  .mc-list-classes .caption {
+    bottom: 1.5em;
+    left: 1.5em;
+    width: calc(100% - 3em); }
+  .mc-list-classes .caption-title {
+    font-size: 1.5em; }
+  .mc-list-classes .caption-subtitle {
+    font-size: 1.1em; } }
 
 .mc-banner {
   background: #fff;

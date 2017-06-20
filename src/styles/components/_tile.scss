@@ -121,3 +121,20 @@
     color: rgba(#fff, 0.5);
   }
 }
+
+@media (min-width: $mc-bp-tiny) {
+  .mc-list-classes {
+    .mc-list-class {
+      width: 447px;
+      height: 265px;
+      padding: 0;
+    }
+
+    .caption {
+      bottom: 1.5em; left: 1.5em;
+      width: calc(100% - 3em);
+    }
+    .caption-title { font-size: 1.5em; }
+    .caption-subtitle { font-size: 1.1em; }
+  }
+}
