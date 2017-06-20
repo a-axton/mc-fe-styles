@@ -6,7 +6,6 @@ var gulp                = require('gulp'),
     fileinclude         = require('gulp-file-include'),
     imagemin            = require('gulp-imagemin'),
     imageminPngquant    = require('imagemin-pngquant'),
-    livereload          = require('gulp-livereload'),
     notifier            = require('node-notifier'),
     plumber             = require('gulp-plumber'),
     sass                = require('gulp-sass'),
@@ -37,18 +36,15 @@ gulp.task('default', ['watch']);
 
 // Which is this
 gulp.task('watch', ['compile'], function() {
-  livereload.listen();
-  gulp.watch('src/html/**/*.html', ['compileMarkup']);
   gulp.watch('src/styles/**/*.scss', ['compileCSS']);
-  gulp.watch('src/js/**/*.js', ['compileJS']);
   gulp.watch('src/img/**/*.*', ['compileImages']);
 });
 
 // compile - compile markup, js, and styles
-gulp.task('compile', ['compileMarkup', 'compileCSS', 'compileJS', 'compileImages']);
+gulp.task('compile', ['compileCSS']);
 
 // minify - Process everything, minify, move images, etc to /dist
-gulp.task('minify', ['minifyMarkup', 'minifyCSS', 'compileJS', 'minifyImages']);
+gulp.task('minify', ['minifyCSS', 'minifyImages']);
 
 // version - minify everything, upload images to s3, basically
 // prepare for versioning
@@ -56,53 +52,12 @@ gulp.task('version', ['minify'], function(done){
   s3.sync(done);
 });
 
-// -------
-// Markup
-// -------
-gulp.task('compileMarkup', function() {
-  return gulp.src([
-    'src/html/*.html',
-    'src/html/pages/**/*.html'
-    ])
-    .pipe(plumber({
-      errorHandler: function(err) {
-        util.log(
-          util.colors.red(err)
-        );
-
-        notifier.notify({
-          title: 'Build Error',
-          message: err.message
-        });
-
-        this.emit('end');
-      }
-    }))
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: 'src/html'
-    }))
-    .pipe(gulp.dest('./dist'))
-    .pipe(livereload());
-});
-
-
-// JS related
-gulp.task('compileJS', function() {
-  return gulp.src([
-    'src/js/**/*.js'
-  ])
-  .pipe(gulp.dest('./dist/js'))
-  .pipe(livereload());
-});
-
 
 // CSS Related
-gulp.task('compileCSS', ['compileCore', 'compileStyleGuide'], function() {
+gulp.task('compileCSS', ['compileCore'], function() {
   return gulp.src([
-      'src/scss/**/*.scss'
-    ])
-    .pipe(livereload());
+      'src/styles/**/*.scss'
+    ]);
 });
 
 // Compiles both the core scss file and any
@@ -138,69 +93,19 @@ gulp.task('compileCore', function() {
     .pipe(gulp.dest('./dist/css'));
 });
 
-// gulp.task('compileStaticComponents', function() {
-//   return gulp.src([
-//       'src/scss/components/static/**/*'
-//     ])
-//     .pipe(gulp.dest('./dist/css/components'));
-// });
-
-gulp.task('compileStyleGuide', function() {
-  return gulp.src([
-      'src/styles/style-guide.scss'
-    ])
-    .pipe(plumber({
-      errorHandler: function(err) {
-        util.log(
-          'Error ' +
-          util.colors.bold.bgRed(err)
-        );
-
-        notifier.notify({
-          title: 'Build Error',
-          message: err.message
-        });
-
-        this.emit('end');
-      }
-    }))
-    .pipe(sass({
-      style: 'compressed',
-      functions: assetUrl
-    }))
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
-    .pipe(gulp.dest('./dist/css/style-guide'));
-});
-
 
 // Images
 gulp.task('compileImages', function() {
   return gulp.src([
     'src/img/**/*'
   ])
-  .pipe(gulp.dest('./dist/img'))
-  .pipe(livereload());
+  .pipe(gulp.dest('./dist/img'));
 });
 
 
 // ------------
 // Shipping it
 // ------------
-
-// Markup
-gulp.task('minifyMarkup', ['compileMarkup'], function() {
-  return gulp.src(['./dist/*.html'])
-    .pipe(htmlmin({
-      collapseWhitespace: true,
-      minifyJS: true,
-      removeComments: true
-    }))
-    .pipe(gulp.dest('./dist/'))
-    .pipe(livereload());
-});
 
 // CSS
 gulp.task('minifyCSS', ['compileCSS'], function() {
