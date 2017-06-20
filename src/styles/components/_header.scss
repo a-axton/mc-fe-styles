@@ -642,17 +642,6 @@
         height: 24px;
         background: none;
       }
-
-      &:hover {
-        .mc-subnav-item a {
-          color: rgba($mc-color-neutral, 0.6);
-
-          &:hover { color: rgba($mc-color-neutral, 1); }
-
-          // not cta
-          &.mc-btn:not(.transparent) { color: #fff; }
-        }
-      }
     }
 
     .mc-subnav-item {
