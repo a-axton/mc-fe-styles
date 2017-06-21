@@ -1,6 +1,22 @@
 @import '../static/variables';
 @import '../static/mixins';
 
+// Typography Overrides
+body.show_enrolled {
+  // base em font size
+  font-size: 16px;
+
+  .lesson-plan__list {
+    h3 {
+      letter-spacing: .02em;
+    }
+
+    li .lesson-plan__title {
+      font-family: 'Lato';  
+    }
+  }
+}
+
 // *************
 // New hero test
 // *************
@@ -12,15 +28,48 @@
   position: relative;
   display: block;
   max-width: 1100px;
-  margin: 50px auto 0; // Height of mobile nav
+  margin: 50px auto 15px; // Height of mobile nav
+  font-size: 16px;
+
+  @at-root .navbar-v2 & {
+    margin-top: 36px;
+  }
 
   .mc-btn {
-    display: block;
-    font-size: 0.8125em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.813em;
     letter-spacing: 0.09em;
     margin: 1em 0;
     text-align: center;
-    padding: 1em 2em;
+    padding: 0;
+    height: 3.846em;
+
+    &#start-button {
+      margin-top: 2.8em;
+      width: 100%;
+      max-width: 100%;
+      font-weight: bold;
+    }
+
+    &#resume-button {
+      font-weight: bold;
+      width: 100%;
+
+      &:before {
+        content: asset-url("global/icons-svg/overview-hero-play.svg");
+        width: 22px; height: 22px;
+        margin-right: 1em;
+      }
+    }
+
+    &#view-workbook-button {
+      width: 100%;
+      margin: 0;
+      border-color: rgba(white, .2);
+    }
+
   }
 
   .overview-start-class {
@@ -32,7 +81,8 @@
       background-position: center top;
 
       &.wide { display: none; } // 16:9
-      &.normal { display: block; } // 4:3
+      &.normal { display: none; } // 4:3
+      &.mobile { display: block; } // 4:3
 
       &:after {
         content: "";
@@ -45,12 +95,21 @@
     }
 
     .overview-hero-text {
-      position: relative; // z-index above gradient overlay
-      padding: 1em;
+      position: relative;
+      margin-top: -8.5%;
     }
 
     .instructor-name {
-      display: none;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.075em;
+      margin-bottom: 1.3em;
+      font-size: 1em;
+      color: white;
+
+      .class-title {
+        color: rgba(255, 255, 255, 0.5);
+      }
     }
 
     .overview-primary-title {
@@ -58,36 +117,33 @@
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.025em;
-      margin: 0 0 0.25em;
+      color: white;
     }
 
     .overview-subtitle {
       font-size: 1.375em;
       color: rgba(255, 255, 255, 0.5);
     }
-
-    #start-button {
-      margin-top: 2em;
-      padding: 1.12em 2em;
-      width: 100%;
-      max-width: 100%;
-      font-weight: bold;
-    }
   }
 
 
   // Resume class styles
   .overview-continue-class {
+    padding-top: 1em;
+
+    @at-root .navbar-v2 & {
+      padding-top: calc(36px + 1em);
+    }
+
     .overview-hero-thumbnail {
-      display: block; // Because it's an anchor now
+      flex: none;
+    }
+
+    .overview-hero-thumbnail-bg {
+      display: block;
       background: transparent center/cover no-repeat;
       height: 0;
-      padding-bottom: 56.25%; // maintain aspect ratio
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
+      padding-bottom: 56.25%;
     }
 
     .overview-hero-title-primary {
@@ -97,6 +153,7 @@
       margin: 1em 0 0.5em;
       text-transform: uppercase;
       letter-spacing: .0357em;
+      color: white;
     }
 
     .overview-hero-abstract {
@@ -107,24 +164,11 @@
     }
 
     .overview-hero-lesson-meta {
-      margin: 30px 0;
+      margin: 1.1em 0 .8em;
       font-size: 0.9375em;
       color: rgba(255, 255, 255, 0.4);
       letter-spacing: 0.06667em;
       text-transform: uppercase;
-    }
-
-    #resume-button {
-      font-weight: bold;
-
-      &:before {
-        content: "";
-        display: inline-block;
-        vertical-align: top;
-        width: 20px; height: 20px;
-        margin: -0.25em 1em 0 0;
-        background: asset-url("global/icons-svg/overview-hero-play.svg") center/100% no-repeat;
-      }
     }
   }
 }
@@ -132,47 +176,32 @@
 
 @media (min-width: $mc-bp-tiny) {
   .overview-hero {
-    .mc-btn {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 0 1em 0;
+    margin-bottom: 25px;
 
+    .mc-btn {
       &#start-button {
         width: 234px;
-        margin-top: 3.85em;
-      }
-
-      &#resume-button {
-        margin: 0 1em 1em 0;
+        margin-top: 3.35em;
       }
     }
 
     .overview-start-class {
-      // Bleed into gradient on ipad+ sizes
       .overview-hero-text {
-        margin-top: -3em;
-        padding: 1em 3.75em;
-      }
-
-      // Display instructor name at this breakpoint+
-      .instructor-name {
-        display: block;
-        text-transform: uppercase;
-        letter-spacing: 0.075em;
-
-        .class-title {
-          color: rgba(255, 255, 255, 0.5);
+        .container {
+          padding-right: 2em;
+          padding-left: 2em;
         }
       }
 
       .overview-primary-title {
-        margin: 0.75em 0 0.25em;
+        font-size: 2.4em;
+      }
+      .overview-subtitle {
+        font-size: 1.625em;
       }
     }
 
     .overview-continue-class {
-      padding: 1em;
-
       .overview-hero-title-primary {
         font-size: 1.75em;
         line-height: 1.357142857;
@@ -186,11 +215,43 @@
   }
 }
 
+@media (min-width: 535px) {
+  .overview-hero {
+    .mc-btn {
+      &#resume-button {
+        width: 250px;
+        margin: 1em 1em 0 0;
+      }
+
+      &#view-workbook-button {
+        width: 240px;
+        margin: 1em 0 0 0;        
+      }
+    }
+  }
+}
+
 
 @media (min-width: $mc-bp-small) {
   .overview-hero {
-    margin-top: 0;
-    // once the nav goes back, remove margin top
+    margin-top: 2.1em;
+    margin-bottom: 2.7em;
+
+    @at-root .navbar-v2 & {
+      margin-top: 2.1em;
+    }
+
+    .overview-continue-class {
+      padding-top: 2.5em;
+
+      @at-root .navbar-v2 & {
+        padding-top: calc(36px + 2.5em);
+      }
+
+      .overview-hero-lesson-meta {
+        margin: 1.875em 0 1em;
+      }
+    }
   }
 }
 
@@ -202,6 +263,7 @@
 
         &.wide { display: block; }
         &.normal { display: none; }
+        &.mobile { display: none; }
 
         &:after {
           background: asset-url("lesson-overview/class-hero-overlay.png") center/100% 100% no-repeat;
@@ -210,20 +272,36 @@
 
       .overview-hero-text {
         position: absolute;
-        top: 50%; left: 0;
-        transform: translateY(-50%);
-        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin-top: 0;
+      }
+
+      .instructor-name {
+        display: none;
       }
     }
 
     .overview-continue-class {
       display: flex;
-      padding: 3.5em 2.25em 1em;
+      padding-top: 5.2em;
+      
+      @at-root .navbar-v2 & {
+        padding-top: 7em;
+      }
 
       .overview-hero-thumbnail {
         margin-right: 60px;
         width: 38.912%;
-        padding-bottom: 29.184%;
+      }
+
+      .overview-hero-thumbnail-bg {
+        padding-bottom: 75%;
       }
 
       .overview-hero-title-primary {
