@@ -41,7 +41,7 @@ gulp.task('watch', ['compile'], function() {
 });
 
 // compile - compile markup, js, and styles
-gulp.task('compile', ['compileCSS']);
+gulp.task('compile', ['compileCSS', 'compileImages']);
 
 // minify - Process everything, minify, move images, etc to /dist
 gulp.task('minify', ['minifyCSS', 'minifyImages']);
