@@ -1624,6 +1624,7 @@ $mc-condensed-ease-timing: 450ms;
       .class-poster {
         width: 200%;
         margin-left: -50%;
+        max-height: none;
       }
     }
   }
