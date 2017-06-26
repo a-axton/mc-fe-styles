@@ -1083,10 +1083,14 @@ $mc-condensed-ease-timing: 450ms;
 // New Nav
 // ************
 #mc-header.version-two {
-  background: black;
+  background: transparent;
   transition: none;
   min-height: none;
   padding: 0;
+
+  .primary-nav {
+    background: black;
+  }
 
   .mc-nav-items .mc-nav-item:hover .mc-subnav-items {
     top: 2.15em;
@@ -1262,9 +1266,20 @@ $mc-condensed-ease-timing: 450ms;
     }
   }
 
+  .mc-nav-class-subnav {
+    background: #222;
+    text-align: center;
+  }
+
+  .mc-nav-class-subnav-container {
+    position: relative;
+  }
+
+  .subnav-active-underline {
+    display: none;
+  }
+
   .mc-nav-class-subnav-items {
-    background: rgba(34, 34, 34, 0.9);
-    text-align: left;
     text-transform: none;
     backdrop-filter: saturate(180%) blur(20px);
 
@@ -1287,6 +1302,7 @@ $mc-condensed-ease-timing: 450ms;
         padding: 10px 20px;
         font-size: 16px;
         letter-spacing: 1px;
+        color: white;
 
         .dropdown-arrow {
           display: inline-block;
@@ -1302,6 +1318,7 @@ $mc-condensed-ease-timing: 450ms;
       a {
         display: block;
         font-size: 16px;
+        font-weight: bold;
         letter-spacing: 1px;
         padding: 24px 33px;
         color: #fff;
@@ -1410,8 +1427,24 @@ $mc-condensed-ease-timing: 450ms;
   }
 
   @media (min-width: $mc-bp-medium) {
+    .subnav-active-underline {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: $mc-color-accent-primary;
+      transform: translateX(0);
+      transition: transform 300ms ease, width 400ms;
+    }
+
+    .mc-nav-class-subnav-container {
+      display: inline-block;
+    }
+
     .mc-nav-class-subnav-items {
       text-align: center;
+      display: inline-block;
 
       // override block on mobile
       &.nav-open {
@@ -1425,26 +1458,27 @@ $mc-condensed-ease-timing: 450ms;
         vertical-align: middle;
 
         &.explore { display: none; }
+        &:last-child a {
+          margin-right: 0;
+        }
 
         a {
           font-size: 12px;
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          margin: 0 50px;
-          padding: 14px 0;
+          margin-right: 100px;
+          padding: 13px 0 12px;
           color: rgba(255, 255, 255, 0.5);
           border: 0; // reset mobile border
           border-bottom: 3px solid transparent;
           transition: border 200ms ease, color 200ms ease;
-
+          
+          &.active {
+            color: white;
+          }
           &:hover {
             color: #fff;
           }
-        }
-
-        &.active a {
-          color: #fff;
-          border-bottom: 3px solid $mc-color-accent-primary;
         }
       }
     }

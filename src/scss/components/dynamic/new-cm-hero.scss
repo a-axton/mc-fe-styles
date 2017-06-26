@@ -28,11 +28,11 @@ body.show_enrolled {
   position: relative;
   display: block;
   max-width: 1100px;
-  margin: 50px auto 15px; // Height of mobile nav
+  margin: 50px auto 0; // Height of mobile nav
   font-size: 16px;
 
   @at-root .navbar-v2 & {
-    margin-top: 36px;
+    margin-top: 72px;
   }
 
   .mc-btn {
@@ -47,7 +47,7 @@ body.show_enrolled {
     height: 3.846em;
 
     &#start-button {
-      margin-top: 2.8em;
+      margin-top: 2.5em;
       width: 100%;
       max-width: 100%;
       font-weight: bold;
@@ -73,6 +73,8 @@ body.show_enrolled {
   }
 
   .overview-start-class {
+    padding-bottom: 1.7em;
+
     .overview-start-banner {
       position: relative;
       width: 100%; height: 0;
@@ -96,16 +98,25 @@ body.show_enrolled {
 
     .overview-hero-text {
       position: relative;
-      margin-top: -8.5%;
+      margin-top: -11.6%;
     }
 
     .instructor-name {
-      display: block;
+      display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.075em;
-      margin-bottom: 1.3em;
+      margin-bottom: .9em;
       font-size: 1em;
       color: white;
+
+      .dm-cm-logo {
+        position: relative;
+        top: -1px;
+        margin-bottom: -1px;
+        display: block;
+        width: 75px;
+        height: auto;
+      }
 
       .class-title {
         color: rgba(255, 255, 255, 0.5);
@@ -130,16 +141,14 @@ body.show_enrolled {
   // Resume class styles
   .overview-continue-class {
     padding-top: 1em;
-
-    @at-root .navbar-v2 & {
-      padding-top: calc(36px + 1em);
-    }
+    padding-bottom: 2em;
 
     .overview-hero-thumbnail {
       flex: none;
     }
 
     .overview-hero-thumbnail-bg {
+      @include box-inset-border();
       display: block;
       background: transparent center/cover no-repeat;
       height: 0;
@@ -176,12 +185,9 @@ body.show_enrolled {
 
 @media (min-width: $mc-bp-tiny) {
   .overview-hero {
-    margin-bottom: 25px;
-
     .mc-btn {
       &#start-button {
         width: 234px;
-        margin-top: 3.35em;
       }
     }
 
@@ -235,18 +241,22 @@ body.show_enrolled {
 @media (min-width: $mc-bp-small) {
   .overview-hero {
     margin-top: 2.1em;
-    margin-bottom: 2.7em;
 
     @at-root .navbar-v2 & {
-      margin-top: 2.1em;
+      margin-top: 70px;
+    }
+
+    .overview-start-class {
+      padding-bottom: 3em;
+
+      .overview-hero-text {
+        margin-top: -10.6%;
+      }
     }
 
     .overview-continue-class {
       padding-top: 2.5em;
-
-      @at-root .navbar-v2 & {
-        padding-top: calc(36px + 2.5em);
-      }
+      padding-bottom: 2.5em;
 
       .overview-hero-lesson-meta {
         margin: 1.875em 0 1em;
@@ -257,7 +267,12 @@ body.show_enrolled {
 
 @media (min-width: $mc-bp-medium) {
   .overview-hero {
+    @at-root .navbar-v2 & {
+      margin-top: 73px;
+    }
     .overview-start-class {
+      padding-bottom: 0;
+
       .overview-start-banner {
         padding-bottom: 41.82%; // 16:9 ratio
 
@@ -290,9 +305,10 @@ body.show_enrolled {
     .overview-continue-class {
       display: flex;
       padding-top: 5.2em;
-      
+      padding-bottom: 3.75em;
+
       @at-root .navbar-v2 & {
-        padding-top: 7em;
+        padding-top: 4.2em;
       }
 
       .overview-hero-thumbnail {
