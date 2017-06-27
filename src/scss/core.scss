@@ -1268,7 +1268,7 @@ $mc-condensed-ease-timing: 450ms;
 
   .mc-nav-class-subnav {
     background: #222;
-    text-align: center;
+    text-align: left;
   }
 
   .mc-nav-class-subnav-container {
@@ -1299,7 +1299,7 @@ $mc-condensed-ease-timing: 450ms;
 
       &.explore {
         display: block;
-        padding: 10px 20px;
+        padding: 8px 20px 12px;
         font-size: 16px;
         letter-spacing: 1px;
         color: white;
@@ -1436,6 +1436,10 @@ $mc-condensed-ease-timing: 450ms;
       background: $mc-color-accent-primary;
       transform: translateX(0);
       transition: transform 300ms ease, width 400ms;
+    }
+
+    .mc-nav-class-subnav {
+      text-align: center;
     }
 
     .mc-nav-class-subnav-container {
