@@ -174,7 +174,7 @@ body {
   font-size: 12px;
   letter-spacing: .083333em;
   color: #fff;
-  padding: 0.334em 0.502em;
+  padding: 0.286em 0.454em;
   border-radius: 3px;
 }
 
@@ -609,10 +609,9 @@ body {
 // ******
 #mobile-nav-button {
   position: absolute;
-  top: 0.45em; right: 0.45em;
-  width: 21px;
-  height: 21px;
-  transform: translateY(-50%);
+  top: 7px; right: 7px;
+  width: 22px; height: 22px;
+  z-index: 1;
 
   .mobile-nav-lines {
     position: absolute;
@@ -787,7 +786,6 @@ $mc-condensed-ease-timing: 450ms;
   a { text-decoration: none; }
 
   &.nav-open {
-    position: fixed;
     height: 100%;
     overflow-y: auto;
 
@@ -1082,34 +1080,83 @@ $mc-condensed-ease-timing: 450ms;
 // ************
 // New Nav
 // ************
+@keyframes mcAnimateFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@mixin mc-animate-fade-in {
+  animation-name: mcAnimateFadeIn;
+  animation-duration: 350ms;
+  animation-iteration-count: once;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 #mc-header.version-two {
   background: transparent;
   transition: none;
   min-height: none;
   padding: 0;
+  z-index: 1001;
 
-  .primary-nav {
-    background: black;
+  // Should probably move this inline to each element
+  // using @at-root
+  &.nav-open {
+    background: none; // NEEDED
+
+    .student-info-block {
+      display: block;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      @include mc-animate-fade-in();
+    }
+
+    #user-info-container {
+      max-height: calc(100vh - 139px);
+      overflow: visible;
+      cursor: pointer;
+    }
+
+    .user-info-dropdown-items {
+      transform: translateY(0);
+
+      .user-info-dropdown-item {
+        opacity: 0;
+        @include mc-animate-fade-in();
+
+        @for $i from 1 through 15 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i} * 100ms;
+          }
+        }
+      }
+    }
+
+    .mc-explore-subnav-items {
+      display: none;
+    }
   }
 
-  .mc-nav-items .mc-nav-item:hover .mc-subnav-items {
-    top: 2.15em;
-    background: rgba(0, 0, 0, 0.95);
-  }
+  .mc-container { padding: 0; }
 
+  // Sticky "take this class"
+  // ...might not be needed
   #cm-scrolling-cta.active { top: 77px; }
 
-  // Start new styles
-  .dropdown-arrow,
-  .dropup-arrow {
+  .dropdown-arrow {
     display: inline-block;
     vertical-align: middle;
     width: 13px; height: 6px;
     background: asset-url("nav2/arrow-down.svg") center/100% auto no-repeat;
-  }
-
-  .dropup-arrow {
-    background: asset-url("nav2/arrow-up.svg") center/100% auto no-repeat;
+    transform: rotate(0deg);
+    transition: transform 350ms ease;
   }
 
   .mc-arrow-red {
@@ -1128,47 +1175,22 @@ $mc-condensed-ease-timing: 450ms;
     }
   }
 
-  #mobile-nav-button {
-    top: 5px;
-    width: 22px; height: 22px;
-    transform: none;
-    z-index: 1;
-  }
-
-  .mc-container {
-    padding: 0;
-    min-height: 33px;
-  }
-
   #logo-wordmark {
-    display: inline-block;
-    vertical-align: middle;
     margin: 10px auto;
 
-    img {
-      vertical-align: baseline;
-    }
+    img { display: block; }
   }
 
   // Wrapper for the student info section
   // and dropdown items
   .student-info-blurb {
-    padding: 15px;
+    padding: 23px;
     @include clearfix();
   }
 
   .student-info-block {
     display: none;
-    position: static;
-    width: 100%;
     text-align: left;
-    padding: 7px 8px;
-
-    .username,
-    .activity-state {
-      display: inline-block;
-      vertical-align: middle;
-    }
 
     .avatar {
       display: block;
@@ -1204,36 +1226,30 @@ $mc-condensed-ease-timing: 450ms;
     .comment-count { display: none; }
   }
 
-  .mc-nav-class-link {
-    position: absolute;
-    top: 11px;
-    left: 8px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
+  #nav-primary {
+    background: black;
+    z-index: 3;
+  }
 
-    .mc-arrow-red.left { margin-right: 15px; }
-    .mc-arrow-red.right { margin: -2px 15px 0px; }
-
-    // Breadcrumb style
-    &.breadcrumbs {
-      a { color: rgba(255, 255, 255, 0.5); }
-      .instructor-name { color: white; }
-    }
+  // User container for things like
+  // My Classes, notifications, hub link, profile
+  // settings, etc.
+  #user-info-container {
+    background: black;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms ease;
+    z-index: 2;
   }
 
   .user-info-dropdown-items {
-    width: 100%;
+    height: calc(100vh - 139px);
     text-align: left;
-    background: #000;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    clear: both;
+    transform: translateY(-100%);
 
     .user-info-dropdown-item {
-      display: block;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-      &:last-child { border-bottom: 0; }
     }
 
     .item-link {
@@ -1242,6 +1258,11 @@ $mc-condensed-ease-timing: 450ms;
       font-size: 17px;
       letter-spacing: 1px;
       text-transform: none;
+    }
+
+    .helper-text {
+      float: right;
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .mc-badge {
@@ -1253,48 +1274,77 @@ $mc-condensed-ease-timing: 450ms;
     .sign-out {
       position: absolute;
       bottom: 0; left: 0;
-      display: block;
       width: 100%;
       text-align: center;
       color: rgba(255, 255, 255, 0.5);
       padding: 32px 16px;
     }
-
-    .helper-text {
-      float: right;
-      color: rgba(255, 255, 255, 0.4);
-    }
   }
 
-  .mc-nav-class-subnav {
-    background: #222;
+  .mc-explore-subnav { background: #222; }
+
+  .mc-explore-subnav-items {
     text-align: left;
   }
 
-  .mc-nav-class-subnav-container {
+  .mc-explore-subnav-container {
     position: relative;
   }
 
-  .subnav-active-underline {
+  .mc-explore-active-underline {
     display: none;
   }
 
-  .mc-nav-class-subnav-items {
+  .mc-explore-subnav-items {
     text-transform: none;
-    backdrop-filter: saturate(180%) blur(20px);
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: -1;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 250ms ease, visibility 0ms 250ms;
+    }
 
     &.nav-open {
-      .mc-nav-class-subnav-item {
+      &:before {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 250ms ease, visibility 0ms 0ms;
+      }
+
+
+      .mc-explore-subnav-item:not(.explore) {
         display: block;
 
-        &.explore {
-          .dropdown-arrow { display: none; }
-          .dropup-arrow { display: inline-block; }
+        @for $i from 1 through 15 {
+          &:nth-child(#{$i}) {
+            opacity: 0;
+            @include mc-animate-fade-in();
+            animation-delay: #{$i} * 100ms;
+          }
         }
+      }
+
+      .explore .dropdown-arrow {
+        transform: rotate(180deg);
       }
     }
 
-    .mc-nav-class-subnav-item {
+    a {
+      display: block;
+      letter-spacing: 1px;
+      padding: 24px 33px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mc-explore-subnav-item {
       display: none;
 
       &.explore {
@@ -1302,57 +1352,57 @@ $mc-condensed-ease-timing: 450ms;
         padding: 8px 20px 12px;
         font-size: 16px;
         letter-spacing: 1px;
-        color: white;
-
-        .dropdown-arrow {
-          display: inline-block;
-          margin: -2px 0 0 8px;
-        }
-
-        .dropup-arrow {
-          display: none;
-          margin: -2px 0 0 8px;
-        }
-      }
-
-      a {
-        display: block;
-        font-size: 16px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        padding: 24px 33px;
         color: #fff;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
-    }
-  }
 
-  // When nav is open
-  &.nav-open {
-    .student-info-block {
-      display: block;
-      height: calc(100vh - 36px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      .dropdown-arrow {
+        display: inline-block;
+        margin: -2px 0 0 8px;
+      }
     }
   }
 
   @media (min-width: $mc-bp-small) {
+    // Left section of the nav
+    .mc-nav-class-link {
+      position: absolute;
+      top: 11px; left: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+
+      .mc-arrow-red.left { margin-right: 15px; }
+      .mc-arrow-red.right { margin: -2px 15px 0px; }
+
+      // Breadcrumb style
+      &.breadcrumbs {
+        a {
+          color: rgba(255, 255, 255, 0.5);
+          transition: color 250ms ease;
+
+          &:hover {
+            color: rgba(255, 255, 255, 0.75);
+          }
+        }
+
+        .instructor-name { color: white; }
+      }
+    }
+
     #logo-wordmark {
       position: absolute;
       top: 10px; left: 50%;
+      display: block;
       margin: 0;
       transform: translate(-50%, 0);
-    }
-
-    .student-info-blurb {
-      padding: 0;
     }
 
     .student-info-block {
       display: block;
       position: absolute;
       top: 0px; right: 0px;
-      width: auto;
+      padding: 7px 8px;
+      cursor: pointer;
 
       .avatar {
         width: 20px;
@@ -1365,13 +1415,11 @@ $mc-condensed-ease-timing: 450ms;
         font-size: 12px;
         letter-spacing: 1px;
         margin: 0 10px;
-        color: white;
       }
 
       .activity-state {
         width: 6px; height: 6px;
       }
-
 
       .location { display: none; }
 
@@ -1384,25 +1432,86 @@ $mc-condensed-ease-timing: 450ms;
         display: inline-block;
         margin-left: 6px;
       }
+    }
 
-      // Activate subnav
-      &:hover {
-        .user-info-dropdown-items { display: block; }
+    .student-info-blurb { padding: 0; }
+
+    // When transitioning from mobile to desktop
+    // if nav is opened on mobile, reset
+    // desktop user and class nav
+    &.nav-open {
+      height: auto;
+      overflow: visible;
+
+      #user-info-container { height: auto; }
+      .user-info-dropdown-items { transform: translateY(-100%); }
+      .mc-explore-subnav-items { display: block; }
+    }
+
+    // Explore nav specifically
+    .mc-explore-subnav-items.nav-open:before { display: none; }
+
+    // Activate subnav
+    &.student-info-block-open {
+      .user-info-dropdown-items {
+        transform: translateY(0%);
+        pointer-events: auto;
+      }
+
+     .student-info-block  .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    #user-info-container {
+      min-height: 0;
+      overflow: visible;
+
+      &.log-out-hovered {
+        .item-link { opacity: 0.5; }
+        .item-link.sign-out {
+          color: #fff;
+          opacity: 1;
+        }
       }
     }
 
     .user-info-dropdown-items {
-      display: none;
       position: absolute;
-      top: 33px; right: 0;
-      width: 260px;
-      border: 0;
-      z-index: 1;
+      top: 0; right: 0;
+      width: 260px; height: auto;
+      background: black;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      transform: translateY(-100%);
+      transition: transform 500ms ease;
 
-      .user-info-dropdown-item:hover {
-        .helper-text {
-          color: rgba(255, 255, 255, 0.4);
+      .mc-badge {
+        transition: transform 300ms cubic-bezier(0.250, 0.100, 0.250, 1.000);
+      }
+
+      .user-info-dropdown-item {
+        // Bottom border taken care of by
+        // parent wrapper
+        &:last-child { border-bottom: 0; }
+
+        &:hover {
+          .item-link:not(.sign-out) { padding-left: 24px; }
+
+          .helper-text {
+            color: rgba(255, 255, 255, 0.4);
+          }
+
+          .mc-badge {
+            transform: scale(1.1) translateY(-5px);
+          }
         }
+      }
+
+      .item-link {
+        transition:
+          padding 300ms cubic-bezier(0.250, 0.100, 0.250, 1.000),
+          opacity 300ms ease;
       }
 
       .mc-badge {
@@ -1427,7 +1536,7 @@ $mc-condensed-ease-timing: 450ms;
   }
 
   @media (min-width: $mc-bp-medium) {
-    .subnav-active-underline {
+    .mc-explore-active-underline {
       display: block;
       position: absolute;
       z-index: 1;
@@ -1438,26 +1547,26 @@ $mc-condensed-ease-timing: 450ms;
       transition: transform 300ms ease, width 400ms;
     }
 
-    .mc-nav-class-subnav {
+    .mc-explore-subnav {
       text-align: center;
     }
 
-    .mc-nav-class-subnav-container {
+    .mc-explore-subnav-container {
       display: inline-block;
     }
 
-    .mc-nav-class-subnav-items {
+    .mc-explore-subnav-items:not(.explore) {
       text-align: center;
       display: inline-block;
 
       // override block on mobile
       &.nav-open {
-        .mc-nav-class-subnav-item {
+        .mc-explore-subnav-item {
           display: inline-block;
         }
       }
 
-      .mc-nav-class-subnav-item {
+      .mc-explore-subnav-item {
         display: inline-block;
         vertical-align: middle;
 
@@ -1476,7 +1585,7 @@ $mc-condensed-ease-timing: 450ms;
           border: 0; // reset mobile border
           border-bottom: 3px solid transparent;
           transition: border 200ms ease, color 200ms ease;
-          
+
           &.active {
             color: white;
           }
@@ -2097,9 +2206,6 @@ $mc-condensed-ease-timing: 450ms;
     // Fix for if the user goes to dekstop from mobile
     // while the mobile nav is open
     &.nav-open {
-      height: auto;
-      overflow-y: inherit;
-
       .mc-nav-items {
         margin-top: 0;
       }
