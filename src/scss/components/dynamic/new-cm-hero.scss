@@ -32,7 +32,7 @@ body.show_enrolled {
   font-size: 16px;
 
   @at-root .navbar-v2 & {
-    margin-top: 70px;
+    margin-top: 73px;
   }
 
   .mc-btn {
@@ -102,7 +102,6 @@ body.show_enrolled {
     }
 
     .instructor-name {
-      display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.075em;
       margin-bottom: .9em;
@@ -111,6 +110,7 @@ body.show_enrolled {
 
       .class-title {
         color: rgba(255, 255, 255, 0.5);
+        padding-left: .3125em;
       }
     }
 
@@ -286,10 +286,6 @@ body.show_enrolled {
         bottom: 0;
         right: 0;
         margin-top: 0;
-      }
-
-      .instructor-name {
-        display: none;
       }
     }
 
