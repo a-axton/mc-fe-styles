@@ -611,6 +611,7 @@ body {
   position: absolute;
   top: 5px; right: 7px;
   width: 22px; height: 22px;
+  transform: translateY(-50%);
   z-index: 1;
 
   .mobile-nav-lines {
@@ -1105,6 +1106,11 @@ $mc-condensed-ease-timing: 450ms;
   min-height: 0;
   padding: 0;
   z-index: 1001;
+
+  #mobile-nav-button {
+    top: 4px;
+    transform: none;
+  }
 
   // Should probably move this inline to each element
   // using @at-root
