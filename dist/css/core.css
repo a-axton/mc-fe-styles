@@ -609,15 +609,10 @@ body {
 
 #mobile-nav-button {
   position: absolute;
-  top: 5px;
+  top: 7px;
   right: 7px;
   width: 22px;
   height: 22px;
-  -webkit-transform: translateY(-50%);
-     -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-       -o-transform: translateY(-50%);
-          transform: translateY(-50%);
   z-index: 1; }
   #mobile-nav-button .mobile-nav-lines {
     position: absolute;
@@ -1053,21 +1048,14 @@ body {
     opacity: 1; } }
 
 #mc-header.version-two {
-  background: transparent;
+  background: black;
   -webkit-transition: none;
   -o-transition: none;
   -moz-transition: none;
   transition: none;
-  min-height: 0;
+  min-height: none;
   padding: 0;
   z-index: 1001; }
-  #mc-header.version-two #mobile-nav-button {
-    top: 4px;
-    -webkit-transform: none;
-       -moz-transform: none;
-        -ms-transform: none;
-         -o-transform: none;
-            transform: none; }
   #mc-header.version-two.nav-open {
     background: none; }
     #mc-header.version-two.nav-open .student-info-block {
@@ -1203,7 +1191,7 @@ body {
              -moz-animation-delay: 15 * 100ms;
                -o-animation-delay: 15 * 100ms;
                   animation-delay: 15 * 100ms; }
-    #mc-header.version-two.nav-open .mc-explore-subnav {
+    #mc-header.version-two.nav-open .mc-explore-subnav-items {
       display: none; }
   #mc-header.version-two .mc-container {
     padding: 0; }
@@ -1280,7 +1268,6 @@ body {
       display: none; }
   #mc-header.version-two #nav-primary {
     background: black;
-    min-height: 34px;
     z-index: 3; }
   #mc-header.version-two #user-info-container {
     background: black;
@@ -1330,8 +1317,7 @@ body {
       color: rgba(255, 255, 255, 0.5);
       padding: 32px 16px; }
   #mc-header.version-two .mc-explore-subnav {
-    background: #222;
-    min-height: 40px; }
+    background: #222; }
   #mc-header.version-two .mc-explore-subnav-items {
     text-align: left; }
   #mc-header.version-two .mc-explore-subnav-container {
@@ -1771,7 +1757,7 @@ body {
       display: none; }
       #mc-header.version-two .mc-explore-subnav-items .mc-explore-subnav-item.explore {
         display: block;
-        padding: 10px 20px 14px;
+        padding: 8px 20px 12px;
         font-size: 16px;
         letter-spacing: 1px;
         color: #fff; }
@@ -1979,7 +1965,6 @@ body {
         #mc-header.version-two .mc-explore-subnav-items:not(.explore) .mc-explore-subnav-item a {
           font-size: 12px;
           letter-spacing: 1.5px;
-          font-weight: 600;
           text-transform: uppercase;
           margin-right: 100px;
           padding: 13px 0 12px;
@@ -3106,7 +3091,7 @@ body.show_enrolled {
   margin: 50px auto 0;
   font-size: 16px; }
   .navbar-v2 .overview-hero {
-    margin-top: 73px; }
+    margin-top: 70px; }
   .overview-hero .mc-btn {
     display: -webkit-inline-box;
     display: -webkit-inline-flex;
@@ -3180,14 +3165,14 @@ body.show_enrolled {
       position: relative;
       margin-top: -11.6%; }
     .overview-hero .overview-start-class .instructor-name {
+      display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.075em;
       margin-bottom: .9em;
       font-size: 1em;
       color: white; }
       .overview-hero .overview-start-class .instructor-name .class-title {
-        color: rgba(255, 255, 255, 0.5);
-        padding-left: .3125em; }
+        color: rgba(255, 255, 255, 0.5); }
     .overview-hero .overview-start-class .overview-primary-title {
       font-size: 1.875em;
       font-weight: bold;
@@ -3320,6 +3305,8 @@ body.show_enrolled {
       bottom: 0;
       right: 0;
       margin-top: 0; }
+    .overview-hero .overview-start-class .instructor-name {
+      display: none; }
   .overview-hero .overview-continue-class {
     display: -webkit-box;
     display: -webkit-flex;
