@@ -24,6 +24,11 @@
   padding: 0;
   z-index: 1001;
 
+  #mobile-nav-button {
+    top: 4px;
+    transform: none;
+  }
+
   // Should probably move this inline to each element
   &.nav-open {
     background: none; // NEEDED
