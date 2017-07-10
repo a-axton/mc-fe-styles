@@ -1,9 +1,8 @@
 #mobile-nav-button {
   position: absolute;
-  top: 0.45em; right: 0.45em;
-  width: 21px;
-  height: 21px;
-  transform: translateY(-50%);
+  top: 7px; right: 7px;
+  width: 22px; height: 22px;
+  z-index: 1;
 
   .mobile-nav-lines {
     position: absolute;
@@ -176,7 +175,6 @@
   a { text-decoration: none; }
 
   &.nav-open {
-    position: fixed;
     height: 100%;
     overflow-y: auto;
 
@@ -549,9 +547,6 @@
     // Fix for if the user goes to dekstop from mobile
     // while the mobile nav is open
     &.nav-open {
-      height: auto;
-      overflow-y: inherit;
-
       .mc-nav-items {
         margin-top: 0;
       }
