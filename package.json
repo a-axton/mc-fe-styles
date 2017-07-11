@@ -1,6 +1,10 @@
 {
   "name": "@masterclass/mc-fe-styles",
+<<<<<<< HEAD
   "version": "0.0.31",
+=======
+  "version": "0.0.30",
+>>>>>>> 365e0372001ed3ab13e30edc4fe6daae6341b32a
   "description": "Module to build the front end assets of the Masterclass website",
   "author": "Stephen Pontes",
   "engines": {},
