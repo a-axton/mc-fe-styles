@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Module to build the front end assets of the Masterclass website",
   "author": "Stephen Pontes",
-  "private": false,
   "engines": {},
   "license": "UNLICENSED",
   "repository": {
