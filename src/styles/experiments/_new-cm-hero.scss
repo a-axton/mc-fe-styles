@@ -1,0 +1,316 @@
+// Typography Overrides
+body.show_enrolled {
+  // base em font size
+  font-size: 16px;
+
+  .lesson-plan__list {
+    h3 {
+      letter-spacing: .02em;
+    }
+
+    li .lesson-plan__title {
+      font-family: 'Lato';
+    }
+  }
+}
+
+// *************
+// New hero test
+// *************
+// This should be moved out to its own file
+// eventually, but for now, we'll leave
+// it here...
+
+.overview-hero {
+  position: relative;
+  display: block;
+  max-width: 1100px;
+  margin: 50px auto 0; // Height of mobile nav
+  font-size: 16px;
+
+  @at-root .navbar-v2 & {
+    margin-top: 73px;
+  }
+
+  .mc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.813em;
+    letter-spacing: 0.09em;
+    margin: 1em 0;
+    text-align: center;
+    padding: 0;
+    height: 3.846em;
+
+    &#start-button {
+      margin-top: 2.5em;
+      width: 100%;
+      max-width: 100%;
+      font-weight: bold;
+    }
+
+    &#resume-button {
+      font-weight: bold;
+      width: 100%;
+
+      &:before {
+        content: asset-url("global/icons-svg/overview-hero-play.svg");
+        width: 22px; height: 22px;
+        margin-right: 1em;
+      }
+    }
+
+    &#view-workbook-button {
+      width: 100%;
+      margin: 0;
+      border-color: rgba(white, .2);
+    }
+
+  }
+
+  .overview-start-class {
+    padding-bottom: 1.7em;
+
+    .overview-start-banner {
+      position: relative;
+      width: 100%; height: 0;
+      padding-bottom: 75%; // Set 4:3 ratio
+      background-size: cover;
+      background-position: center top;
+
+      &.wide { display: none; } // 16:9
+      &.normal { display: none; } // 4:3
+      &.mobile { display: block; } // 4:3
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 100%);
+      }
+    }
+
+    .overview-hero-text {
+      position: relative;
+      margin-top: -11.6%;
+    }
+
+    .instructor-name {
+      text-transform: uppercase;
+      letter-spacing: 0.075em;
+      margin-bottom: .9em;
+      font-size: 1em;
+      color: white;
+
+      .class-title {
+        color: rgba(255, 255, 255, 0.5);
+        padding-left: .3125em;
+      }
+    }
+
+    .overview-primary-title {
+      font-size: 1.875em;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      color: white;
+    }
+
+    .overview-subtitle {
+      font-size: 1.375em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+
+  // Resume class styles
+  .overview-continue-class {
+    padding-top: 1em;
+    padding-bottom: 2em;
+
+    .overview-hero-thumbnail {
+      flex: none;
+    }
+
+    .overview-hero-thumbnail-bg {
+      @include box-inset-border();
+      display: block;
+      background: transparent center/cover no-repeat;
+      height: 0;
+      padding-bottom: 56.25%;
+    }
+
+    .overview-hero-title-primary {
+      font-size: 1.25em;
+      font-weight: bold;
+      line-height: 1.357;
+      margin: 1em 0 0.5em;
+      text-transform: uppercase;
+      letter-spacing: .0357em;
+      color: white;
+    }
+
+    .overview-hero-abstract {
+      font-size: 1em;
+      line-height: 1.625;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.0111em;
+    }
+
+    .overview-hero-lesson-meta {
+      margin: 1.1em 0 .8em;
+      font-size: 0.9375em;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.06667em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+@media (min-width: $mc-bp-tiny) {
+  .overview-hero {
+    .mc-btn {
+      &#start-button {
+        width: 234px;
+      }
+    }
+
+    .overview-start-class {
+      .overview-hero-text {
+        .container {
+          padding-right: 2em;
+          padding-left: 2em;
+        }
+      }
+
+      .overview-primary-title {
+        font-size: 2.4em;
+      }
+      .overview-subtitle {
+        font-size: 1.625em;
+      }
+    }
+
+    .overview-continue-class {
+      .overview-hero-title-primary {
+        font-size: 1.75em;
+        line-height: 1.357142857;
+      }
+
+      .overview-hero-abstract {
+        font-size: 1.125em;
+        line-height: 1.444;
+      }
+    }
+  }
+}
+
+@media (min-width: 535px) {
+  .overview-hero {
+    .mc-btn {
+      &#resume-button {
+        width: 250px;
+        margin: 1em 1em 0 0;
+      }
+
+      &#view-workbook-button {
+        width: 240px;
+        margin: 1em 0 0 0;
+      }
+    }
+  }
+}
+
+
+@media (min-width: $mc-bp-small) {
+  .overview-hero {
+    margin-top: 2.1em;
+
+    @at-root .navbar-v2 & {
+      margin-top: 70px;
+    }
+
+    .overview-start-class {
+      padding-bottom: 3em;
+
+      .overview-hero-text {
+        margin-top: -10.6%;
+      }
+    }
+
+    .overview-continue-class {
+      padding-top: 2.5em;
+      padding-bottom: 2.5em;
+
+      .overview-hero-lesson-meta {
+        margin: 1.875em 0 1em;
+      }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-medium) {
+  .overview-hero {
+    @at-root .navbar-v2 & {
+      margin-top: 73px;
+    }
+    .overview-start-class {
+      padding-bottom: 0;
+
+      .overview-start-banner {
+        padding-bottom: 41.82%; // 16:9 ratio
+
+        &.wide { display: block; }
+        &.normal { display: none; }
+        &.mobile { display: none; }
+
+        &:after {
+          background: asset-url("lesson-overview/class-hero-overlay.png") center/100% 100% no-repeat;
+        }
+      }
+
+      .overview-hero-text {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin-top: 0;
+      }
+    }
+
+    .overview-continue-class {
+      display: flex;
+      padding-top: 5.2em;
+      padding-bottom: 3.75em;
+
+      @at-root .navbar-v2 & {
+        padding-top: 4.2em;
+      }
+
+      .overview-hero-thumbnail {
+        margin-right: 60px;
+        width: 38.912%;
+      }
+
+      .overview-hero-thumbnail-bg {
+        padding-bottom: 75%;
+      }
+
+      .overview-hero-title-primary {
+        margin-top: 0;
+      }
+
+      .overview-hero-abstract {
+        max-width: 450px;
+      }
+    }
+  }
+}

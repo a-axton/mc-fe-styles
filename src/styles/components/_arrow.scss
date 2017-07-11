@@ -1,0 +1,25 @@
+.mc-arrow {
+  border: 14px solid transparent;
+  overflow: hidden;
+  text-indent: -100%;
+  z-index: 100;
+  -webkit-transition: border 150ms ease;
+          transition: border 150ms ease;
+
+  // Directions
+  &.mc-arrow-right {
+    border-left:  14px solid $mc-color-accent-primary;
+    border-right: 0;
+    width: 14px; height: 28px;
+
+    &:hover { border-left: 14px solid $mc-color-accent-primary-hover; }
+  }
+
+  &.mc-arrow-left  {
+    border-right: 14px solid $mc-color-accent-primary;
+    border-left: 0;
+    width: 14px; height: 28px;
+
+    &:hover { border-right: 14px solid $mc-color-accent-primary-hover; }
+  }
+}

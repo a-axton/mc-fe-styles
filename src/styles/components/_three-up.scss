@@ -1,0 +1,24 @@
+.three-ups {
+  @include clearfix();
+
+  .three-up {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    max-width: 350px;
+    padding: 2.5em 2em;
+    text-align: center;
+  }
+}
+
+@media (min-width: $mc-bp-small) {
+  .three-ups {
+    .three-up {
+      float: left;
+      width: 30%;
+      padding: 2.5em 2em;
+
+      &.middle { margin: 0em 5%; }
+    }
+  }
+}

@@ -1,0 +1,466 @@
+/* Clear fix */
+@mixin cf {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+/***************** REFRESH *********************** */
+/* Fonts */
+@mixin large-paragraph {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+}
+@mixin small-paragraph {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.17px;
+}
+
+@mixin mc-heading-four {
+  font-size: 24px;
+  letter-spacing: -0.1px;
+}
+
+@mixin hero-image {
+  height: auto;
+  left: 0;
+  margin: 0 auto;
+  max-width: 1400px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 105%;
+
+  /* Max-width 1024px */
+  @include bp('medium-screen') {
+    top: 37px;
+  }
+}
+
+@mixin master-container {
+  height: auto;
+  left: 0;
+  margin: 0 auto;
+  max-width: 1130px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@mixin cf-before {
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin small-caps {
+  display: inline;
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+
+@mixin btn-masterclass {
+  font: $body-font-family;
+  border-radius: 0;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+  font-weight: 300;
+  letter-spacing: 1px;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-transform: uppercase;
+}
+
+/* Absolute Positioned Element */
+/* Container must be position:relative and have a declared height*/
+
+@mixin absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+
+@mixin comment-container {
+  max-width: 1070px;
+  margin: 0 auto;
+}
+
+@mixin content-container {
+  @include cf;
+  max-width: 1070px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@mixin typical-input {
+  border-style: solid;
+  border: 1px solid $gray-light;
+  width: 100%;
+  height: 42px;
+  padding: 10px;
+  color: $text-color;
+}
+
+@mixin typical-textarea {
+  width:100% !important;
+  height:188px;
+  min-height:188px;
+  padding:15px 18px;
+  border:1px solid $gray-light;
+  display:block;
+  color:$gray-medium;
+  @include text-size(22px, 32px);
+}
+
+@mixin locked-bonus-icon {
+  width: 50px;
+  height: 50px;
+  background-image: asset-url("icons/icon-locked-bonus.png");
+}
+
+@mixin unlocked-bonus-icon {
+  height: 50px;
+  width: 50px;
+  background-image: asset-url("icons/icon-unlocked-bonus.png");
+}
+
+@mixin icon-container {
+  background-position: center;
+  border-radius:50%;
+  border:1px solid $blue-bright;
+  width:50px;
+  height: 50px;
+}
+
+.flexible-image{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.text-indent{
+  text-indent:-9999px;
+  overflow:hidden;
+  display:block;
+  height:0;
+}
+.button-style-mobile{
+  font-size:20px;
+  line-height:46px;
+  height:46px;
+  width:234px;
+}
+
+@mixin center-div() {
+  margin: 0 auto;
+}
+
+@function calc-offset-function($total-width, $width) {
+  @return $total-width - $width
+}
+
+@function calc-equi-lis($total-width, $li-qty, $spacer) {
+  @return ($total-width / $li-qty) - $spacer
+}
+
+@mixin right-justify($width: 100, $direction: 'right') {
+  width: $width;
+  $offset: calc-offset-function(100%, $width);
+  @if $direction  == 'right' {
+    margin-left: $offset;
+  } else {
+    margin-right: $offset;
+  }
+}
+
+@mixin pointer-arrow($direction: 'right', $body-font-family-size: 18px, $spacer: 8px) {
+  @extend .masterclass-icon;
+  @extend .masterclass-ico-arrow-fill;
+  font-size: $body-font-family-size;
+
+  @if $direction == 'left' {
+    display: inline-block;
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    margin-right: $spacer;
+  } @else if $direction == 'right' {
+    margin-left: $spacer;
+  }
+}
+
+@mixin effect($effect) {
+  -webkit-animation-name: $effect;
+  animation-name: $effect;
+}
+
+@mixin position($left:0, $top:0) {
+  position:absolute;
+  top:$top;
+  left:$left;
+}
+@mixin text-size($body-font-family-size:12px, $line-height:12px) {
+  font-size:$body-font-family-size;
+  line-height:$line-height;
+}
+@mixin list-style($margin:0, $padding:0) {
+  margin:$margin;
+  padding:$padding;
+  list-style:none;
+}
+@mixin box-shadow($shadows...) {
+  -webkit-box-shadow:$shadows;
+  box-shadow:$shadows;
+}
+
+/*! _mixins.css.scss */
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+   background-image: linear-gradient($direction, $color-stops);
+}
+
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@-webkit-keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@mixin fade-out($time) {
+  animation: fadeout $time;
+  -webkit-animation: fadeout $time;
+  opacity: 0;
+}
+
+@mixin fade-in($time) {
+  animation: fadein $time;
+  -webkit-animation: fadein $time;
+  opacity: 1;
+}
+
+.flexible-image{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.text-indent{
+  text-indent:-9999px;
+  overflow:hidden;
+  display:block;
+  height:0;
+}
+.button-style-mobile{
+  font-size:20px;
+  line-height:46px;
+  height:46px;
+  width:234px;
+}
+@mixin position($left:0, $top:0) {
+  position:absolute;
+  top:$top;
+  left:$left;
+}
+@mixin text-size($body-font-family-size:12px, $line-height:12px) {
+  font-size:$body-font-family-size;
+  line-height:$line-height;
+}
+@mixin list-style($margin:0, $padding:0) {
+  margin:$margin;
+  padding:$padding;
+  list-style:none
+}
+@mixin box-shadow($shadows...) {
+  -webkit-box-shadow:$shadows;
+  box-shadow:$shadows;
+}
+@mixin placeholder($color: $input-color-placeholder) {
+  &::-moz-placeholder  {
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder { color: $color; }
+  &::-webkit-input-placeholder  { color: $color; }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+  behavior: url(/PIE.htc); /* IE 6-8 Fix */
+}
+
+@mixin fade-in-animation($fade...) {
+  animation: $fade;
+  -moz-animation: $fade;
+  -webkit-animation: $fade;
+  -o-animation: $fade;
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+/*===========================================================================
+Font Mixins
+===========================================================================*/
+
+@mixin chapter-number($body-font-family-size:40px, $line-height:50px) {
+  color: $text-color;
+  font-size:$body-font-family-size;
+  font-weight: $body-font-weight-extralight;
+  line-height:$line-height;
+}
+
+@mixin header-2($body-font-family-size:24px, $line-height:30px) {
+  color: $gray-dark;
+  font-size: $body-font-family-size;
+  font-weight: $body-font-weight-extralight;
+  letter-spacing: 1px;
+  line-height: $line-height;
+  text-transform: uppercase;
+}
+
+@mixin header-3($body-font-family-size:24px, $line-height:30px) {
+  color: $text-color;
+  font-size: $body-font-family-size;
+  font-weight: $body-font-weight-extralight;
+  letter-spacing: 1px;
+  line-height: $line-height;
+  text-transform: uppercase;
+}
+
+@mixin block-link($body-font-family-size:16px, $line-height:16px) {
+  font-size:$body-font-family-size;
+  line-height:$line-height;
+  text-transform: uppercase;
+  margin: 20px 0 0;
+  font-weight: $body-font-weight-semi-bold;
+}
+
+
+/*===========================================================================
+Responsive Breakpoints
+===========================================================================*/
+
+@mixin bp($point) {
+  $extra-large-screen: "(max-width: 1824px)";
+  $large-screen: "(max-width: 1600px)";
+  $average-screen: "(max-width: 1200px)";
+  $medium-screen: "(max-width: 1024px)";
+  $small-screen: "(max-width: 991px)";
+  $tiny-screen: "(max-width: 768px)";
+  $iphone-six-plus-landscape: "(max-width: 737px)";
+  $iphone-five-landscape: "(max-width: 568px)";
+  $iphone-six-plus-portrait: "(max-width: 414px)";
+  $iphone-six-portrait: "(max-width: 375px)";
+  $iphone-five-portrait: "(max-width: 320px)";
+
+  @if $point == extra-large-screen {
+    @media #{$extra-large-screen} { @content; }
+  }
+  @else if $point == large-screen {
+    @media #{$large-screen} { @content; }
+  }
+  @else if $point == average-screen {
+    @media #{$average-screen} { @content;}
+  }
+  @else if $point == medium-screen {
+    @media #{$medium-screen} { @content;}
+  }
+  @else if $point == small-screen {
+    @media #{$small-screen} { @content;}
+  }
+  @else if $point == tiny-screen {
+    @media #{$tiny-screen} { @content;}
+  }
+  @else if $point == iphone-six-plus-landscape {
+    @media #{$iphone-six-plus-landscape} { @content;}
+  }
+  @else if $point == iphone-six-plus-portrait {
+    @media #{$iphone-six-plus-portrait} { @content;}
+  }
+  @else if $point == iphone-six-portrait {
+    @media #{$iphone-six-portrait} { @content;}
+  }
+  @else if $point == iphone-five-portrait {
+    @media #{$iphone-five-portrait} { @content;}
+  }
+  @else if $point == iphone-five-landscape {
+    @media #{$iphone-five-landscape} { @content;}
+  }
+}
+
+
+/*===========================================================================
+Video play button
+===========================================================================*/
+@mixin video-play-button($size, $body-font-family-size) {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(82, 44, 44, 0.3);
+  @include box-shadow(0 0 17px rgba(82, 44, 44, 0.7));
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  margin-left: -$size/2;
+  margin-top: -$size/2;
+  padding-left: ($size - $body-font-family-size) / 2 - 2;
+  padding-top: ($size - $body-font-family-size) / 2;
+
+  span {
+    font-size: $body-font-family-size;
+    color: white;
+  }
+}
+
+/*===========================================================================
+Animation  $effect should be defined in animate.css
+===========================================================================*/
+@mixin effect($effect) {
+  -webkit-animation-name: $effect;
+  animation-name: $effect;
+}

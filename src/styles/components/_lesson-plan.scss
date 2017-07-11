@@ -1,0 +1,152 @@
+.cm-lessons {
+  background: #fff;
+  padding: 0 1.25em;
+
+  // Trigger the reveal of the full chapter list
+  &.expanded {
+    .show-more-lessons {
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+    }
+
+    .more-lessons {
+      max-height: 5000px;
+
+      .cm-lesson {
+        -webkit-transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+    }
+  }
+
+  // Only remove border on the last lesson
+  > .cm-lesson:last-child { border-bottom: 0; }
+
+  .cm-lesson {
+    position: relative;
+    padding: 1.1em 1em 1.75em 3.75em;
+    border-bottom: 1px solid rgba($mc-color-neutral, 0.2);
+    @include clearfix();
+
+    .cm-lesson-marker {
+      position: absolute;
+      top: 0.5em; left: 0.1em;
+      display: block;
+      font-size: 2em;
+      font-weight: 300;
+      color: rgba($mc-color-neutral, 0.4);
+    }
+
+    .lesson-title {
+      font-size: 1.5em;
+      color: $mc-color-neutral;
+      margin-bottom: 0.3em;
+    }
+
+    p {
+      color: rgba($mc-color-neutral, 0.6);
+      line-height: 1.2;
+    }
+  }
+
+  .show-more-lessons {
+    position: relative;
+    color: $mc-color-neutral;
+    text-align: center;
+    border-bottom: 1px solid rgba($mc-color-neutral, 0.2);
+    padding: 0.44em;
+    opacity: 1;
+    max-height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+
+    // Inner "top" and inner "bottom" lines
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      background: rgba($mc-color-neutral, 0.2);
+      width: 100%; height: 1px;
+    }
+
+    &:before { top: 25%; }
+    &:after { top: 75%; }
+
+    p:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%; left: 0;
+      background: rgba($mc-color-neutral, 0.2);
+      width: 100%; height: 1px;
+    }
+
+    a {
+      position: relative;
+      background: #fff;
+      font-size: 0.9375em;
+      display: inline-block;
+      text-transform: uppercase;
+      padding: 0.5em 1em;
+      color: $mc-color-neutral;
+      z-index: 1;
+    }
+  }
+
+  // Container for "more lessons" (hidden until click)
+  .more-lessons {
+    max-height: 0;
+    overflow: hidden;
+    perspective: 1000px;
+
+    .cm-lesson {
+      position: relative;
+      background: white;
+      opacity: 0;
+      -webkit-transform: scale(0.95) translate(0, -10%);
+              transform: scale(0.95) translate(0, -10%);
+      transform-style: preserve-3d;
+      transform-origin: center top;
+      transition: transform 375ms ease, opacity 300ms ease;
+
+      // Delay loop
+      @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+          transition-delay: 200ms + 100ms * $i;
+          z-index: 50 - $i;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-tiny) {
+  .cm-lessons {
+    .cm-lesson {
+      padding: 1.75em 1em 1.75em 5em;
+
+      .cm-lesson-marker {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+@media (min-width: $mc-bp-small) {
+  .cm-lessons {
+    .show-more-lessons a { padding: 0.5em 3em; }
+
+    .cm-lesson {
+      padding: 2.25em 1em 2.25em 6em;
+
+      .cm-lesson-marker {
+        top: 0.7em;
+        left: 0.3em;
+      }
+    }
+  }
+}
