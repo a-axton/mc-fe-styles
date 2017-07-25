@@ -33,15 +33,15 @@
   width: 7px; height: 11px;
   background: transparent center/contain no-repeat;
 
-  &.right {
+  &.mc-arrow-thin-red--right {
     background-image: asset-url("global/arrows/caret/arrow-red-right.svg");
   }
 
-  &.down {
+  &.mc-arrow-thin-red--down {
     background-image: asset-url("global/arrows/caret/arrow-red-down.svg");
   }
 
-  &.left {
+  &.mc-arrow-thin-red--left {
     background-image: asset-url("global/arrows/caret/arrow-red-left.svg");
   }
 }
@@ -53,10 +53,10 @@
   width: 13px; height: 6px;
   background: transparent center/100% auto no-repeat;
 
-  &.down {
+  &.mc-arrow-thin-white--down {
     background-image: asset-url("global/arrows/caret/arrow-white-down.svg");
   }
 
-  &.up {
+  &.mc-arrow-thin-white--up {
   }
 }
