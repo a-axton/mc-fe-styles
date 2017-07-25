@@ -72,29 +72,8 @@
   // ...might not be needed
   #cm-scrolling-cta.active { top: 77px; }
 
-  .dropdown-arrow {
-    display: inline-block;
-    vertical-align: middle;
-    width: 13px; height: 6px;
-    background: asset-url("nav2/arrow-down.svg") center/100% auto no-repeat;
-    transform: rotate(0deg);
+  .mc-arrow-thin-white.down {
     transition: transform 350ms ease;
-  }
-
-  .mc-arrow-red {
-    display: inline-block;
-    vertical-align: middle;
-    width: 13px; height: 6px;
-
-    &.left  {
-      width: 7px; height: 11px;
-      background: asset-url("nav2/arrow-left.svg") center/100% auto no-repeat;
-    }
-
-    &.right  {
-      width: 7px; height: 11px;
-      background: asset-url("nav2/arrow-right.svg") center/100% auto no-repeat;
-    }
   }
 
   #logo-wordmark {
@@ -144,7 +123,7 @@
 
     // Hide arrow and badge count
     // on mobile
-    .dropdown-arrow,
+    .mc-arrow-thin-white.down,
     .comment-count { display: none; }
   }
 
@@ -257,7 +236,7 @@
         }
       }
 
-      .explore .dropdown-arrow {
+      .explore .mc-arrow-thin-white.down {
         transform: rotate(180deg);
       }
     }
@@ -280,7 +259,7 @@
         color: #fff;
       }
 
-      .dropdown-arrow {
+      .mc-arrow-thin-white.down {
         display: inline-block;
         margin: -2px 0 0 8px;
       }
@@ -296,8 +275,8 @@
       font-weight: bold;
       letter-spacing: 1.5px;
 
-      .mc-arrow-red.left { margin-right: 15px; }
-      .mc-arrow-red.right { margin: -2px 15px 0px; }
+      .mc-arrow-thin-red.left { margin-right: 15px; }
+      .mc-arrow-thin-red.right { margin: -2px 15px 0px; }
 
       // Breadcrumb style
       &.breadcrumbs {
@@ -353,7 +332,7 @@
         margin: 0 2px 0 10px;
       }
 
-      .dropdown-arrow {
+      .mc-arrow-thin-white.down {
         display: inline-block;
         margin-left: 6px;
       }
@@ -383,7 +362,7 @@
         pointer-events: auto;
       }
 
-      .student-info-block  .dropdown-arrow {
+      .student-info-block  .mc-arrow-thin-white.down {
         transform: rotate(180deg);
       }
     }
