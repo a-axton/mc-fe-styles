@@ -167,6 +167,14 @@ body.show_enrolled {
       letter-spacing: 0.06667em;
       text-transform: uppercase;
     }
+
+    .overview-hero-separator {
+      margin: 0 10px;
+    }
+
+    .overview-hero-duration {
+      text-transform: none;
+    }
   }
 }
 
@@ -199,11 +207,6 @@ body.show_enrolled {
       .overview-hero-title-primary {
         font-size: 1.75em;
         line-height: 1.357142857;
-      }
-
-      .overview-hero-abstract {
-        font-size: 1.125em;
-        line-height: 1.444;
       }
     }
   }
