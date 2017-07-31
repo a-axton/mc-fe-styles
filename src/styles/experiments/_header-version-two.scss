@@ -22,7 +22,7 @@
   transition: none;
   min-height: 0;
   padding: 0;
-  z-index: 1001;
+  z-index: 122; // mc-modal is indexed at 123
 
   #mobile-nav-button {
     top: 4px;
