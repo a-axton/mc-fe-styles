@@ -1,3 +1,11 @@
+$grid-breakpoints: (
+  tiny: $mc-bp-tiny,
+  sm: $mc-bp-small,
+  med: $mc-bp-medium,
+  lg: $mc-bp-large
+);
+$grid-prefix: 'mc-';
+
 .mc-container {
   position: relative;
   max-width: 100%;
@@ -6,6 +14,109 @@
   padding: 1em;
 }
 
-.mc-contain-outer { max-width: $mc-contain-outer; }
 .mc-contain-middle { max-width: $mc-contain-middle; }
 .mc-contain-inner { max-width: $mc-contain-inner; }
+
+// calculate grid
+@function col ($col) {
+  $percent: (100 / (12 / $col));
+  @return (round($percent * 1000) / 1000) + 0%;
+}
+
+// base column, using extend so it combines selectors
+%col {
+  flex: none;
+}
+
+.#{$grid-prefix}layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .#{$grid-prefix}col {
+    flex: 1 1 0;
+
+    &--top {
+      align-self: flex-start;
+    }
+
+    &--center {
+      align-self: center;
+    }
+
+    &--bottom {
+      align-self: flex-end;
+    }
+  }
+
+  // alignment
+  &--top-right {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  &--bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  &--right {
+    justify-content: flex-end;
+  }
+  &--bottom-center {
+    align-items: flex-end;
+    justify-content: center;
+  }
+  &--center-center {
+    align-items: center;
+    justify-content: center;
+  }
+  &--center {
+    justify-content: center;
+  }
+  &--top {
+    align-items: flex-start;
+  }
+  &--top-center {
+    align-items: flex-start;
+    justify-content: center;
+  }
+  &--bottom {
+    align-items: flex-end;
+  }
+  &--vcenter {
+    align-items: center;
+  }
+}
+
+// default column sizes
+@for $i from 1 through 12 {
+  .#{$grid-prefix}layout .#{$grid-prefix}col-#{$i} {
+    @extend %col;
+    width: col($i);
+  }
+}
+
+// generate breakpoint column sets
+@each $name, $value in $grid-breakpoints {
+  @media (min-width: $value) {
+    %col-#{$name}-bp {
+      flex: none;
+    }
+
+    .#{$grid-prefix}layout .#{$grid-prefix}col-#{$name} {
+      flex: 1 1 0;
+      
+      &-auto {
+        @extend %col-#{$name}-bp;
+        width: auto;
+      }
+
+      @for $i from 1 through 12 {
+        &-#{$i} {
+          @extend %col-#{$name}-bp;          
+          width: col($i);
+        }
+      }  
+    }
+  }
+}
+
