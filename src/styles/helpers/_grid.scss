@@ -28,47 +28,6 @@ $grid-prefix: 'mc-';
   flex: none;
 }
 
-// default column sizes
-@for $i from 1 through 12 {
-  .#{$grid-prefix}layout .#{$grid-prefix}col-#{$i} {
-    @extend %col;
-    width: col($i);
-  }
-}
-
-// generate breakpoint column sets
-@each $name, $value in $grid-breakpoints {
-  // col-auto and col
-  .#{$grid-prefix}layout .#{$grid-prefix}col-#{$name} {
-    &-auto {
-      @extend %col;
-    }
-
-    @for $i from 1 through 12 {
-      &-#{$i} {
-        @extend %col;
-      }
-    }  
-  }
-
-  // col-x
-  @media (min-width: $value) {
-    .#{$grid-prefix}layout .#{$grid-prefix}col-#{$name} {
-      flex: 1 1 0;
-      
-      &-auto {
-        width: auto;
-      }
-
-      @for $i from 1 through 12 {
-        &-#{$i} {
-          width: col($i);
-        }
-      }  
-    }
-  }
-}
-
 .#{$grid-prefix}layout {
   display: flex;
   flex-direction: row;
@@ -127,3 +86,37 @@ $grid-prefix: 'mc-';
     align-items: center;
   }
 }
+
+// default column sizes
+@for $i from 1 through 12 {
+  .#{$grid-prefix}layout .#{$grid-prefix}col-#{$i} {
+    @extend %col;
+    width: col($i);
+  }
+}
+
+// generate breakpoint column sets
+@each $name, $value in $grid-breakpoints {
+  @media (min-width: $value) {
+    %col-#{$name}-bp {
+      flex: none;
+    }
+
+    .#{$grid-prefix}layout .#{$grid-prefix}col-#{$name} {
+      flex: 1 1 0;
+      
+      &-auto {
+        @extend %col-#{$name}-bp;
+        width: auto;
+      }
+
+      @for $i from 1 through 12 {
+        &-#{$i} {
+          @extend %col-#{$name}-bp;          
+          width: col($i);
+        }
+      }  
+    }
+  }
+}
+
