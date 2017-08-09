@@ -52,17 +52,9 @@ gulp.task('version', ['minify'], function(done){
   s3.sync(done);
 });
 
-
-// CSS Related
-gulp.task('compileCSS', ['compileCore'], function() {
-  return gulp.src([
-      'src/styles/**/*.scss'
-    ]);
-});
-
 // Compiles both the core scss file and any
 // "in progress" components
-gulp.task('compileCore', function() {
+gulp.task('compileCSS', function() {
   return gulp.src([
       'src/styles/core.scss'
     ])

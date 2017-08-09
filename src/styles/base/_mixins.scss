@@ -59,3 +59,14 @@
   animation-iteration-count: infinite;
   animation-timing-function: ease;
 }
+
+@mixin bp ($breakpoint) {
+  @if map-has-key($mc-breakpoints, $breakpoint) {
+    $min-width: map-get($mc-breakpoints, $breakpoint);
+    @media (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @warn 'There is no breakpoint with that name';
+  }
+}

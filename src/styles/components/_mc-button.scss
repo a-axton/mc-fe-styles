@@ -1,0 +1,70 @@
+// TODO
+// * add spacing variables to padding values
+// * add new color variables
+.mc-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 209px;
+  margin: 0;
+  padding: 16px;
+  background-color: $mc-color-accent-primary;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background 300ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $mc-color-accent-primary-hover;
+  }
+
+  &--small {
+    padding: 8px 16px;
+    min-width: 119px;
+  }
+
+  &--has-icon {
+    min-width: 254px;
+    padding: 12px 28px;
+
+    & :first-child {
+      display: inline-block;
+      margin-right: 19px;
+    }
+  }
+
+  &--large {
+    min-width: 278px;
+    padding: 18px 28px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 400;
+    line-height: 1.05em;
+  }
+
+  &--secondary {
+    // $mc-black-700
+    background-color: #222222;
+
+    &:hover {
+      // $mc-black-600
+      background-color: #333333;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    // $mc-white-200
+    border-color: rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      // $mc-white-100
+      background-color: rgba(255, 255, 255, 0.05)
+    }
+  }
+}
