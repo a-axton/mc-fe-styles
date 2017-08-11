@@ -42,6 +42,16 @@ $mc-bp-large:     1200px;
 $mc-bp-full:      1440px;
 $mc-bp-uwd:       2000px;
 
+// Map for bp mixin
+$mc-breakpoints: (
+  tiny: $mc-bp-tiny,
+  small: $mc-bp-small,
+  medium: $mc-bp-medium,
+  large: $mc-bp-large,
+  full: $mc-bp-full,
+  uwd: $mc-bp-uwd
+);
+
 // Vertical Breakpoints
 $mc-bp-vertical-small: 850px;
 
