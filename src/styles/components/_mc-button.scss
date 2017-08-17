@@ -16,7 +16,7 @@
   font-weight: 700;
   border: 1px solid transparent;
   border-radius: 2px;
-  transition: background 300ms ease;
+  transition: background 300ms ease, border 300ms ease;
   cursor: pointer;
 
   &:hover {
@@ -64,7 +64,20 @@
 
     &:hover {
       // $mc-white-100
-      background-color: rgba(255, 255, 255, 0.05)
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  &--outline-light {
+    background-color: transparent;
+    // $mc-neutral-200
+    color: #4d5767;
+    border-color: #949aa4;
+
+    &:hover {
+      // $mc-neutral-500
+      border-color: #4d5767;
+      background-color: transparent;    
     }
   }
 }
