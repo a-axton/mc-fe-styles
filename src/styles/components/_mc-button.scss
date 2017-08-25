@@ -21,6 +21,8 @@
 
   &:hover {
     background-color: $mc-color-accent-primary-hover;
+    color: white;
+    text-decoration: none;
   }
 
   &--small {
@@ -77,8 +79,9 @@
 
     &:hover {
       // $mc-neutral-500
+      background-color: transparent;
+      color: #4d5767;
       border-color: #4d5767;
-      background-color: transparent;    
     }
   }
 }
