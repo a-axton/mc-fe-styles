@@ -52,6 +52,20 @@ $mc-breakpoints: (
   uwd: $mc-bp-uwd
 );
 
+// Spacing scale
+$point: 4px;
+$pico: 8px;
+$nano: 12px;
+$micro: 16px;
+$mini: 20px;
+$tiny: 24px;
+$small: 32px;
+$medium: 48px;
+$large: 64px;
+$x-large: 80px;
+$xx-large: 96px;
+$xxx-large: 128px;
+
 // Vertical Breakpoints
 $mc-bp-vertical-small: 850px;
 
