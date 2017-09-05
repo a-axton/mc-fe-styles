@@ -53,10 +53,12 @@
   width: 13px; height: 6px;
   background: transparent center/100% auto no-repeat;
 
-  &.mc-arrow-thin-white--down {
+  &--down {
     background-image: asset-url("global/arrows/caret/arrow-white-down.svg");
   }
 
-  &.mc-arrow-thin-white--up {
+  &--left {
+    background-image: asset-url("global/arrows/caret/arrow-white-down.svg");
+    transform: rotate(90deg);
   }
 }
