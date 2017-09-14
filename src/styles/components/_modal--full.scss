@@ -1,0 +1,33 @@
+.mc-modal.full {
+  .mc-modal-close {
+    background: asset-url("global/modal-close-inverted.svg") center no-repeat;
+    opacity: 0.5;
+
+    &:hover { opacity: 1; }
+  }
+
+  .modal-caption {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1em 0;
+    @include clearfix();
+
+  }
+
+  .mc-modal-title {
+    position: relative; // position over overlay
+    font-size: 1.5em;
+    margin: 1em auto;
+    text-align: center;
+    color: #fff;
+  }
+
+  .mc-modal-dialog {
+    top: 5.0625em; // accomodate title
+    width: calc(100% - 2em);
+    max-width: 1000px;
+    height: auto;
+    max-height: calc(100% - 9.375em);
+    overflow: auto;
+    transform: translate(-50%, 1.875em);
+  }
+}

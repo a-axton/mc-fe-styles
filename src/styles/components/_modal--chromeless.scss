@@ -1,0 +1,56 @@
+.mc-modal.chromeless {
+  // Overlay is darker here
+  &:before { background: rgba(0, 0, 0, 0.95); }
+
+  .mc-modal-close {
+    background: asset-url("global/modal-close-inverted.svg") center no-repeat;
+    opacity: 0.5;
+
+    &:hover { opacity: 1; }
+  }
+
+  .mc-modal-dialog {
+    background: transparent;
+    padding: 0;
+    color: #fff;
+    box-shadow: none;
+    width: 900px; height: auto;
+    min-width: 200px;
+    max-width: 100%;
+
+    .instructor-class {
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 0 0.5em;
+    }
+  }
+
+  .modal-caption {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1em 0;
+    @include clearfix();
+  }
+
+  .class-title {
+    font-size: 1.07em;
+    text-align: center;
+    padding: 1em 0;
+  }
+
+  .ctas {
+    @include clearfix();
+
+    display: block;
+    float: none;
+    text-align: center;
+
+    .cta { margin: 0.55em 0 0.55em 1.1em; }
+  }
+}
+
+
+@media (min-width: $mc-bp-medium) {
+  .mc-modal.chromeless {
+    .class-title { float: left; }
+    .ctas { float: right; }
+  }
+}

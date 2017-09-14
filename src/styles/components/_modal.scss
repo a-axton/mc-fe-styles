@@ -1,355 +1,106 @@
-.mc-modal-overlay {
-  // This is needed for
-  // the "click outside" js interaction. It's
-  // also the "darkened" overlay
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  // No animation on dismissal
-  transition: none;
-}
+// Extended modal styles
+@import 'modal--login';
+@import 'modal--chromeless';
+@import 'modal--full';
 
-.modal-active {
-  // Removing scrolling means you jump to the top
-  // position: fixed;
-  // overflow: hidden;
-  // width: 100%; height: 100%;
-  .mc-modal-overlay {
-    opacity: 1;
-    // Animate in
-    transition: opacity 150ms ease 300ms;
-  }
-
-  &.modal-blurred {
-    > *:not(.mc-modal) {
-      filter: blur(5px);
-      // Force GPU
-      backface-visibility: hidden;
-      perspective: 1000;
-      transition: filter 300ms ease;
-    }
-
-    // Password manager fix!
-    > div:last-of-type,
-    #lpformframesign-in-email,
-    > iframe:last-of-type {
-      filter: blur(0);
-    }
-  }
-}
-
+// Modal container
+// (for overlay + dialog)
 .mc-modal {
   position: fixed;
   top: 0; left: 0;
   width: 0; height: 0;
   font-size: 12px;
-  overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  z-index: 123;
+  overflow: auto;
+  z-index: 130;
 
-  &.visible {
+  // Overlay
+  &:before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
     width: 100%; height: 100%;
-    visibility: visible;
-    opacity: 1;
+    max-width: 0; max-height: 0;
+    background: rgba(0, 0, 0, 0);
 
-    .mc-modal-dialog {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-      // Animate in!
-      transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
-    }
-  }
-
-  .mc-modal-dialog {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 450px; height: auto;
-    max-width: 90%;
-    padding: 1.6em 2.4em;
-    background: #fff;
-    opacity: 0;
-    box-shadow: 1px solid rgba(0, 0, 0, 0.5);
-    color: #000;
-    transform: translate(-50%, -40%);
-    // Animate out
-    transition: none;
-    transition-delay: 0ms;
-  }
-
-  .mc-modal-close {
-    position: absolute;
-    top: 1em; right: 1em;
-    width: 2em; height: 2em;
-    background: asset-url("global/modal-close.svg") center no-repeat;
-    opacity: 0.2;
-    z-index: 1;
-    transition: opacity 150ms ease;
-    -webkit-backface-visibility: hidden;
-
-    &:hover { opacity: 0.4; }
-  }
-
-  .mc-modal-title {
-    text-align: center;
-    font-size: 1.33em;
-    margin-bottom: 1.25em;
-    color: $mc-color-neutral;
-  }
-
-  .modal-subtext {
-    font-size: 0.9333em;
-    text-align: center;
-    color: rgba($mc-color-neutral, 0.6);
-
-    &.existing-fb {
-      margin-bottom: 20px;
-    }
-  }
-
-  p { margin: 0; }
-
-  .mc-modal-submit {
-    margin: 0.75em 0 0;
-    background: $mc-color-accent-primary;
-    text-transform: uppercase;
-
-    &:hover {
-      background: $mc-color-accent-primary-hover;
-    }
-  }
-
-  .button_desc {
-    width: 100%;
-    font-size: 0.933em;
-    margin-top: 0.8em;
-    text-align: center;
-    color: $mc-color-neutral;
-
-    a {
-      color: $mc-color-accent-primary;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0);
-      transition: box-shadow 150ms ease;
-
-      &:hover {
-        box-shadow: 0 1px 0 $mc-color-accent-primary;
-      }
-    }
-  }
-
-
-  // Modal needs a visible class
-  // to animate it separately from
-  // modal overlay
-  &.visible {
-    width: 100%; height: 100%;
-    opacity: 1;
-    visibility: visible;
-
-    .mc-modal-dialog {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-      // Animate in!
-      transition: transform 300ms ease 450ms, opacity 200ms ease 450ms;
-    }
-  }
-
-
-  // ------------------------
-  // Modal has three "types":
-  // Login, Chromeless, Full
-  // ------------------------
-
-  // Login styles
-  &.login {
-    .or {
-      position: relative;
-      margin: 0 0 0.4em 0;
-      text-align: center;
-      color: rgba($mc-color-neutral, 0.8);
-      text-transform: uppercase;
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: 50%; left: 0;
-        width: 100%;
-        height: 1px;
-        background: rgba($mc-color-neutral, 0.2);
-        z-index: -1;
-      }
-
-      span {
-        display: inline-block;
-        vertical-align: middle;
-        padding: 0.5em 1em;
-        background: #fff;
-      }
-    }
-
-    button {
-      // Override button styles first
-      display: block;
-      cursor: pointer;
-      font-family: $mc-font-default;
-      border: 0;
-      border-radius: 3px;
-      color: #fff;
-      width: 100%;
-      font-size: 1.2em;
-      letter-spacing: 0.035em;
-      padding: 1.05em 0.5em;
-      transition: background 200ms ease;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      margin: 0 0 1em 0;
-      padding: 0.7em 0.5em;
-      font-size: 1em;
-      border: 1px solid rgba(0, 0, 0, 0.14);
-      border-radius: 3px;
-      box-shadow: none;
-      appearance: none;
-      transition: border 150ms ease;
-
-      &#sign-in-password { margin-bottom: 0; }
-
-      &:focus {
-        outline: none;
-        border: 1px solid rgba($mc-color-neutral, 1);
-      }
-
-      &.error { border: 1px solid rgba($mc-color-accent-primary, 0.6); }
-    }
-
-    // Label error
-    label.error {
-      display: block;
-      color: rgba($mc-color-accent-primary, 0.6);
-      margin: 0 0 0.5em;
-    }
-
-    #sign-in-forgot-password {
-      margin: 0.3em 0 0;
-      text-align: right;
-      font-size: 0.9333em;
-
-      .forgot {
-        color: rgba($mc-color-neutral, 0.6);
-
-        &:hover {
-          color: rgba($mc-color-neutral, 0.8);
-        }
-      }
-    }
-  }
-
-
-  // Chromeless styles
-  &.chromeless {
-    .mc-modal-close {
-      background: asset-url("global/modal-close-inverted.svg") center no-repeat;
-      opacity: 0.5;
-
-      &:hover { opacity: 1; }
-    }
-
-    .mc-modal-dialog {
-      background: transparent;
-      padding: 0;
-      color: #fff;
-      box-shadow: none;
-      width: 900px; height: auto;
-      min-width: 200px;
-      max-width: 100%;
-
-      .instructor-class {
-        color: rgba(255, 255, 255, 0.5);
-        margin: 0 0 0 0.5em;
-      }
-    }
-
-    .modal-caption {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1em 0;
-      @include clearfix();
-    }
-
-    .class-title {
-      font-size: 1.07em;
-      text-align: center;
-      padding: 1em 0;
-    }
-
-    .ctas {
-      @include clearfix();
-
-      display: block;
-      float: none;
-      text-align: center;
-
-      .cta { margin: 0.55em 0 0.55em 1.1em; }
-    }
-  }
-
-  // Full screen styles
-  &.full {
-    .mc-modal-close {
-      background: asset-url("global/modal-close-inverted.svg") center no-repeat;
-      opacity: 0.5;
-
-      &:hover { opacity: 1; }
-    }
-
-    .modal-caption {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1em 0;
-      @include clearfix();
-
-    }
-
-    .mc-modal-title {
-      position: relative; // position over overlay
-      font-size: 1.5em;
-      margin: 1em auto;
-      text-align: center;
-      color: #fff;
-    }
-
-    .mc-modal-dialog {
-      top: 5.0625em; // accomodate title
-      width: calc(100% - 2em);
-      max-width: 1000px;
-      height: auto;
-      max-height: calc(100% - 9.375em);
-      overflow: auto;
-      transform: translate(-50%, 1.875em);
-    }
+    // Fade out overlay transition
+    transition:
+      background 200ms ease,
+      max-width 0ms 200ms,
+      max-height 0ms 200ms;
   }
 }
 
+// The modal "box"
+.mc-modal-dialog {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 450px; height: auto;
+  max-width: calc(100% - 4em);
+  padding: 1.6em 2.4em;
+  background: #fff;
+  opacity: 0;
+  box-shadow: 1px solid rgba(0, 0, 0, 0.5);
+  color: #000;
+  transform: translate(-50%, calc(-50% + 10px));
 
-// Activated Modal
+  // Animate out
+  transition: none;
+  transition-delay: 0ms;
+
+  // Modal "too big"
+  &--scroll {
+    top: 2em;
+    transform: translate(-50%, 10px);
+  }
+}
+
+.mc-modal-close {
+  position: absolute;
+  top: 1em; right: 1em;
+  width: 2em; height: 2em;
+  background: asset-url("global/modal-close.svg") center no-repeat;
+  opacity: 0.2;
+  z-index: 1;
+  transition: opacity 150ms ease;
+  -webkit-backface-visibility: hidden;
+
+  &:hover { opacity: 0.4; }
+}
+
+.mc-modal-title {
+  text-align: center;
+  font-size: 1.33em;
+  margin-bottom: 1.25em;
+  color: $mc-color-neutral;
+}
+
+
+// *************
+// Active states
+// *************
+
+// body class to prevent page scrolling
 .modal-active {
-  // Removing scrolling means you jump to the top
-  // position: fixed;
-  // overflow: hidden;
-  // width: 100%; height: 100%;
+  position: fixed;
+  overflow: hidden;
+  width: 100%; height: 100%;
 
-  // Fade in the overlay
-  .mc-modal-overlay {
-    opacity: 1;
-    // Transition in
-    transition: opacity 150ms ease;
+  // Fade in the "overlay"
+  .mc-modal:before {
+    background: rgba(0, 0, 0, 0.8);
+    max-width: 100%; max-height: 100%;
+    transition:
+      background 200ms ease,
+      max-width 0ms 0ms,
+      max-height 0ms 0ms;
   }
 
+  // Blurred background style
   &.modal-blur {
     // Needs diff opacity for bg on blurred mode
-    .mc-modal-overlay { background: rgba(0, 0, 0, 0.2); }
+    &:before { background: rgba(0, 0, 0, 0.2); }
 
     > *:not(.mc-modal) {
       filter: blur(5px);
@@ -369,19 +120,30 @@
 
   // Full active doesn't need to be vertically centered
   .mc-modal.full {
-    .mc-modal-dialog {
-      transform: translate(-50%, 0%);
-    }
+    .mc-modal-dialog { transform: translate(-50%, 0%); }
+  }
+}
+
+// On the modal wrapper:
+.mc-modal.visible {
+  width: 100%; height: 100%;
+  visibility: visible;
+  opacity: 1;
+
+  // Actual modal "box"
+  .mc-modal-dialog {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+
+    // Animate in!
+    transition:
+      transform 300ms ease 450ms,
+      opacity 200ms ease 450ms;
+
+    &--scroll { transform: translate(-50%, 0); }
   }
 }
 
 @media (min-width: $mc-bp-medium) {
-  .mc-modal {
-    font-size: 15px;
-
-    &.chromeless {
-      .class-title { float: left; }
-      .ctas { float: right; }
-    }
-  }
+  .mc-modal { font-size: 15px; }
 }
