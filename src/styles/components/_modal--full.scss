@@ -30,4 +30,10 @@
     overflow: auto;
     transform: translate(-50%, 1.875em);
   }
+
+  &.visible {
+    .mc-modal-dialog {
+      max-width: 1000px;
+    }
+  }
 }
