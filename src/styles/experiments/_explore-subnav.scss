@@ -1,0 +1,183 @@
+// Bootstrap overrides...overrides
+.mc-explore-subnav {
+  a,
+  a:focus {
+    text-decoration: none;
+  }
+
+  a:focus { color: #fff; }
+}
+
+// Let's begin!
+.mc-explore-subnav {
+  background: #222;
+
+  // For positioning the "active" state
+  // for each link
+  &__container { position: relative; }
+
+  // "Active" state under each option
+  &__active-underline { display: none; }
+}
+
+// When regular nav opens, hide the subnav
+.nav-open {
+  .mc-explore-subnav { display: none; }
+}
+
+.mc-explore-subnav-items {
+  text-align: left;
+
+  // Make an overlay to darken the rest
+  // of the screen when the subnav is active
+  &:before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 250ms ease, visibility 0ms 250ms;
+  }
+
+  &.nav-open {
+    // Fade in overlay
+    &:before {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 250ms ease, visibility 0ms 0ms;
+    }
+
+    // Show children
+    .mc-explore-subnav-item { display: block; }
+
+    // + Fade them in
+    .mc-explore-subnav-item:not(.mc-explore-subnav-item__explore) {
+      @for $i from 1 through 15 {
+        &:nth-child(#{$i}) {
+          opacity: 0;
+          @include mc-animate-fade-in();
+          animation-delay: #{$i} * 100ms;
+        }
+      }
+    }
+
+    .mc-arrow-thin-white--down {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.mc-explore-subnav-item {
+  // wait til we have an active class
+  display: none;
+
+  &__explore {
+    display: block;
+    padding: 10px 20px 14px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+
+    .mc-arrow-thin-white--down {
+      display: inline-block;
+      margin: -2px 0 0 8px;
+      transition: transform 350ms ease;
+    }
+  }
+
+  &__link {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 24px 33px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover { color: #fff; }
+  }
+}
+
+
+@media (min-width: $mc-bp-small) {
+  // When you open the main nav on mobile
+  // but resize to desktop, we have to clean
+  // up your state
+  .nav-open {
+    .mc-explore-subnav { display: block; }
+  }
+}
+
+@media (min-width: $mc-bp-medium) {
+  // More state cleanup going from
+  // mobile > desktop (resize)
+  .mc-explore-subnav-items {
+    // override block on mobile
+    &.nav-open {
+      .mc-explore-subnav-item {
+        display: inline-block;
+
+        &__explore { display: none; }
+      }
+    }
+  }
+
+  .mc-explore-subnav {
+    text-align: center;
+
+    &__container {
+      display: inline-block;
+    }
+
+    &__active-underline {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: $mc-color-accent-primary;
+      transform: translateX(0);
+      transition: transform 300ms ease, width 400ms;
+    }
+  }
+
+  .mc-explore-subnav-item {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:last-child &__link {
+      margin-right: 0;
+    }
+
+    &__link {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-right: 100px;
+      padding: 13px 0 12px;
+      color: rgba(255, 255, 255, 0.5);
+      border: 0; // reset mobile border
+      border-bottom: 3px solid transparent;
+      transition: border 200ms ease, color 200ms ease;
+
+      &--active { color: white; }
+    }
+  }
+
+  // Reset state when sizing from mobile
+  // up to desktop
+  .mc-explore-subnav-items {
+    // Overlay on rest of page
+    &.nav-open {
+      &:before { display: none; }
+    }
+  }
+
+  .mc-explore-subnav-item__explore {
+    display: none;
+  }
+}

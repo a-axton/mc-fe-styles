@@ -1,0 +1,259 @@
+// Override bootstrap
+.user-info-dropdown-item__item-link {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.student-info-block {
+  display: none;
+  text-align: left;
+  // Negative margin out from the parent
+  // padding
+  margin: 0 -10px;
+
+  &__blurb {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 23px;
+    width: 100%;
+    @include clearfix();
+  }
+
+  &__avatar {
+    display: block;
+    float: left;
+    margin: 0 20px 0 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 58px;
+  }
+
+  &__username {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 17px;
+    letter-spacing: 1.4px;
+    margin: 8px 10px 8px 0;
+    color: white;
+  }
+
+  &__location {
+    font-size: 17px;
+    letter-spacing: 1.4px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: none;
+    margin: 0;
+  }
+
+  // Hide arrow and badge count
+  // on mobile
+  .mc-arrow-thin-white--down,
+  &__comment-count.mc-badge { display: none; }
+}
+
+.user-info-dropdown-items {
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateY(-100%);
+
+  .mc-badge {
+    font-size: 17px;
+    float: right;
+    transform: translateY(-5px);
+  }
+}
+
+.user-info-dropdown-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &__item-link {
+    display: block;
+    padding: 20px 16px;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-transform: none;
+  }
+
+  &__helper-text {
+    float: right;
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Open States
+.mc-header.nav-open {
+  .student-info-block {
+    display: block;
+    margin-top: 10px;
+    padding-bottom: 78px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    @include mc-animate-fade-in();
+  }
+
+  .user-info-dropdown-items {
+    transform: translateY(0);
+  }
+
+  .user-info-dropdown-item {
+    opacity: 0;
+    @include mc-animate-fade-in();
+
+    @for $i from 1 through 15 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i} * 100ms;
+      }
+    }
+  }
+}
+
+
+@media (min-width: $mc-bp-small) {
+  // When switching from mobile to desktop,
+  // reset the "state"
+  .mobile-nav-active {
+    .mc-header.nav-open {
+      .student-info-block {
+        margin: 0 -10px;
+        padding: 7px;
+        border-top: 0;
+        animation: none;
+        opacity: 1;
+      }
+    }
+  }
+
+  .mc-header__user-info-dropdown-wrapper {
+    z-index: 10;
+  }
+
+  .student-info-block {
+    display: block;
+    position: absolute;
+    top: 0px; right: 8px;
+    padding: 7px;
+    text-align: right;
+    // To get the dropdown to go "behind" the
+    // black bar, hack together a fix.
+    // Faux black box is 260px wide.
+    background: #000;
+    min-width: 260px;
+
+    &__blurb {
+      width: auto;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    &__avatar {
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    &__username {
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin: 0 10px;
+    }
+
+    &__location { display: none; }
+
+    &__comment-count {
+      display: inline-block;
+      margin: 0 2px 0 10px;
+    }
+
+    .mc-arrow-thin-white--down {
+      display: inline-block;
+      margin-left: 6px;
+      transition: transform 350ms ease;
+    }
+  }
+
+  .user-info-dropdown-items {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 260px; height: auto;
+    background: black;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    margin: 0;
+    transform: translateY(0%);
+    transition: transform 350ms ease;
+    z-index: -1;
+
+    .mc-badge {
+      font-size: 14px;
+      transition: transform 300ms cubic-bezier(0.250, 0.100, 0.250, 1.000);
+    }
+  }
+
+  .user-info-dropdown-item {
+    // Bottom border taken care of by
+    // parent wrapper
+    &:last-child { border-bottom: 0; }
+
+    &__item-link {
+      font-size: 14px;
+      transition:
+        padding 150ms cubic-bezier(0.250, 0.100, 0.250, 1.000),
+        opacity 150ms ease;
+
+      &--sign-out {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 15px 16px;
+      }
+    }
+
+    &__helper-text {
+      color: rgba(255, 255, 255, 0.0);
+      transition: color 250ms ease;
+    }
+
+    &:hover {
+      .user-info-dropdown-item {
+        &__item-link {
+          padding-left: 24px;
+
+          &--sign-out {
+            padding-left: 16px;
+          }
+        }
+
+        &__helper-text {
+          color: rgba(255, 255, 255, 0.4);
+        }
+      }
+
+      .mc-badge {
+        transform: scale(1.1) translateY(-5px);
+      }
+    }
+  }
+
+  // Open states
+  .mc-header.nav-open {
+    .user-info-dropdown-items { transform: translateY(-100%); }
+  }
+
+  .mc-header.student-info-block-open {
+    .user-info-dropdown-items {
+      transform: translateY(100%);
+      pointer-events: auto;
+    }
+
+    .student-info-block  .mc-arrow-thin-white--down {
+      transform: rotate(180deg);
+    }
+  }
+}

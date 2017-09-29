@@ -1,209 +1,131 @@
-#mobile-nav-button {
-  position: absolute;
-  top: 5px; right: 7px;
-  width: 22px; height: 22px;
-  transform: translateY(-50%);
-  z-index: 1;
-
-  .mobile-nav-lines {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: #fff;
-
-    &:before,
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      width: 100%; height: 1px;
-      background: #fff;
-      transform-origin: center center;
-      transition: top 125ms ease 125ms, transform 125ms ease 0ms;
-    }
-
-    &:before { top: -6px; }
-    &:after { top: 6px; }
-  }
+@keyframes mcAnimateFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-// Logged out nav on mobile
-.user-login-actions-container { float: right; }
-
-.user-login-actions {
-  .user-login-action {
-    display: inline-block;
-    vertical-align: top; // top is vertically centered on mobile
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    a {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      padding: 0;
-      color: #fff;
-      -webkit-transition: box-shadow 150ms ease;
-      transition: box-shadow 150ms ease;
-
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: -0.5em; left: auto; right: 0;
-        width: 0;
-        height: 2px;
-        background: $mc-color-accent-primary;
-        -webkit-transition: width 250ms ease;
-        transition: width 250ms ease;
-      }
-    }
-  }
+@mixin mc-animate-fade-in {
+  animation-name: mcAnimateFadeIn;
+  animation-duration: 350ms;
+  animation-iteration-count: once;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
-// Only show login hover states on desktop
-.no-touch .user-login-actions .user-login-action a {
-  &:hover {
-    color: #fff;
+// Override bootstrap
+.mc-breadcrumb a,
+.mc-breadcrumb a:hover,
+.mc-header__login-link,
+.mc-header__login-link:hover { color: #fff; }
 
-    &:after {
-      left: 0; right: auto;
-      width: 100%;
-    }
-  }
+// Fix the body when nav is active
+.mobile-nav-active {
+  position: fixed;
+  overflow: hidden;
+
+  // And the sign out link
+  .mc-header__sign-out { display: block; }
 }
 
-#mc-header {
+.mc-header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
   text-align: center;
-  text-transform: uppercase;
-  font-size: 16px;
   line-height: 1;
   background: #000;
-  padding: 1em;
-  z-index: 10;
   @include clearfix();
-  transition: background $mc-condensed-ease-timing ease, min-height $mc-condensed-ease-timing ease;
-
-  // When class switcher is active, display it
-  &.show-class-switcher .class-switcher {
-    display: block;
-  }
-
-  a { color: #fff; }
-
-  .class-switcher {
-    display: none;
-    background: rgba(#222, 0.9);
-    text-align: center;
-
-     li {
-      position: relative;
-      display: inline-flex;
-      vertical-align: bottom;
-      padding: 0.55em 0;
-      margin-right: 5%;
-
-      a {
-        color: rgba(white, .7);
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        font: 700 .8em 'raleway';
-        transition: color 200ms ease;
-
-        &:hover {
-          color: white;
-        }
-      }
-
-      &.selected {
-        a {
-          color: white;
-        }
-
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          width: 100%;
-          background-color: $mc-color-accent-primary;
-        }
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-
-  // Always hide primary logo on mobile
-  #logo-primary { display: none; }
-
-  // Always show wordmark on mobile
-  // Should always be perfectly centered in header
-  #logo-wordmark {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  // If logged out, no breadcrumbs, float
-  // logo to the left
-  &.logged-out #logo-wordmark {
-    display: block;
-    float: left;
-  }
-
-  // No breadcrumbs on mobile
-  .mc-breadcrumb { display: none; }
+  transition: background $mc-condensed-ease-timing ease;
+  z-index: 120;  // modals are 130, one step below.
 
   // Overwrite core
-  .mc-container {
-    background: rgba(0, 0, 0, 0);
-    padding: 0;
-    transition: 0ms 0ms ease;
+  .mc-container { padding: 0; }
+
+  // Sign out link
+  &__sign-out {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+    font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 16px;
+    z-index: 120;
   }
 
-  .mc-contain-inner { position: static; }
+  // Inner wrapper
+  &__inner {
+    position: relative;
+    max-width: $mc-bp-large;
+    margin: 0 auto;
+    padding: 10px;
+    text-transform: uppercase;
+    transform: translate3d(0,0 ,0); // fix "jump"
+    @include clearfix();
+    z-index: 20;
+  }
 
-  a { text-decoration: none; }
+  // Always hide primary logo and
+  // breadcrumbs on mobile
+  &__logo,
+  .mc-breadcrumb { display: none;  }
 
-  &.nav-open {
-    height: 100%;
-    overflow-y: auto;
+  // Primary logo
+  &__wordmark {
+    display: block;
+    margin: 0 auto;
+    width: 129px;
+    height: 14px;
+  }
 
-    // Change the nav button
-    #mobile-nav-button {
-      .mobile-nav-lines {
-        top: 50%;
-        left: 0;
-        background: none;
-        transition: background 0ms 125ms ease;
+  &__login-link {
+    float: right;
+    font-size: 13px;
+    letter-spacing: 1.3px;
 
-        &:before,
-        &:after {
-          transition: top 125ms ease, transform 125ms ease 125ms;
-        }
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -0.5em;
+      left: auto;
+      width: 0;
+      height: 2px;
+      background: $mc-color-accent-primary;
+      transition: width 250ms ease;
+    }
+  }
 
-        &:before {
-          top: 50%;
-          transform: rotate(-45deg);
-        }
-
-        &:after {
-          top: 50%;
-          transform: rotate(45deg);
-        }
+  @at-root .no-touch .mc-header__login-link {
+    &:hover {
+      &:after {
+        left: 0; right: auto;
+        width: 100%;
       }
     }
+  }
 
+  // ****************
+  // Logged out state
+  // ****************
+  &.logged-out {
+    .mc-header {
+      &__wordmark { float: left; }
+
+      &__inner { padding: 17px; }
+    }
+  }
+
+
+  // ********
+  // Nav open
+  // ********
+  &.nav-open {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
     // Show the nav
     .mc-nav-items {
@@ -212,164 +134,12 @@
     }
   }
 
-  .activity-state,
-  .username {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .activity-state {
-    border-radius: 20px;
-    width: 6px; height: 6px;
-
-    &.online {
-      background: $mc-color-active-state;
-    }
-  }
-
   .mobile-only {
     .avatar { margin-right: 1em; }
-    .activity-state { margin-left: 0.65em; }
   }
 
   .desktop-only {
     .avatar { margin-left: 1em; }
-    .activity-state { margin-right: 0.65em; }
-  }
-
-  .mc-nav-items {
-    // On mobile, hide until nav-open is activated
-    display: none;
-
-    .mc-nav-item {
-      position: relative; // Position subnav
-      display: block;
-      font-size: 0.75em;
-      line-height: 1;
-      margin: 0;
-      // min-height: 3.5em; // To keep subnav open on hover
-      letter-spacing: 0.0833em;
-      color: rgba(255, 255, 255, 0.6);
-
-      &:hover {
-        .mc-subnav-items {
-          opacity: 1;
-          visibility: visible;
-          transition: opacity 150ms ease, visibility 0ms 0ms linear;
-        }
-      }
-
-      > a {
-        font-weight: 600;
-
-        img {
-          width: 18px;
-          height: 18px;
-        }
-      }
-
-      // Vertical alignment fix
-      &.user-info {
-        .activity-state,
-        .username,
-        .avatar {
-          display: inline-block;
-          vertical-align: middle;
-        }
-      }
-
-      &.comments {
-        .comments-dropdown {
-          display: none;
-
-          img { display: block; }
-        }
-
-        .avatar {
-          position: absolute;
-          top: 0; left: 0;
-          width: 45px; height: 45px;
-          margin-right: 0.5em;
-        }
-
-        .mc-subnav-item {
-          text-transform: none;
-          text-align: left;
-
-          &:first-of-type {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-          }
-
-          .comment {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.2;
-          }
-        }
-      }
-
-      &.cart { padding: 2em 0; }
-    }
-  }
-
-  .mc-subnav-items {
-    margin-top: 1em;
-    padding: 0 2em;
-    color: #fff;
-    box-shadow: rgba(0,0,0,0.15) 0 10px 20px 0, rgba(0,0,0,0.3) 0 0 30px 0;
-    transition: opacity 150ms ease, visibility 0ms 150ms linear;
-
-    .subnav-title {
-      text-transform: uppercase;
-      margin: 1.5em 0;
-    }
-  }
-
-  .mc-subnav-item {
-    position: relative;
-    font-size: 1.25em;
-    letter-spacing: .033em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-    &:first-child { border-top: 1px solid rgba(255, 255, 255, 0.1); }
-    &:last-child { padding: 1.25em 0; }
-
-    a {
-      display: block;
-      color: rgba(255, 255, 255, 1);
-      padding: 1.25em 0; // padding here so clickarea is bigger
-    }
-
-    .mc-btn {
-      display: block;
-      margin: 0;
-      padding: 1em;
-      font-size: 1.25em;
-      letter-spacing: 0.1em;
-      color: #fff;
-
-      &.clear {
-        background: none;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        color: #fff;
-        text-align: center;
-        font-size: 1em;
-        margin-bottom: 1em;
-      }
-    }
-
-    .sign-out {
-      display: block;
-      font-size: 0.75em;
-      letter-spacing: 0.0833em;
-      color: rgba(0, 0, 0, 0.5);
-      margin-top: 1em;
-      padding: 0;
-    }
-
-    &.classes {
-      border-bottom: 0;
-      padding: 0;
-    }
   }
 
   .comment-content {
@@ -392,100 +162,72 @@
       color: rgba(#fff, 0.5);
     }
   }
-
-  .current-classes {
-    background: #000; // needed for opacity fadethrough
-    margin: 0 -1.6em;
-    padding: 0;
-    border-bottom: 0;
-
-    &:hover {
-      .current-class {
-        opacity: 0.5;
-
-        &:hover { opacity: 1; }
-      }
-    }
-
-    .current-class {
-      position: relative;
-      transition: opacity 250ms ease;
-      @include box-bottom-gradient();
-
-      &:hover {
-        .caption {
-          transform: translateY(-0.4em);
-        }
-      }
-
-      &:before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      &:first-child:before { display: none; }
-
-      .link-wrapper {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 2;
-      }
-
-      img {
-        display: block;
-        width: 100%;
-      }
-
-      .caption {
-        position: absolute;
-        bottom: 0; left: 0;
-        width: 100%;
-        padding: 1em;
-        text-align: left;
-        color: rgba(255, 255, 255, 1);
-        z-index: 1;
-        transition: transform 0.75s cubic-bezier(0.290, 1.185, 1, 1);
-      }
-
-      .instructor {
-        margin-bottom: 0.35em;
-        font-size: 1em;
-        letter-spacing: 0.03333em;
-      }
-
-      .class-title {
-        font-size: 0.8em;
-        color: rgba(255, 255, 255, 0.5);
-        letter-spacing: 0.019167em;
-      }
-    }
-  }
 }
 
 @media (min-width: $mc-bp-small) {
-  // Header switches from mobile to desktop here
-  #mc-header {
+  // If you open the mobile nav and then resize
+  // to desktop, these are overrides to get you
+  // back to a clean state.
+  .mobile-nav-active {
+    position: static;
+    overflow: auto;
+
+    .mc-header__sign-out { display: none; }
+  }
+
+
+  .mc-header {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
     background-repeat: repeat-x;
-    background-size: 100% 150px;
+    background-size: 100% 140px;
     background-position: 0 -50px;
-    min-height: 100px; // extend gradient past visible "edge"
-    padding: 0; // override mobile's padding
+    max-height: 90px;
+    transition:
+      background $mc-condensed-ease-timing ease,
+      max-height $mc-condensed-ease-timing ease;
+
+    // Solid black for when "condensed"
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      display: block;
+      width: 100%; height: 100%;
+      background: #000;
+      opacity: 0;
+      transition: opacity 0ms 0ms;
+    }
+
+    &__logo {
+      display: block;
+      width: 124px; height: 56px;
+      margin: 0 auto;
+      transition:
+        transform $mc-condensed-ease-timing ease;
+
+      img { width: 100%; height: auto; }
+    }
+
+    &__wordmark {
+      margin: 0 auto;
+      float: none;
+    }
+
+    &__login-link {
+      position: absolute;
+      top: 9px; right: 10px;
+      float: none;
+    }
 
     .mc-breadcrumb {
+      display: block;
       position: absolute;
-      top: 0.5em; left: 0.5em;
+      top: 11px; left: 10px;
       display: block;
       font-size: 0.75em;
       font-weight: 600;
       line-height: 1;
       letter-spacing: 0.0833em;
-      padding-top: 0.45em;
 
       &:before {
         content: "<";
@@ -496,36 +238,26 @@
       }
     }
 
-    // On desktop, show primary but
-    // hide wordmark. Unless condensed (below)
-    #logo-primary {
-      display: inline-block;
-      position: absolute;
-      top: 1em; left: 50%;
-      width: 124px; height: 56px;
-      transform: translate(-50%, 0%);
-      transition: transform $mc-condensed-ease-timing ease;
-
-      img { width: 100%; height: auto; }
-    }
-
-    #logo-wordmark { display: none; }
-
-    // no padding needed on desktop
+    // ****************
+    // Logged out state
+    // ****************
     &.logged-out {
-      padding: 0;
-
-      #logo-wordmark { display: none; }
+      .mc-header__inner {
+        padding: 17px;
+      }
     }
 
-    // When nav is condensed:
+    // Condensed state
     &.condensed {
-      min-height: 2.1em;
+      max-height: 34px;
       background-position: 0 0;
 
-      .mc-container {
-        min-height: 2.1em;
+      &:before {
+        opacity: 1;
+        transition: opacity 0ms $mc-condensed-ease-timing;
+      }
 
+      .mc-container {
         // Sticky nav needs a black background on nav
         // items so it can go "behind"
         &:not(.cm-sticky-ctas) {
@@ -535,19 +267,57 @@
       }
 
       #logo-primary {
-        transform: translate(-50%, -49px);
+        transform: translate(0, -50px);
         transition: transform $mc-condensed-ease-timing ease;
       }
     }
+  }
 
-    .mc-container {
-      padding: 0.5em;
-      @include clearfix();
+
+  .mc-nav-class-link {
+    position: absolute;
+    top: 11px; left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+
+    .mc-arrow-thin-red--left { margin-right: 15px; }
+    .mc-arrow-thin-red--right { margin: 0px 15px 0px; }
+
+    // Breadcrumb style
+    &.breadcrumbs {
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      a {
+        color: rgba(255, 255, 255, 1);
+        transition: color 250ms ease;
+
+        &:hover {
+          color: rgba(255, 255, 255, 0.75);
+        }
+      }
+
+      .instructor-name { color: white; }
+    }
+  }
+
+  // Header switches from mobile to desktop here
+  .mc-header {
+    // no padding needed on desktop
+    &.logged-out {
+      padding: 0;
+
+      #logo-wordmark { display: none; }
     }
 
     // Fix for if the user goes to dekstop from mobile
     // while the mobile nav is open
     &.nav-open {
+      overflow: visible;
+
       .mc-nav-items {
         margin-top: 0;
       }
@@ -585,21 +355,6 @@
         }
 
         &.cart { padding: 0; }
-      }
-    }
-
-    .user-info {
-      .mc-subnav-items {
-        &:hover {
-          .mc-subnav-item a {
-            color: rgba($mc-color-neutral, 0.6);
-
-            &:hover { color: rgba($mc-color-neutral, 1); }
-
-            // not cta
-            &.mc-btn { color: #fff; }
-          }
-        }
       }
     }
 
@@ -667,12 +422,6 @@
       .user { color: rgba($mc-color-neutral, 1); }
       .timestamp { color: rgba($mc-color-neutral, 0.5); }
     }
-  }
-
-  .user-login-actions-container {
-    position: absolute;
-    top: 0.5em; right: 0.5em;
-    float: none;
   }
 }
 

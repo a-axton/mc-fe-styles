@@ -24,3 +24,10 @@
   display: block;
   margin: 0;
 }
+
+// For fixing the body when
+// modals or dropdowns are open
+.mc-fixed-position {
+  position: fixed;
+  overflow: hidden;
+}
