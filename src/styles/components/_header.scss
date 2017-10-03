@@ -15,7 +15,10 @@
 .mc-breadcrumb a,
 .mc-breadcrumb a:hover,
 .mc-header__login-link,
-.mc-header__login-link:hover { color: #fff; }
+.mc-header__login-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
 
 // Fix the body when nav is active
 .mobile-nav-active {
