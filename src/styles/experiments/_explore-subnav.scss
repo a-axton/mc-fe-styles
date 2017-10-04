@@ -5,8 +5,6 @@
     color: #fff;
     text-decoration: none;
   }
-
-  a:focus { color: #fff; }
 }
 
 // Let's begin!
@@ -113,6 +111,10 @@
 }
 
 @media (min-width: $mc-bp-medium) {
+  // Bootstrap overrides
+  a.mc-explore-subnav-item__link { color: rgba(255, 255, 255, 0.5); }
+  a.mc-explore-subnav-item__link--active { color: #fff; }
+
   // More state cleanup going from
   // mobile > desktop (resize)
   .mc-explore-subnav-items {

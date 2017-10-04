@@ -14,8 +14,10 @@
 // Override bootstrap
 .mc-breadcrumb a,
 .mc-breadcrumb a:hover,
+.mc-breadcrumb a:focus,
 .mc-header__login-link,
-.mc-header__login-link:hover {
+.mc-header__login-link:hover,
+.mc-header__login-link:focus {
   color: #fff;
   text-decoration: none;
 }
