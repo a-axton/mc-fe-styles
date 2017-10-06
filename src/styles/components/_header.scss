@@ -79,10 +79,13 @@
 
   // Primary logo
   &__wordmark {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     margin: 0 auto;
     width: 129px;
     height: 14px;
+
+    img { display: block; }
   }
 
   &__login-link {
