@@ -25,8 +25,8 @@ heroku config:get AWS_SECRET_ACCESS_KEY -a mc-release
 
 Set these in your `.bash_profile` or `.zshrc`:
 ```
-export AWS_ACCESS_KEY_ID='ABCD1234'
-export AWS_SECRET_ACCESS_KEY='ABCD1234'
+export AWS_PROD_ACCESS_KEY_ID='ABCD1234'
+export AWS_PROD_SECRET_ACCESS_KEY='ABCD1234'
 ```
 
 Now quit and relaunch your terminal, or run:
