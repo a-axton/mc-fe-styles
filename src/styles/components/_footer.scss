@@ -56,7 +56,7 @@
       width: auto; height: auto;
     }
 
-    .container { padding: 1em 0; }
+    .mc-container { padding: 1em 0; }
 
     .footer-cols {
       padding: 0;
@@ -112,7 +112,7 @@
   #mc-footer {
     &.footer-full {
       .nav-footer-items { max-width: none; }
-      .container { padding: 1em; }
+      .mc-container { padding: 1em; }
       .footer-col { padding: 0 1.5em; }
     }
   }
