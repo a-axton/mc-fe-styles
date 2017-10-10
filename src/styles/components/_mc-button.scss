@@ -14,7 +14,8 @@
   text-decoration: none;
   letter-spacing: 1.5px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
+  line-height: 1.1;
   border: 1px solid transparent;
   border-radius: 2px;
   transition: background 300ms ease, border 300ms ease;
@@ -42,10 +43,10 @@
 
   &--large {
     min-width: 278px;
-    padding: 18px 28px;
+    padding: 16px 28px;
     font-size: 20px;
     letter-spacing: 2px;
-    line-height: 1.05em;
+    font-weight: 400;
   }
 
   &--secondary {
