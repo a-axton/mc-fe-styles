@@ -12,7 +12,6 @@
 .mc-list-classes {
   @include clearfix();
   text-align: center;
-  margin-bottom: 3.5em;
 
   &.orphan {
     .mc-list-class:first-child {

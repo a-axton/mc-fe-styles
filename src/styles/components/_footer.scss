@@ -8,6 +8,8 @@
   clear: both;
   text-align: center;
 
+  .mc-container { padding: 1em 0; }
+
   .copyright {
     font-size: 0.87em;
     margin-bottom: -1em;
@@ -55,8 +57,6 @@
       padding: 1em 2em;
       width: auto; height: auto;
     }
-
-    .mc-container { padding: 1em 0; }
 
     .footer-cols {
       padding: 0;
@@ -110,9 +110,9 @@
 
 @media (min-width: $mc-bp-small) {
   #mc-footer {
+    .mc-container { padding: 1em; }
     &.footer-full {
       .nav-footer-items { max-width: none; }
-      .mc-container { padding: 1em; }
       .footer-col { padding: 0 1.5em; }
     }
   }
