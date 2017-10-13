@@ -16,11 +16,9 @@
   margin: 0 -10px;
 
   &__blurb {
-    display: inline-block;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
     padding: 23px;
-    width: 100%;
-    @include clearfix();
   }
 
   &__avatar {
@@ -32,12 +30,16 @@
     border-radius: 58px;
   }
 
+  &__setup-profile {
+    display: inline-block;
+  }
+
   &__username {
     display: inline-block;
     vertical-align: middle;
     font-size: 17px;
     letter-spacing: 1.4px;
-    margin: 8px 10px 8px 0;
+    margin: 0 10px 8px 0;
     color: white;
   }
 
@@ -52,7 +54,7 @@
   // Hide arrow and badge count
   // on mobile
   .mc-arrow-thin-white--down,
-  &__comment-count.mc-badge { display: none; }
+  &__comment-count { display: none; }
 }
 
 .user-info-dropdown-items {
@@ -144,6 +146,7 @@
     min-width: 260px;
 
     &__blurb {
+      display: inline-block;
       width: auto;
       padding: 0;
       cursor: pointer;
@@ -157,6 +160,10 @@
       height: 20px;
       margin: 0;
       border-radius: 0;
+    }
+
+    &__setup-profile {
+      pointer-events: none;
     }
 
     &__username {
