@@ -84,7 +84,7 @@
 // body class to prevent page scrolling
 .modal-active {
   position: fixed;
-  overflow: hidden;
+  overflow-y: scroll;
   width: 100%; height: 100%;
 
   // Fade in the "overlay"
