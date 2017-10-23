@@ -203,6 +203,7 @@
       background: #000;
       opacity: 0;
       transition: opacity 0ms 0ms;
+      z-index: 10;
     }
 
     &__logo {
