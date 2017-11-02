@@ -105,15 +105,6 @@
     }
   }
 
-  @at-root .no-touch .mc-header__login-link {
-    &:hover {
-      &:after {
-        left: 0; right: auto;
-        width: 100%;
-      }
-    }
-  }
-
   // ****************
   // Logged out state
   // ****************
@@ -246,6 +237,15 @@
       }
     }
 
+    @at-root .no-touch .mc-header__login-link {
+      &:hover {
+        &:after {
+          left: 0; right: auto;
+          width: 100%;
+        }
+      }
+    }
+
     // ****************
     // Logged out state
     // ****************
@@ -280,7 +280,6 @@
       }
     }
   }
-
 
   .mc-nav-class-link {
     position: absolute;
