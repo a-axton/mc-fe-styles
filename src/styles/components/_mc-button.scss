@@ -21,14 +21,19 @@
   transition: background 300ms ease, border 300ms ease;
   cursor: pointer;
 
-  &:hover {
-    background-color: $mc-color-accent-primary-hover;
+  &:active,
+  &:hover,
+  &:focus {
     color: white;
     text-decoration: none;
   }
 
-  &:active {
-    color: white;
+  &:hover {
+    background-color: $mc-color-accent-primary-hover;
+  }
+
+  &:focus {
+    outline: 0;
   }
 
   &--small {
@@ -72,13 +77,14 @@
 
   &--outline-light {
     background-color: transparent;
-    // $mc-neutral-500    
+    // $mc-neutral-500
     color: #4d5767;
     // $mc-neutral-200
     border-color: #949aa4;
 
-    &:active {
-      // $mc-neutral-500    
+    &:active,
+    &:focus {
+      // $mc-neutral-500
       color: #4d5767;
     }
 
