@@ -1,0 +1,89 @@
+.feature-block {
+  padding-bottom: $medium;
+  margin-bottom: $medium;
+
+  &--has-background {
+    background-image: linear-gradient(to top, #111111, #000000);
+    border-bottom: 1px solid rgba(white, 0.3);
+  }
+
+  &__col {
+    padding: 0 $mini;
+    margin-bottom: $small;
+    text-align: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__icon {
+    margin-bottom: $tiny;
+  }
+
+  &__primary-heading {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.33;
+    letter-spacing: 1px;
+    margin: $tiny 0 $medium;
+    color: #ffffff;
+  }
+
+  &__heading {
+    margin-bottom: $micro;
+    font-size: 26px;
+    line-height: 0.85;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+  }
+
+  &__text {
+    font-size: 15px;
+    line-height: 1.47;
+    letter-spacing: 0.2px;
+    color: rgba(white, 0.5);
+  }
+
+  @include mc-bp(tiny) {
+    padding-bottom: $medium;
+  }
+
+  @include mc-bp(small) {
+    padding-bottom: $large;
+    margin-bottom: $large;
+
+    &__layout {
+      margin: 0 #{-$small};
+    }
+
+    &__col {
+      padding: 0 $small;
+      margin-bottom: $medium;
+    }
+
+    &__primary-heading {
+      font-size: 26px;
+      line-height: 1.22;
+      letter-spacing: 1px;
+    }
+  }
+
+  @media (max-width: $mc-bp-medium) {
+    .mc-container {
+      max-width: 480px;
+    }
+  }
+
+  @include mc-bp(medium) {
+    padding-top: $large;
+
+    &__col {
+      margin-bottom: 0;
+    }
+
+    &__primary-heading {
+      margin-top: 0;
+    }
+  }
+}

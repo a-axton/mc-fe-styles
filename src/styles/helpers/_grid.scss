@@ -104,7 +104,7 @@ $grid-prefix: 'mc-';
 
     .#{$grid-prefix}layout .#{$grid-prefix}col-#{$name} {
       flex: 1 1 0;
-      
+
       &-auto {
         @extend %col-#{$name}-bp;
         width: auto;
@@ -112,10 +112,10 @@ $grid-prefix: 'mc-';
 
       @for $i from 1 through 12 {
         &-#{$i} {
-          @extend %col-#{$name}-bp;          
+          @extend %col-#{$name}-bp;
           width: col($i);
         }
-      }  
+      }
     }
   }
 }
