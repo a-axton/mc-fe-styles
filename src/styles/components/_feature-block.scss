@@ -1,6 +1,5 @@
 .feature-block {
   padding-bottom: $medium;
-  margin-bottom: $medium;
 
   &--has-background {
     background-image: linear-gradient(to top, #111111, #000000);
@@ -51,7 +50,6 @@
 
   @include mc-bp(small) {
     padding-bottom: $large;
-    margin-bottom: $large;
 
     &__layout {
       margin: 0 #{-$small};
