@@ -215,7 +215,7 @@
       width: 124px; height: 56px;
       margin: 0 auto;
       transition:
-        transform $mc-condensed-ease-timing ease;
+        margin $mc-condensed-ease-timing ease;
 
       img { width: 100%; height: auto; }
     }
@@ -288,8 +288,8 @@
       }
 
       #logo-primary {
-        transform: translate(0, -50px);
-        transition: transform $mc-condensed-ease-timing ease;
+        margin-top: -50px;
+        transition: margin $mc-condensed-ease-timing ease;
       }
     }
   }
