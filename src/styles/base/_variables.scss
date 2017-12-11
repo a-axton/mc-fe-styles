@@ -36,6 +36,7 @@ $mc-asset-logo:      "../img/global/logo.svg";
 
 // Breakpoints
 $mc-bp-tiny:      480px;
+$mc-bp-mini:      600px;
 $mc-bp-small:     768px;
 $mc-bp-medium:    992px;
 $mc-bp-large:     1200px;
@@ -45,6 +46,7 @@ $mc-bp-uwd:       2000px;
 // Map for bp mixin
 $mc-breakpoints: (
   tiny: $mc-bp-tiny,
+  mini: $mc-bp-mini,
   small: $mc-bp-small,
   medium: $mc-bp-medium,
   large: $mc-bp-large,
