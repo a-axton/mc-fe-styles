@@ -1,0 +1,89 @@
+@mixin show-n-tiles($n) {
+  &__tile:nth-child(-n + #{$n}) {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.mc-instructor-grid {
+  margin: 0 -10px;
+
+  &__tile {
+    max-width: 420px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  @include mc-bp(mini) {
+    &__tile {
+      max-width: none;
+    }
+  }
+}
+
+.mc-instructor-grid-overlay {
+  position: relative;
+  width: 100%;
+  text-align: center;
+
+  &--opened {
+    .mc-instructor-grid-overlay__button {
+      opacity: 0;
+    }
+
+    .mc-instructor-grid-overlay__wrapper {
+      margin-bottom: 0;
+
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+
+  .mc-instructor-grid {
+    @include show-n-tiles(4);
+
+    &__tile {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s linear;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  @include mc-bp(mini) {
+    &__wrapper:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 75%;
+      background: linear-gradient(-360deg, black, transparent);
+      transition: opacity 200ms linear;
+      z-index: 12;
+      pointer-events: none;
+    }
+
+    &__button {
+      margin-top: $small;
+    }
+
+    .mc-instructor-grid {
+      @include show-n-tiles(6);
+      margin-bottom: -85px;
+    }
+  }
+
+  @include mc-bp(medium) {
+    .mc-instructor-grid {
+      @include show-n-tiles(9);
+    }
+  }
+}
