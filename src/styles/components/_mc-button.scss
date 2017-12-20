@@ -1,6 +1,3 @@
-// TODO
-// * add spacing variables to padding values
-// * add new color variables
 .mc-button {
   display: inline-block;
   vertical-align: middle;
@@ -55,41 +52,33 @@
   }
 
   &--secondary {
-    // $mc-black-700
-    background-color: #222222;
+    background-color: #333333;
 
     &:hover {
-      // $mc-black-600
-      background-color: #333333;
+      background-color: #444444;
     }
   }
 
   &--outline {
     background-color: transparent;
-    // $mc-white-200
     border-color: rgba(255, 255, 255, 0.2);
 
     &:hover {
-      // $mc-white-100
       background-color: rgba(255, 255, 255, 0.05);
     }
   }
 
   &--outline-light {
     background-color: transparent;
-    // $mc-neutral-500
     color: #4d5767;
-    // $mc-neutral-200
     border-color: #949aa4;
 
     &:active,
     &:focus {
-      // $mc-neutral-500
       color: #4d5767;
     }
 
     &:hover {
-      // $mc-neutral-500
       background-color: transparent;
       color: #4d5767;
       border-color: #4d5767;
