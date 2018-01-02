@@ -18,6 +18,8 @@
 
   &__icon {
     margin-bottom: $tiny;
+    width: 100%;
+    max-width: 90px;
   }
 
   &__primary-heading {
