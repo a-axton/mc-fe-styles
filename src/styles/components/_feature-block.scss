@@ -1,6 +1,10 @@
 .feature-block {
   padding-bottom: $medium;
 
+  .mc-container {
+    max-width: 480px;
+  }
+
   &--has-background {
     background-image: linear-gradient(to top, #111111, #000000);
     border-bottom: 1px solid rgba(white, 0.3);
@@ -69,9 +73,9 @@
     }
   }
 
-  @media (max-width: $mc-bp-medium) {
+  @media (min-width: $mc-bp-medium) {
     .mc-container {
-      max-width: 480px;
+      max-width: none;
     }
   }
 
