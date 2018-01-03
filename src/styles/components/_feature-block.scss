@@ -75,7 +75,8 @@
 
   @media (min-width: $mc-bp-medium) {
     .mc-container {
-      max-width: none;
+      max-width: $mc-contain-inner;
+      overflow: hidden;
     }
   }
 
