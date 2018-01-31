@@ -1,7 +1,7 @@
 $text-inputs: 'input[type="text"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="email"]';
 $text-input-padding-floating: 23px 8px 9px 8px;
 $text-input-padding: 16px 8px;
-$text-input-gutters: 12px;
+$text-input-gutters: 6px;
 
 @mixin label-show {
   opacity: 1;
@@ -14,15 +14,16 @@ $text-input-gutters: 12px;
 }
 
 .mc-layout.mc-forms {
-  margin: 0 #{$text-input-gutters};
+  margin-right: #{-$text-input-gutters};
+  margin-left: #{-$text-input-gutters};
 }
 
 .mc-layout .mc-input {
-  padding: 0 #{$text-input-gutters / 2};
+  padding: 0 #{$text-input-gutters};
   margin-bottom: 12px;
 
   label, &__error {
-    left: ($text-input-gutters / 2) + $pico;
+    left: $text-input-gutters + $pico;
   }
 }
 
@@ -90,7 +91,8 @@ $text-input-gutters: 12px;
       border-color: #cf3434;
       padding: $text-input-padding-floating;
 
-      &:placeholder-shown {
+      &:placeholder-shown,
+      &.placeholder-shown {
         padding: $text-input-padding-floating;
       }
 
