@@ -91,7 +91,8 @@ $text-input-gutters: 6px;
       border-color: #cf3434;
       padding: $text-input-padding-floating;
 
-      &:placeholder-shown {
+      &:placeholder-shown,
+      &.placeholder-shown {
         padding: $text-input-padding-floating;
       }
 
