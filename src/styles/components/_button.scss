@@ -1,79 +1,101 @@
-.mc-btn {
-  background: $mc-color-accent-primary;
+.mc-button {
   display: inline-block;
   vertical-align: middle;
-  font-size: 0.9em;
-  font-weight: normal;
+  min-width: 209px;
+  margin: 0;
+  padding: 16px;
+  background-color: $mc-color-accent-primary;
+  color: white;
+  text-align: center;
   text-transform: uppercase;
-  margin: 0.55em;
-  padding: 10px 20px;
-  border: 0;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  border: 1px solid transparent;
   border-radius: 4px;
-  letter-spacing: 0.05em;
-  color: $mc-color-text-link;
-  transition: background 250ms ease, color 250ms ease, border 250ms ease;
+  transition: background 300ms ease, border 300ms ease;
+  cursor: pointer;
 
+  &:active,
   &:hover,
   &:focus {
-    background: $mc-color-accent-primary-hover;
-    color: $mc-color-text-link;
+    color: white;
     text-decoration: none;
   }
 
-  // Spacing
-  &.no-margins {
-    margin: 0;
+  &:hover {
+    background-color: $mc-color-accent-primary-hover;
   }
 
-  // Transparent (on black bg)
-  &.mc-btn-transparent {
-    background: rgba(255, 255, 255, 0);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+  &:focus {
+    outline: 0;
+  }
+
+  &--small {
+    padding: 8px 16px;
+    min-width: 119px;
+  }
+
+  &--has-icon {
+    min-width: 254px;
+    padding: 12px 28px;
+  }
+
+  &--large {
+    min-width: 278px;
+    padding: 16px 28px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 400;
+  }
+
+  &--secondary {
+    background-color: #333333;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    // Inverted transparent (on white bg)
-    &.invert {
-      background: rgba(0, 0, 0, 0);
-      border: 1px solid rgba($mc-color-neutral, 0.2);
-      color: rgba(0, 0, 0, 0.6);
-
-      &:hover {
-        border: 1px solid rgba($mc-color-neutral, 0.5);
-        color: rgba(0, 0, 0, 0.7);
-      }
+      background-color: #444444;
     }
   }
 
-  // Neutral
-  &.neutral {
-    background: #292929;
+  &--outline {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
 
     &:hover {
-      background: #303131;
+      background-color: rgba(255, 255, 255, 0.05);
     }
   }
 
-  // Facebook
-  &.login-with-facebook,
-  &.facebook,
-  &.signup_fb {
-    background: #3A5998;
-    margin: 1em 0 0.5em;
-    text-transform: none;
+  &--outline-light {
+    background-color: transparent;
+    color: #4d5767;
+    border-color: #949aa4;
+
+    &:active,
+    &:focus {
+      color: #4d5767;
+    }
 
     &:hover {
-      color: #fff;
-      background: #4971C2;
+      background-color: transparent;
+      color: #4d5767;
+      border-color: #4d5767;
     }
+  }
 
-    .mc-icon-facebook {
-      display: inline-block;
-      vertical-align: middle;
-      font-size: 1.1em;
-      margin: -0.1em 1em 0 0;
-    }
+  &__wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    margin-right: 19px;
   }
 }
