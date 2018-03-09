@@ -1,0 +1,4 @@
+// Hide wistia's "click for sound"
+.wistia_embed [data-handle="clickForSoundButton"] {
+  display: none !important;
+}
