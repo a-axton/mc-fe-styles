@@ -1,18 +1,18 @@
 .mc-button {
   display: inline-block;
   vertical-align: middle;
-  min-width: 209px;
+  min-width: 223px;
   margin: 0;
-  padding: 16px;
+  padding: 14px;
   background-color: $mc-color-accent-primary;
   color: white;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 1.5px;
-  font-size: 12px;
+  letter-spacing: 2px;
+  font-size: 14px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1;
   border: 1px solid transparent;
   border-radius: 4px;
   transition: background 300ms ease, border 300ms ease;
