@@ -46,6 +46,8 @@ $text-input-gutters: 6px;
     font-size: 15px;
     color: #4d5767;
     transition: border 350ms $mc-default-ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:focus {
       border-color: #4d5767;
@@ -87,7 +89,7 @@ $text-input-gutters: 6px;
   }
 
   &--has-error {
-    #{$text-inputs} {
+    #{$text-inputs}, textarea {
       border-color: #cf3434;
       padding: $text-input-padding-floating;
 
