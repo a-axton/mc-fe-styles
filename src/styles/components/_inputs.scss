@@ -69,10 +69,34 @@ $text-input-gutters: 6px;
     }
   }
 
+  // Text label styles
+  label, &__error {
+    position: absolute;
+    z-index: 1;
+    top: 6px;
+    left: $pico;
+    font-size: 11px;
+    pointer-events: none;
+    transition: all 350ms $mc-default-ease;
+  }
+
+  label {
+    @include label-show;
+    color: rgba(#4d5767, 0.5);
+  }
+
   // Checkboxes
   &__checkbox {
     // the label
     label {
+      // Override default label styles
+      position: static;
+      top: auto;
+      left: auto;
+      opacity: 1;
+      transform: none;
+      ponter-events: auto;
+
       display: flex;
       align-items: center;
       font-size: 10px;
@@ -124,27 +148,6 @@ $text-input-gutters: 6px;
         }
       }
     }
-  }
-
-  // Text label styles
-
-  // Temporary fix to only target labels
-  // associated with input type text
-  // we should wrap these with mc-input__text
-  // in the future (but need to update main repo)
-  input[type="text"] ~ label, &__error {
-    position: absolute;
-    z-index: 1;
-    top: 6px;
-    left: $pico;
-    font-size: 11px;
-    pointer-events: none;
-    transition: all 350ms $mc-default-ease;
-  }
-
-  input[type="text"] ~ label {
-    @include label-show;
-    color: rgba(#4d5767, 0.5);
   }
 
   &--has-error &__error {
