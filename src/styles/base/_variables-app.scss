@@ -1,0 +1,85 @@
+// ANY AND ALL ADDITIONS TO THIS FILE MUST BE APPROVED BY PRODUCT
+// Use one of the swatches as spec'ed or choose the closest existing swatch
+
+/*===========================================================================
+Color Variables
+===========================================================================*/
+$bg-beige: #bbb1a2;
+$black-transparent: rgba(0,0,0,0.75);
+$black: #000000;
+$blue-bright: #48588F;
+$blue-gray: #4d5767;
+$blue-gray-dark: darken($blue-gray, 13);
+$blue-gray-light: lighten($blue-gray, 20);
+$brown-medium: $bg-beige;
+$gray-dark: #5c5c5c;
+$gray-light: rgba(199, 198, 195, 0.5);
+$gray-hero-columns: #bdbdbd;
+$gray-medium: #a6a5a2;
+$red: #BE3F3F;
+$red-dark: darken($red,10);
+$red-light: lighten($red,20);
+$white-transparent: rgba(255,255,255,0.75);
+$white: #FFF;
+$dark-brown: #191010;
+
+
+/************ Refresh Colors ***************/
+// Accentual
+$mc-red-light: #D13E3A;
+$mc-red: #C63430;
+$mc-red-dark: #9E2623;
+$mc-red-radio-button: #CE211C;
+$mc-gray-radio-button-border: rgba(77, 87, 103, .1);
+$mc-gray-radio-button-fill: rgba(77, 87, 103, .1);
+
+// Structural
+$mc-gray-light: #A6AAB3;
+$mc-blue-gray: #4d5767;
+$mc-grey: #292929;
+$mc-grey-dark: #111111;
+
+/*============ Layout =============*/
+$bg-light: #fff;
+$bg-dark: #111214;  // darkest box background on marketing page
+$bg-warm: #000; // warm background on course page
+$bg-beige: #bbb1a2;
+$five-hundo: #191010;
+$four-oh-four: #111214;
+$base-border-color: lighten($blue-gray, 20);
+
+/*============ Text =============*/
+$text-color: $blue-gray;
+$link-color: $red;
+$link-hover-color: $red;
+
+/*============ Alerts =============*/
+$feedback-positive: #4e9531;
+$feedback-positive-light: rgba($feedback-positive, 0.5);
+$feedback-positive-dark: rgba($feedback-positive, 0.65);
+$feedback-caution: #dd5a03;
+$modal-tint-blue: rgba(61,69,85, 0.6);
+
+/*============ Buttons =============*/
+$text-button-light: #f2f2f2;
+$button-shadow: $blue-gray;
+$button-hover: $red-dark;
+$button: $red;
+$button-comment-reply: $bg-light;
+
+/*============ Inputs =============*/
+$border-style: solid;
+
+/*============ Polish =============*/
+$shadow: rgba(0,0,0,.5);
+
+/*===========================================================================
+Font Variables
+===========================================================================*/
+$body-font-family-numeric: 'ralewayextralightnumeric', 'Raleway', sans-serif;
+$body-font-weight-extralight: 300;
+$body-font-weight-normal:     400;
+$body-font-weight-semi-bold:  600;
+$body-font-family-chapter-number: 40px/50px 'Raleway', Arial, sans-serif;
+$body-font-family: 15px/22px 'Raleway', Arial, sans-serif;
+$safe-font:Arial,Helvetica, sans-serif;
