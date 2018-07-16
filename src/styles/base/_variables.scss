@@ -71,8 +71,6 @@ $xxx-large: 128px;
 // Vertical Breakpoints
 $mc-bp-vertical-small: 850px;
 
-$mc-condensed-ease-timing: 450ms;
-
-
 // Animations
 $mc-default-ease: cubic-bezier(0.250, 0.100, 0.250, 1.000);
+$mc-condensed-ease-timing: 450ms $mc-default-ease;
