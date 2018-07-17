@@ -80,52 +80,50 @@
   }
 }
 
-// Open States
-.mc-header.nav-open {
-  .student-info-block {
-    position: absolute;
-    left: 0;
-    top: 34px;
-    width: 100%;
-    height: calc(100vh - 34px);
-    display: block;
-    padding-bottom: 78px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: black;
-    opacity: 0;
-    @include mc-animate-fade-in();
-  }
+// mobile nav open state
+@media (max-width: 768px) {
+  .mc-header.nav-open {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
-  .user-info-dropdown-items {
-    transform: translateY(0);
-  }
+    .mc-nav-items {
+      display: block;
+      margin-top: 1em;
+    }
 
-  .user-info-dropdown-item {
-    opacity: 0;
-    @include mc-animate-fade-in();
+    .student-info-block {
+      position: absolute;
+      left: 0;
+      top: 34px;
+      width: 100%;
+      height: 100%;
+      display: block;
+      padding-bottom: 78px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: black;
+      opacity: 0;
+      @include mc-animate-fade-in();
+    }
 
-    @for $i from 1 through 15 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i} * 100ms;
+    .user-info-dropdown-items {
+      transform: translateY(0);
+    }
+
+    .user-info-dropdown-item {
+      opacity: 0;
+      @include mc-animate-fade-in();
+
+      @for $i from 1 through 15 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i} * 100ms;
+        }
       }
     }
   }
 }
 
-
 @media (min-width: $mc-bp-small) {
-  // When switching from mobile to desktop,
-  // reset the "state"
-  .mobile-nav-active {
-    .mc-header.nav-open {
-      .student-info-block {
-        border-top: 0;
-        animation: none;
-        opacity: 1;
-      }
-    }
-  }
-
   .mc-header__user-info-dropdown-wrapper {
     z-index: 10;
   }
@@ -244,7 +242,7 @@
   .mc-header.student-info-block-open {
     .user-info-dropdown-items {
       transform: translateY(100%);
-      bottom: -1px;
+      bottom: 0;
       pointer-events: auto;
     }
 

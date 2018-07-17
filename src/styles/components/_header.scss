@@ -103,7 +103,7 @@ $mc-header-condensed-height-mobile: 48px;
 
   &__right-col {
     display: flex;
-    height: $mc-header-condensed-height-mobile;
+    height: $mc-header-condensed-height;
     position: absolute;
     right: 0;
     top: 0;
@@ -122,7 +122,7 @@ $mc-header-condensed-height-mobile: 48px;
     z-index: 1;
     display: block;
     margin: 0 auto;
-    width: 129px;
+    width: 124px;
 
     img {
       display: block;
@@ -161,22 +161,8 @@ $mc-header-condensed-height-mobile: 48px;
     .mc-header__inner { padding: 17px 17px 18px; }
     .mc-header__right-col {
       left: auto;
+      height: $mc-header-condensed-height-mobile;
       padding: 7px 17px 0;
-    }
-  }
-
-  // ********
-  // Nav open
-  // ********
-  &.nav-open {
-    height: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-
-    // Show the nav
-    .mc-nav-items {
-      display: block;
-      margin-top: 1em;
     }
   }
 
