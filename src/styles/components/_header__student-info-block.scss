@@ -11,9 +11,6 @@
 .student-info-block {
   display: none;
   text-align: left;
-  // Negative margin out from the parent
-  // padding
-  margin: 0 -10px;
 
   &__blurb {
     display: flex;
@@ -28,10 +25,6 @@
     width: 58px;
     height: 58px;
     border-radius: 58px;
-  }
-
-  &__setup-profile {
-    display: inline-block;
   }
 
   &__username {
@@ -78,6 +71,7 @@
     font-size: 17px;
     letter-spacing: 1px;
     text-transform: none;
+    line-height: 1;
   }
 
   &__helper-text {
@@ -86,64 +80,57 @@
   }
 }
 
-// Open States
-.mc-header.nav-open {
-  .student-info-block {
-    display: block;
-    margin-top: 10px;
-    padding-bottom: 78px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    @include mc-animate-fade-in();
-  }
+// mobile nav open state
+@media (max-width: 768px) {
+  .mc-header.nav-open {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
-  .user-info-dropdown-items {
-    transform: translateY(0);
-  }
+    .mc-nav-items {
+      display: block;
+      margin-top: 1em;
+    }
 
-  .user-info-dropdown-item {
-    opacity: 0;
-    @include mc-animate-fade-in();
+    .student-info-block {
+      position: absolute;
+      left: 0;
+      top: 34px;
+      width: 100%;
+      height: 100%;
+      display: block;
+      padding-bottom: 78px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: black;
+      opacity: 0;
+      @include mc-animate-fade-in();
+    }
 
-    @for $i from 1 through 15 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i} * 100ms;
+    .user-info-dropdown-items {
+      transform: translateY(0);
+    }
+
+    .user-info-dropdown-item {
+      opacity: 0;
+      @include mc-animate-fade-in();
+
+      @for $i from 1 through 15 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i} * 100ms;
+        }
       }
     }
   }
 }
 
-
 @media (min-width: $mc-bp-small) {
-  // When switching from mobile to desktop,
-  // reset the "state"
-  .mobile-nav-active {
-    .mc-header.nav-open {
-      .student-info-block {
-        margin: 0 -10px;
-        padding: 7px;
-        border-top: 0;
-        animation: none;
-        opacity: 1;
-      }
-    }
-  }
-
   .mc-header__user-info-dropdown-wrapper {
     z-index: 10;
   }
 
   .student-info-block {
     display: block;
-    position: absolute;
-    top: 0px; right: 8px;
-    padding: 7px;
-    text-align: right;
-    // To get the dropdown to go "behind" the
-    // black bar, hack together a fix.
-    // Faux black box is 260px wide.
-    background: #000;
-    min-width: 260px;
+    margin-top: 5px;
 
     &__blurb {
       display: inline-block;
@@ -155,7 +142,6 @@
     &__avatar {
       display: inline-block;
       vertical-align: middle;
-      float: none;
       width: 20px;
       height: 20px;
       margin: 0;
@@ -196,7 +182,7 @@
     margin: 0;
     transform: translateY(0%);
     transition: transform 350ms ease;
-    z-index: -1;
+    z-index: -20;
 
     .mc-badge {
       font-size: 14px;
@@ -256,6 +242,7 @@
   .mc-header.student-info-block-open {
     .user-info-dropdown-items {
       transform: translateY(100%);
+      bottom: 0;
       pointer-events: auto;
     }
 
