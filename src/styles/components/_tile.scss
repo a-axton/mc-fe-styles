@@ -90,6 +90,11 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%;
+      // Weird bug with lazyloader.  The image itself
+      // needs at least 1px of vertical height to trigger
+      // lazy loading.  If this height isn't here, the image
+      // will show up "blank" until you hover.
+      min-height: 1px;
       max-height: 100%; // IE Fix
       -webkit-transform: scale(1); // set intiial
               transform: scale(1); // set intiial
