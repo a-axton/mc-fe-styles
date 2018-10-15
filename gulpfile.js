@@ -1,7 +1,6 @@
 var gulp                = require('gulp'),
     autoprefixer        = require('gulp-autoprefixer'),
     cleancss            = require('gulp-clean-css'),
-    htmlmin             = require('gulp-htmlmin'),
     imagemin            = require('gulp-imagemin'),
     imageminPngquant    = require('imagemin-pngquant'),
     notifier            = require('node-notifier'),
@@ -29,29 +28,11 @@ var assetUrl = {
   }
 };
 
-// gulp - Default is just to watch for changes
-gulp.task('default', ['watch']);
+// ----------
+// Root tasks
+// ----------
 
-// Which is this
-gulp.task('watch', ['compile'], function() {
-  gulp.watch('src/styles/**/*.scss', ['compileCSS']);
-  gulp.watch('src/img/**/*.*', ['compileImages']);
-});
-
-// compile - compile markup, js, and styles
-gulp.task('compile', ['compileCSS', 'compileImages']);
-
-// minify - Process everything, minify, move images, etc to /dist
-gulp.task('minify', ['minifyCSS', 'minifyImages']);
-
-// version - minify everything, upload images to s3, basically
-// prepare for versioning
-gulp.task('version', ['minify'], function(done){
-  s3.sync(done);
-});
-
-// Compiles both the core scss file and any
-// "in progress" components
+// CSS
 gulp.task('compileCSS', function() {
   return gulp.src([
       'src/styles/core.scss'
@@ -82,7 +63,6 @@ gulp.task('compileCSS', function() {
     .pipe(gulp.dest('./dist/css'));
 });
 
-
 // Images
 gulp.task('compileImages', function() {
   return gulp.src([
@@ -91,13 +71,21 @@ gulp.task('compileImages', function() {
   .pipe(gulp.dest('./dist/img'));
 });
 
+// Helper to list out S3 images
+gulp.task('s3:list', function(done) {
+  s3.list(function(err, data) {
+    console.log(data)
+    done();
+  });
+});
 
-// ------------
-// Shipping it
-// ------------
+
+// ----------
+// Versioning
+// ----------
 
 // CSS
-gulp.task('minifyCSS', ['compileCSS'], function() {
+gulp.task('minifyCSS', function() {
   return gulp.src(['./dist/css/core.css'])
     .pipe(cleancss({
       level: 2
@@ -106,7 +94,7 @@ gulp.task('minifyCSS', ['compileCSS'], function() {
 });
 
 // Images
-gulp.task('minifyImages', ['compileImages'], function() {
+gulp.task('minifyImages', function() {
   return gulp.src([
     'dist/img/**/*'
   ])
@@ -123,10 +111,54 @@ gulp.task('minifyImages', ['compileImages'], function() {
   .pipe(gulp.dest('./dist/img'));
 });
 
-// S3 image sync
-gulp.task('s3:list', function(done) {
-  s3.list(function(err, data) {
-    console.log(data)
-    done();
-  });
-});
+// S3 Image Syncing
+gulp.task(
+  's3Sync', function(done) {
+    s3.sync(done);
+  }
+);
+
+
+// --------------
+// Wrapping tasks
+// --------------
+
+// Compile - compile styles and images
+gulp.task(
+  'compile',
+  gulp.parallel('compileCSS', 'compileImages')
+);
+
+// Minify - Compile CSS, minify images
+// move everything to /dist
+gulp.task(
+  'minify',
+  gulp.parallel('minifyCSS', 'minifyImages')
+);
+
+// Version - take minified images and upload
+// to s3. This task is called by
+// npm version patch!
+gulp.task(
+  'version',
+  gulp.series('compile', 'minify', 's3Sync')
+);
+
+// Watchers
+gulp.task(
+  'watchCSS', function() {
+    gulp.watch('src/styles/**/*.scss', gulp.series('compileCSS'));
+  }
+);
+
+gulp.task(
+  'watchImages', function() {
+    gulp.watch('src/img/**/*.*', gulp.series('compileImages'));
+  }
+);
+
+// Watcher
+gulp.task('watch', gulp.parallel('watchCSS', 'watchImages'));
+
+// gulp - Default is just to watch for changes
+gulp.task('default', gulp.series('compile', 'watch'));
