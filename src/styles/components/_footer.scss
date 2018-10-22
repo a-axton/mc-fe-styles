@@ -4,7 +4,7 @@
   // margin-top: 64px; holding off for now..
   // Better to have footer overlaid than hacky fix
   padding: 1em;
-  font-size: 0.95em;
+  font-size: 0.9em;
   clear: both;
   text-align: center;
 
@@ -23,7 +23,10 @@
     width: 135px; height: 128px;
   }
 
-  #ssl-badge { display: none; }
+  #ssl-badge {
+    display: none;
+    max-width: 140px;
+  }
 
   .nav-footer { padding: 2em 0em; }
 
@@ -142,8 +145,6 @@
       border-top: 0; border-bottom: 0;
     }
 
-    #ssl-badge { display: inline-block; }
-
     &.footer-full {
       #logo-footer {
         position: absolute;
@@ -184,8 +185,8 @@
     }
 
     .nav-footer {
-      margin: 0 2em;
-      padding: 2em 1em;
+      margin: 0 20px;
+      padding: 20px 10px;
     }
   }
 }

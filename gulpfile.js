@@ -147,7 +147,7 @@ gulp.task(
 // Watchers
 gulp.task(
   'watchCSS', function() {
-    gulp.watch('src/styles/**/*.scss', gulp.series('compileCSS'));
+    gulp.watch('src/styles/**/*.scss', gulp.series('compileCSS', 'minifyCSS'));
   }
 );
 
