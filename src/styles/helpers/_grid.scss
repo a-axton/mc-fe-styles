@@ -1,10 +1,10 @@
-$grid-breakpoints: (
+$fe-styles-grid-breakpoints: (
   tiny: $mc-bp-tiny,
   mini: $mc-bp-mini,
   sm: $mc-bp-small,
   med: $mc-bp-medium,
   lg: $mc-bp-large
-);
+) !default;
 $grid-prefix: 'mc-';
 
 .mc-container {
@@ -97,7 +97,7 @@ $grid-prefix: 'mc-';
 }
 
 // generate breakpoint column sets
-@each $name, $value in $grid-breakpoints {
+@each $name, $value in $fe-styles-grid-breakpoints {
   @media (min-width: $value) {
     %col-#{$name}-bp {
       flex: none;
