@@ -76,18 +76,18 @@
   text-transform: uppercase;
 }
 
-/* Absolute Positioned Element */
-/* Container must be position:relative and have a declared height*/
+// /* Absolute Positioned Element */
+// /* Container must be position:relative and have a declared height*/
 
-@mixin absolute-center {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-}
+// @mixin absolute-center {
+//   margin: auto;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   overflow: hidden;
+// }
 
 
 @mixin comment-container {
