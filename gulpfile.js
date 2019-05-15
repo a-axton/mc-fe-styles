@@ -19,7 +19,7 @@ var s3 = new S3ModuleSync({
   // which NODE_ENV var should produce s3 urls instead of local
   env: 'production',
   // Prefix url with...
-  prefix: 'https://d2y1uetpctfe4a.cloudfront.net'
+  prefix: 'https://node-module-assets.masterclass.com'
 });
 
 var assetUrl = {
